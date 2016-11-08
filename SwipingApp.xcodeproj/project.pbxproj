@@ -12,6 +12,9 @@
 		17135F431DD1E0BA00FF69D2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17135F411DD1E0BA00FF69D2 /* Main.storyboard */; };
 		17135F451DD1E0BA00FF69D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17135F441DD1E0BA00FF69D2 /* Assets.xcassets */; };
 		17135F481DD1E0BA00FF69D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17135F461DD1E0BA00FF69D2 /* LaunchScreen.storyboard */; };
+		76DB87C61DD1EA8900D9E912 /* Proxima-Nova-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 76DB87C31DD1EA8900D9E912 /* Proxima-Nova-Bold.otf */; };
+		76DB87C71DD1EA8900D9E912 /* Proxima-Nova-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 76DB87C41DD1EA8900D9E912 /* Proxima-Nova-Regular.otf */; };
+		76DB87C81DD1EA8900D9E912 /* VelinoDisplay-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 76DB87C51DD1EA8900D9E912 /* VelinoDisplay-Medium.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +25,9 @@
 		17135F441DD1E0BA00FF69D2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		17135F471DD1E0BA00FF69D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		17135F491DD1E0BA00FF69D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		76DB87C31DD1EA8900D9E912 /* Proxima-Nova-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Proxima-Nova-Bold.otf"; path = "../Proxima-Nova-Bold.otf"; sourceTree = "<group>"; };
+		76DB87C41DD1EA8900D9E912 /* Proxima-Nova-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Proxima-Nova-Regular.otf"; path = "../Proxima-Nova-Regular.otf"; sourceTree = "<group>"; };
+		76DB87C51DD1EA8900D9E912 /* VelinoDisplay-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "VelinoDisplay-Medium.otf"; path = "../VelinoDisplay-Medium.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,8 +66,19 @@
 				17135F441DD1E0BA00FF69D2 /* Assets.xcassets */,
 				17135F461DD1E0BA00FF69D2 /* LaunchScreen.storyboard */,
 				17135F491DD1E0BA00FF69D2 /* Info.plist */,
+				76DB87C91DD1EA9700D9E912 /* Resources */,
 			);
 			path = SwipingApp;
+			sourceTree = "<group>";
+		};
+		76DB87C91DD1EA9700D9E912 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				76DB87C31DD1EA8900D9E912 /* Proxima-Nova-Bold.otf */,
+				76DB87C41DD1EA8900D9E912 /* Proxima-Nova-Regular.otf */,
+				76DB87C51DD1EA8900D9E912 /* VelinoDisplay-Medium.otf */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,7 +142,10 @@
 			files = (
 				17135F481DD1E0BA00FF69D2 /* LaunchScreen.storyboard in Resources */,
 				17135F451DD1E0BA00FF69D2 /* Assets.xcassets in Resources */,
+				76DB87C81DD1EA8900D9E912 /* VelinoDisplay-Medium.otf in Resources */,
+				76DB87C71DD1EA8900D9E912 /* Proxima-Nova-Regular.otf in Resources */,
 				17135F431DD1E0BA00FF69D2 /* Main.storyboard in Resources */,
+				76DB87C61DD1EA8900D9E912 /* Proxima-Nova-Bold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,6 +319,7 @@
 				17135F4E1DD1E0BA00FF69D2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
