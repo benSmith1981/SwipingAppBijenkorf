@@ -6,4 +6,7 @@ target 'SwipingApp' do
   use_frameworks!
 
   # Pods for SwipingApp
+
+pod 'Alamofire', '~> 4.0'
+
 end
