@@ -49,7 +49,7 @@ class DetailTableViewController: UITableViewController {
                         let productPrice = sellingPrice["value"] as! Double
                         
                         let currentVariantProduct = item["currentVariantProduct"] as! Dictionary<String,Any>
-                        let imageURL = currentVariantProduct["images"] as! [Dictionary<String,Any>]
+                            if let imageURL = currentVariantProduct["images"] as? [Dictionary<String,Any>] {
                         let imageProductURL = imageURL[0]
                         let frontImageURL = imageProductURL["url"] as! String
                         
@@ -58,6 +58,7 @@ class DetailTableViewController: UITableViewController {
                         let newProduct = Product(productBrand: productBrand, productName: name, productPrice: productPrice, productImage: httpURL)
                         
                         self.allProducts.append(newProduct)
+                    }
                     }
                     }
                     
