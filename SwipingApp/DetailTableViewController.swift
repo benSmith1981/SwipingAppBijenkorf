@@ -16,6 +16,7 @@ class DetailTableViewController: UITableViewController {
     var dict = Dictionary<String, Any>()
     var productImageURL = UIImageView()
     var allProducts: [Product] = []
+//    var allImages: [ProductImage] = []
     //    var data: Data?
     //    var image = UIImage()
     

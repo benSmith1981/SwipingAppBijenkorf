@@ -8,5 +8,6 @@ target 'SwipingApp' do
   # Pods for SwipingApp
 
 pod 'Alamofire', '~> 4.0'
+pod 'MDCSwipeToChoose'
 
 end

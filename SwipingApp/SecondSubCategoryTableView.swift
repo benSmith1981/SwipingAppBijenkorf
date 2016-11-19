@@ -61,7 +61,6 @@ class SecondSubCategoryTableViewController: UITableViewController {
     
     // MARK: - Navigation
     
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         let index = tableView.indexPathForSelectedRow?.row
@@ -72,12 +71,30 @@ class SecondSubCategoryTableViewController: UITableViewController {
             if let row = tableView.indexPathForSelectedRow?.row {
                 
                 var dictObj = secondSubCatArray[row]
-                let detailTableViewController = segue.destination as! DetailTableViewController
+                let detailTableViewController = segue.destination as! SwipingViewController
                 detailTableViewController.dict = currentDict
                 detailTableViewController.navigationItem.title = dictObj["name"] as? String
             }
         }
     }
+    
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        
+//        let index = tableView.indexPathForSelectedRow?.row
+//        let currentDict = secondSubCatArray[index!]
+//        
+//        if segue.identifier == "subToDetail" {
+//            
+//            if let row = tableView.indexPathForSelectedRow?.row {
+//                
+//                var dictObj = secondSubCatArray[row]
+//                let detailTableViewController = segue.destination as! DetailTableViewController
+//                detailTableViewController.dict = currentDict
+//                detailTableViewController.navigationItem.title = dictObj["name"] as? String
+//            }
+//        }
+//    }
     
     
 }
