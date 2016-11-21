@@ -12,6 +12,8 @@ import MDCSwipeToChoose
 
 class SwipingViewController: UIViewController, MDCSwipeToChooseDelegate {
     
+    @IBOutlet var swipingView: UIView!
+    
     @IBOutlet weak var likeButton: UIButton!
     
     @IBOutlet weak var imageView: UIImageView!
@@ -93,49 +95,51 @@ class SwipingViewController: UIViewController, MDCSwipeToChooseDelegate {
             
             }
             
-            let view = MDCSwipeToChooseView(frame: self.view.bounds, options: options)
+            let swipingView = MDCSwipeToChooseView(frame: self.swipingView.bounds, options: options)
             
 
-            view?.imageView.image = allImages[0]
+            swipingView?.imageView.image = allImages[0]
+//            swipingView?.frame.origin.x = 82;
+//            swipingView?.frame.origin.y = 162;
             
-            view?.imageView.contentMode = .scaleAspectFit
-            view?.frame.size.height = 400;
-            view?.frame.size.width = 300;
-            view?.frame.origin.x = 82;
-            view?.frame.origin.y = 162;
-            view?.backgroundColor = .white
-//            view?.frame.offsetBy(dx: 20.0, dy: 20.0);
-//            view?.imageView.frame.insetBy(dx: 30, dy: 30);
-//            view?.imageView.frame.size.width = 300;
-            view?.imageView.frame.size.height = 400;
+//            swipingView?.imageView.contentMode = .scaleAspectFit
+//            view?.frame.size.height = 400;
+//            view?.frame.size.width = 300;
+//            view?.frame.origin.x = 82;
+//            view?.frame.origin.y = 162;
+//            view?.backgroundColor = .white
+////            view?.frame.offsetBy(dx: 20.0, dy: 20.0);
+////            view?.imageView.frame.insetBy(dx: 30, dy: 30);
+////            view?.imageView.frame.size.width = 300;
+//            view?.imageView.frame.size.height = 400;
             
-            self.view.addSubview(view!)
+            self.swipingView.addSubview(swipingView!)
             
-            let viewTwo = MDCSwipeToChooseView(frame: self.view.bounds, options: options)
-            viewTwo?.imageView.image = allImages[1]
-            viewTwo?.imageView.contentMode = .scaleAspectFit
-            viewTwo?.frame.size.height = 400;
-            viewTwo?.frame.size.width = 300;
-            viewTwo?.frame.origin.x = 86;
-            viewTwo?.frame.origin.y = 166;
-            viewTwo?.backgroundColor = .white
-//            viewTwo?.imageView.frame.size.width = 300;
-            viewTwo?.imageView.frame.size.height = 400;
-            
-            self.view.addSubview(viewTwo!)
-            
-            let viewThree = MDCSwipeToChooseView(frame: self.view.bounds, options: options)
-            viewThree?.imageView.image = allImages[2]
-            
-            viewThree?.imageView.contentMode = .scaleAspectFit
-            viewThree?.frame.size.height = 400;
-            viewThree?.frame.size.width = 300;
-            viewThree?.frame.origin.x = 90;
-            viewThree?.frame.origin.y = 170;
-            viewThree?.backgroundColor = .white
-//            viewThree?.imageView.frame.size.width = 300;
-            viewThree?.imageView.frame.size.height = 400;
-            self.view.addSubview(viewThree!)
+            let swipingViewTwo = MDCSwipeToChooseView(frame: self.swipingView.bounds, options: options)
+            swipingViewTwo?.imageView.image = allImages[1]
+//            viewTwo?.imageView.contentMode = .scaleAspectFit
+//            viewTwo?.frame.size.height = 400;
+//            viewTwo?.frame.size.width = 300;
+//            viewTwo?.frame.origin.x = 86;
+//            viewTwo?.frame.origin.y = 166;
+//            viewTwo?.backgroundColor = .white
+////            viewTwo?.imageView.frame.size.width = 300;
+//            viewTwo?.imageView.frame.size.height = 400;
+//            
+            self.swipingView.addSubview(swipingViewTwo!)
+//            
+            let swipingViewThree = MDCSwipeToChooseView(frame: self.swipingView.bounds, options: options)
+            swipingViewThree?.imageView.image = allImages[2]
+//            
+//            viewThree?.imageView.contentMode = .scaleAspectFit
+//            viewThree?.frame.size.height = 400;
+//            viewThree?.frame.size.width = 300;
+//            viewThree?.frame.origin.x = 90;
+//            viewThree?.frame.origin.y = 170;
+//            viewThree?.backgroundColor = .white
+////            viewThree?.imageView.frame.size.width = 300;
+//            viewThree?.imageView.frame.size.height = 400;
+            self.swipingView.addSubview(swipingViewThree!)
         }
     }
         self.setScreenName(name: navigationItem.title!)
