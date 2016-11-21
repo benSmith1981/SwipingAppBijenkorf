@@ -84,7 +84,7 @@ class MainCategoryTableViewController: UITableViewController {
                 var dictObj = dictArray[row]
                 let subCatTableViewController = segue.destination as! SubCategoryTableViewController
                 subCatTableViewController.dict = currentDict
-                subCatTableViewController.navigationItem.title = dictObj["name"] as? String
+                subCatTableViewController.title = dictObj["name"] as? String
             }
         }
         
@@ -100,8 +100,34 @@ class MainCategoryTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+            super.viewWillAppear(animated)
+            self.setScreenName(name: "Bijenkorf")
         
     }
+    
+}
+
+extension UIViewController {
+    
+    func setScreenName(name: String) {
+        self.title = name
+        self.sendScreenView()
+    }
+    
+    func sendScreenView() {
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker?.set(kGAIScreenName, value: self.title)
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        let dictionary = (builder?.build())! as NSMutableDictionary
+        tracker?.send(dictionary as [NSObject: AnyObject]!)
+    }
+    
+//    func trackEvent(category: String, action: String, label: String, value: NSNumber?) {
+//        let tracker = GAI.sharedInstance().defaultTracker
+//        let trackDictionary = GAIDictionaryBuilder.createEventWithCategory(category, action: action, label: label, value: value).build()
+//        tracker.send(trackDictionary)
+//    }
     
 }
 

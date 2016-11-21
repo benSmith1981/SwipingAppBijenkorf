@@ -14,6 +14,8 @@ class SwipingViewController: UIViewController, MDCSwipeToChooseDelegate {
     
     @IBOutlet weak var likeButton: UIButton!
     
+    @IBOutlet weak var imageView: UIImageView!
+
     @IBAction func likeButtonTapped(_ sender: Any) {
         
     }
@@ -85,26 +87,40 @@ class SwipingViewController: UIViewController, MDCSwipeToChooseDelegate {
                     print("Photo Deleted!")
                     
                 }
+                
+            options.likedRotationAngle = 5
+            options.nopeRotationAngle = 5
+            
             }
             
             let view = MDCSwipeToChooseView(frame: self.view.bounds, options: options)
+            
+
             view?.imageView.image = allImages[0]
             
             view?.imageView.contentMode = .scaleAspectFit
             view?.frame.size.height = 400;
-//            view?.imageView.frame.insetBy(dx: 30, dy: 30)
-//            view?.imageView.frame.size.width = 250;
-//            view?.imageView.frame.size.height = 300;
+            view?.frame.size.width = 300;
+            view?.frame.origin.x = 82;
+            view?.frame.origin.y = 162;
+            view?.backgroundColor = .white
+//            view?.frame.offsetBy(dx: 20.0, dy: 20.0);
+//            view?.imageView.frame.insetBy(dx: 30, dy: 30);
+//            view?.imageView.frame.size.width = 300;
+            view?.imageView.frame.size.height = 400;
             
             self.view.addSubview(view!)
             
             let viewTwo = MDCSwipeToChooseView(frame: self.view.bounds, options: options)
             viewTwo?.imageView.image = allImages[1]
-            
             viewTwo?.imageView.contentMode = .scaleAspectFit
             viewTwo?.frame.size.height = 400;
-//            viewTwo?.imageView.frame.size.width = 250;
-//            viewTwo?.imageView.frame.size.height = 300;
+            viewTwo?.frame.size.width = 300;
+            viewTwo?.frame.origin.x = 86;
+            viewTwo?.frame.origin.y = 166;
+            viewTwo?.backgroundColor = .white
+//            viewTwo?.imageView.frame.size.width = 300;
+            viewTwo?.imageView.frame.size.height = 400;
             
             self.view.addSubview(viewTwo!)
             
@@ -113,11 +129,16 @@ class SwipingViewController: UIViewController, MDCSwipeToChooseDelegate {
             
             viewThree?.imageView.contentMode = .scaleAspectFit
             viewThree?.frame.size.height = 400;
-//            viewThree?.imageView.frame.size.width = 250;
-//            viewThree?.imageView.frame.size.height = 300;
+            viewThree?.frame.size.width = 300;
+            viewThree?.frame.origin.x = 90;
+            viewThree?.frame.origin.y = 170;
+            viewThree?.backgroundColor = .white
+//            viewThree?.imageView.frame.size.width = 300;
+            viewThree?.imageView.frame.size.height = 400;
             self.view.addSubview(viewThree!)
         }
     }
+        self.setScreenName(name: navigationItem.title!)
     }
     
     func viewDidCancelSwipe(_ view: UIView!) {
@@ -142,5 +163,7 @@ class SwipingViewController: UIViewController, MDCSwipeToChooseDelegate {
             print("photo saved!")
         }
     }
+    
+
     
 }

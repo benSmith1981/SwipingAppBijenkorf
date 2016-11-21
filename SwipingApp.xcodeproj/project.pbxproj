@@ -446,6 +446,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nl.theappacademy.SwipingApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = SwipingApp/BridgingHeader.h;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -461,6 +462,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nl.theappacademy.SwipingApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = SwipingApp/BridgingHeader.h;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
