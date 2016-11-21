@@ -13,6 +13,7 @@
 		17135F481DD1E0BA00FF69D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17135F461DD1E0BA00FF69D2 /* LaunchScreen.storyboard */; };
 		7663376D1DDF1E7800B9EF05 /* SwipingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7663376C1DDF1E7800B9EF05 /* SwipingViewController.swift */; };
 		7663376F1DDF1F9F00B9EF05 /* ImageObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7663376E1DDF1F9F00B9EF05 /* ImageObject.swift */; };
+		7687D9001DE2FA34005D6FA5 /* WishListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7687D8FF1DE2FA34005D6FA5 /* WishListTableViewController.swift */; };
 		76CDEF531DDE3EA500C83CF6 /* MainCategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CDEF521DDE3EA500C83CF6 /* MainCategoryTableViewController.swift */; };
 		76CDEF551DDE3EC500C83CF6 /* SubCategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CDEF541DDE3EC500C83CF6 /* SubCategoryTableViewController.swift */; };
 		76CDEF571DDE3EE400C83CF6 /* SecondSubCategoryTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CDEF561DDE3EE400C83CF6 /* SecondSubCategoryTableView.swift */; };
@@ -23,6 +24,7 @@
 		76DB87C61DD1EA8900D9E912 /* Proxima-Nova-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 76DB87C31DD1EA8900D9E912 /* Proxima-Nova-Bold.otf */; };
 		76DB87C71DD1EA8900D9E912 /* Proxima-Nova-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 76DB87C41DD1EA8900D9E912 /* Proxima-Nova-Regular.otf */; };
 		76DB87C81DD1EA8900D9E912 /* VelinoDisplay-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 76DB87C51DD1EA8900D9E912 /* VelinoDisplay-Medium.otf */; };
+		76DC9D881DE2E56200ABAC27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 76DC9D871DE2E56200ABAC27 /* GoogleService-Info.plist */; };
 		76EBF5B61DDF0D21002DDDA9 /* ChooseProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EBF5B51DDF0D21002DDDA9 /* ChooseProductViewController.swift */; };
 		D8839D642BA33BCA57675D3C /* Pods_SwipingApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC1E72F9867761812A3A6FF2 /* Pods_SwipingApp.framework */; };
 /* End PBXBuildFile section */
@@ -36,6 +38,8 @@
 		17135F491DD1E0BA00FF69D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7663376C1DDF1E7800B9EF05 /* SwipingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipingViewController.swift; sourceTree = "<group>"; };
 		7663376E1DDF1F9F00B9EF05 /* ImageObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageObject.swift; sourceTree = "<group>"; };
+		7687D8FE1DE2F2FB005D6FA5 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
+		7687D8FF1DE2FA34005D6FA5 /* WishListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishListTableViewController.swift; sourceTree = "<group>"; };
 		76CDEF521DDE3EA500C83CF6 /* MainCategoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCategoryTableViewController.swift; sourceTree = "<group>"; };
 		76CDEF541DDE3EC500C83CF6 /* SubCategoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubCategoryTableViewController.swift; sourceTree = "<group>"; };
 		76CDEF561DDE3EE400C83CF6 /* SecondSubCategoryTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondSubCategoryTableView.swift; sourceTree = "<group>"; };
@@ -46,6 +50,7 @@
 		76DB87C31DD1EA8900D9E912 /* Proxima-Nova-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Proxima-Nova-Bold.otf"; path = "../Proxima-Nova-Bold.otf"; sourceTree = "<group>"; };
 		76DB87C41DD1EA8900D9E912 /* Proxima-Nova-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Proxima-Nova-Regular.otf"; path = "../Proxima-Nova-Regular.otf"; sourceTree = "<group>"; };
 		76DB87C51DD1EA8900D9E912 /* VelinoDisplay-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "VelinoDisplay-Medium.otf"; path = "../VelinoDisplay-Medium.otf"; sourceTree = "<group>"; };
+		76DC9D871DE2E56200ABAC27 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		76EBF5B51DDF0D21002DDDA9 /* ChooseProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseProductViewController.swift; sourceTree = "<group>"; };
 		9AEF24947FF141077981091E /* Pods-SwipingApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwipingApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwipingApp/Pods-SwipingApp.debug.xcconfig"; sourceTree = "<group>"; };
 		EC1E72F9867761812A3A6FF2 /* Pods_SwipingApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwipingApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,6 +90,7 @@
 		17135F3C1DD1E0BA00FF69D2 /* SwipingApp */ = {
 			isa = PBXGroup;
 			children = (
+				7687D8FE1DE2F2FB005D6FA5 /* BridgingHeader.h */,
 				17135F3D1DD1E0BA00FF69D2 /* AppDelegate.swift */,
 				76EBF5B51DDF0D21002DDDA9 /* ChooseProductViewController.swift */,
 				76CDEF5A1DDE3F0C00C83CF6 /* Storyboards */,
@@ -92,7 +98,7 @@
 				17135F441DD1E0BA00FF69D2 /* Assets.xcassets */,
 				7681D2181DDED85F00958339 /* Controller */,
 				7681D2171DDED80600958339 /* Model */,
-				17135F491DD1E0BA00FF69D2 /* Info.plist */,
+				76DC9D891DE2E57800ABAC27 /* plist */,
 				76DB87C91DD1EA9700D9E912 /* Resources */,
 			);
 			path = SwipingApp;
@@ -120,6 +126,7 @@
 		7681D2181DDED85F00958339 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				7687D8FF1DE2FA34005D6FA5 /* WishListTableViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -153,6 +160,15 @@
 				76DB87C51DD1EA8900D9E912 /* VelinoDisplay-Medium.otf */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		76DC9D891DE2E57800ABAC27 /* plist */ = {
+			isa = PBXGroup;
+			children = (
+				76DC9D871DE2E56200ABAC27 /* GoogleService-Info.plist */,
+				17135F491DD1E0BA00FF69D2 /* Info.plist */,
+			);
+			name = plist;
 			sourceTree = "<group>";
 		};
 		895C3F3D16A371D3A2EC0442 /* Pods */ = {
@@ -232,6 +248,7 @@
 				76DB87C71DD1EA8900D9E912 /* Proxima-Nova-Regular.otf in Resources */,
 				17135F431DD1E0BA00FF69D2 /* Main.storyboard in Resources */,
 				76DB87C61DD1EA8900D9E912 /* Proxima-Nova-Bold.otf in Resources */,
+				76DC9D881DE2E56200ABAC27 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,6 +313,7 @@
 				76CDEF591DDE3EFE00C83CF6 /* DetailTableViewController.swift in Sources */,
 				76CDEF5F1DDE3F9200C83CF6 /* CustomTableViewCell.swift in Sources */,
 				76CDEF531DDE3EA500C83CF6 /* MainCategoryTableViewController.swift in Sources */,
+				7687D9001DE2FA34005D6FA5 /* WishListTableViewController.swift in Sources */,
 				17135F3E1DD1E0BA00FF69D2 /* AppDelegate.swift in Sources */,
 				76EBF5B61DDF0D21002DDDA9 /* ChooseProductViewController.swift in Sources */,
 				7663376D1DDF1E7800B9EF05 /* SwipingViewController.swift in Sources */,
@@ -426,7 +444,7 @@
 				INFOPLIST_FILE = SwipingApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = TAA.SwipingApp;
+				PRODUCT_BUNDLE_IDENTIFIER = nl.theappacademy.SwipingApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -441,7 +459,7 @@
 				INFOPLIST_FILE = SwipingApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = TAA.SwipingApp;
+				PRODUCT_BUNDLE_IDENTIFIER = nl.theappacademy.SwipingApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

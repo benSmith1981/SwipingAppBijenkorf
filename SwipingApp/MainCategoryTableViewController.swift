@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import Alamofire
+import GGLAnalytics
 
 class MainCategoryTableViewController: UITableViewController {
     
@@ -18,7 +19,7 @@ class MainCategoryTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var image = UIImage(named: "bijenkorfNavigationLogo.png")
+        let image = UIImage(named: "bijenkorfNavigationLogo.png")
         self.navigationItem.titleView = UIImageView(image: image)
         
         DataManager.sharedInstance.getDataFromAPI()
@@ -96,6 +97,10 @@ class MainCategoryTableViewController: UITableViewController {
         navigationItem.title = "Bijenkorf"
 //        navigationItem.titleView = UIImage(named: "bijenkorfNavigationLogo.png")
         navigationController?.navigationBar.barTintColor = UIColor(red: 238, green: 238, blue: 238, alpha: 1)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
     }
     
 }
