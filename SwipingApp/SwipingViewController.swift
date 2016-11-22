@@ -14,13 +14,8 @@ class SwipingViewController: UIViewController, MDCSwipeToChooseDelegate {
     
     @IBOutlet var swipingView: UIView!
     
-    @IBOutlet weak var likeButton: UIButton!
-    
     @IBOutlet weak var imageView: UIImageView!
 
-    @IBAction func likeButtonTapped(_ sender: Any) {
-        
-    }
     
     var dict = Dictionary<String, Any>()
     var productImageURL = UIImageView()
@@ -29,6 +24,9 @@ class SwipingViewController: UIViewController, MDCSwipeToChooseDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        buildlikeButton()
+        buildUnlikeButton()
         
     }
     
@@ -90,8 +88,6 @@ class SwipingViewController: UIViewController, MDCSwipeToChooseDelegate {
                     
                 }
                 
-            options.likedRotationAngle = 5
-            options.nopeRotationAngle = 5
             
             }
             
@@ -112,8 +108,11 @@ class SwipingViewController: UIViewController, MDCSwipeToChooseDelegate {
 ////            view?.imageView.frame.insetBy(dx: 30, dy: 30);
 ////            view?.imageView.frame.size.width = 300;
 //            view?.imageView.frame.size.height = 400;
+            swipingView?.center = self.swipingView.center
+        
             
-            self.swipingView.addSubview(swipingView!)
+            self.view.addSubview(swipingView!)
+
             
             let swipingViewTwo = MDCSwipeToChooseView(frame: self.swipingView.bounds, options: options)
             swipingViewTwo?.imageView.image = allImages[1]
@@ -125,8 +124,10 @@ class SwipingViewController: UIViewController, MDCSwipeToChooseDelegate {
 //            viewTwo?.backgroundColor = .white
 ////            viewTwo?.imageView.frame.size.width = 300;
 //            viewTwo?.imageView.frame.size.height = 400;
+            swipingViewTwo?.center = self.swipingView.center
+
 //            
-            self.swipingView.addSubview(swipingViewTwo!)
+            self.view.addSubview(swipingViewTwo!)
 //            
             let swipingViewThree = MDCSwipeToChooseView(frame: self.swipingView.bounds, options: options)
             swipingViewThree?.imageView.image = allImages[2]
@@ -139,7 +140,9 @@ class SwipingViewController: UIViewController, MDCSwipeToChooseDelegate {
 //            viewThree?.backgroundColor = .white
 ////            viewThree?.imageView.frame.size.width = 300;
 //            viewThree?.imageView.frame.size.height = 400;
-            self.swipingView.addSubview(swipingViewThree!)
+            swipingViewThree?.center = self.swipingView.center
+
+            self.view.addSubview(swipingViewThree!)
         }
     }
         self.setScreenName(name: navigationItem.title!)
@@ -171,40 +174,41 @@ class SwipingViewController: UIViewController, MDCSwipeToChooseDelegate {
     func buildUnlikeButton() {
         let button: UIButton = UIButton(type: UIButtonType.system) as UIButton
         let buttonImage = UIImage(named: "unlike")
-        button.frame = CGRect(x: 100, y: 480, width: (buttonImage?.size.width)!, height: (buttonImage?.size.height)!)
+        
+        button.frame = CGRect(x: 100, y: 520, width: (buttonImage?.size.width)!, height: (buttonImage?.size.height)!)
         //        button.backgroundColor = UIColor.blue
         button.setImage(buttonImage, for: UIControlState())
         button.tintColor = UIColor(red: 247.0/255.0, green: 91.0/255.0, blue: 37.0/255.0, alpha: 1.0)
         button.addTarget(self, action: #selector(unlikeButtonPressed), for: .touchUpInside)
-        self.swipingView.addSubview(button)
+        self.view.addSubview(button)
     }
     
     func buildlikeButton() {
         let button: UIButton = UIButton(type: UIButtonType.system) as UIButton
         let buttonImage = UIImage(named: "liked")
-        button.frame = CGRect(x: 150, y: 480, width: (buttonImage?.size.width)!, height: (buttonImage?.size.height)!)
+        button.frame = CGRect(x: 150, y: 520, width: (buttonImage?.size.width)!, height: (buttonImage?.size.height)!)
         //        button.backgroundColor = UIColor.blue
         button.setImage(buttonImage, for: UIControlState())
         button.tintColor = UIColor(red: 29.0/255.0, green: 245.0/255.0, blue: 106.0/255.0, alpha: 1.0)
         button.addTarget(self, action: #selector(likeButtonPressed), for: .touchUpInside)
-        self.swipingView.addSubview(button)
+        self.view.addSubview(button)
     }
     
     func unlikeButtonPressed(_ button: UIButton) {
         print("unlike!")
         
-        print(self.swipingView.subviews.count)
+        print(self.view.subviews.count)
         
-        self.swipingView.subviews[self.view.subviews.count-1].mdc_swipe(MDCSwipeDirection.left)
+        self.view.subviews[self.view.subviews.count-1].mdc_swipe(MDCSwipeDirection.left)
         
         
     }
     func likeButtonPressed(_ button: UIButton) {
         print("like!")
         
-        print(self.swipingView.subviews.count)
+        print(self.view.subviews.count)
         
-        self.swipingView.subviews[self.view.subviews.count-1].mdc_swipe(MDCSwipeDirection.right)
+        self.view.subviews[self.view.subviews.count-1].mdc_swipe(MDCSwipeDirection.right)
         
         
         
