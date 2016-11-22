@@ -168,6 +168,47 @@ class SwipingViewController: UIViewController, MDCSwipeToChooseDelegate {
         }
     }
     
+    func buildUnlikeButton() {
+        let button: UIButton = UIButton(type: UIButtonType.system) as UIButton
+        let buttonImage = UIImage(named: "unlike")
+        button.frame = CGRect(x: 100, y: 480, width: (buttonImage?.size.width)!, height: (buttonImage?.size.height)!)
+        //        button.backgroundColor = UIColor.blue
+        button.setImage(buttonImage, for: UIControlState())
+        button.tintColor = UIColor(red: 247.0/255.0, green: 91.0/255.0, blue: 37.0/255.0, alpha: 1.0)
+        button.addTarget(self, action: #selector(unlikeButtonPressed), for: .touchUpInside)
+        self.swipingView.addSubview(button)
+    }
+    
+    func buildlikeButton() {
+        let button: UIButton = UIButton(type: UIButtonType.system) as UIButton
+        let buttonImage = UIImage(named: "liked")
+        button.frame = CGRect(x: 150, y: 480, width: (buttonImage?.size.width)!, height: (buttonImage?.size.height)!)
+        //        button.backgroundColor = UIColor.blue
+        button.setImage(buttonImage, for: UIControlState())
+        button.tintColor = UIColor(red: 29.0/255.0, green: 245.0/255.0, blue: 106.0/255.0, alpha: 1.0)
+        button.addTarget(self, action: #selector(likeButtonPressed), for: .touchUpInside)
+        self.swipingView.addSubview(button)
+    }
+    
+    func unlikeButtonPressed(_ button: UIButton) {
+        print("unlike!")
+        
+        print(self.swipingView.subviews.count)
+        
+        self.swipingView.subviews[self.view.subviews.count-1].mdc_swipe(MDCSwipeDirection.left)
+        
+        
+    }
+    func likeButtonPressed(_ button: UIButton) {
+        print("like!")
+        
+        print(self.swipingView.subviews.count)
+        
+        self.swipingView.subviews[self.view.subviews.count-1].mdc_swipe(MDCSwipeDirection.right)
+        
+        
+        
+    }
 
     
 }
