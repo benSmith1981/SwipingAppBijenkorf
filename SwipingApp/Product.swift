@@ -13,12 +13,12 @@ class Product: NSObject {
     
     var productBrand: String
     var productName: String
-    var productPrice: Double
-    var productImage: String
+    var productPrice: Float
+    var productImage: UIImage
     
     //    init(productBrand: String, productName: String, productPrice: Double, productImage: String) {
     
-    init(productBrand: String, productName: String, productPrice: Double, productImage: String) {
+    init(productBrand: String, productName: String, productPrice: Float, productImage: UIImage) {
         
         self.productBrand = productBrand
         self.productName = productName

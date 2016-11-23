@@ -71,7 +71,7 @@ class SecondSubCategoryTableViewController: UITableViewController {
             if let row = tableView.indexPathForSelectedRow?.row {
                 
                 var dictObj = secondSubCatArray[row]
-                let detailTableViewController = segue.destination as! SwipingViewController
+                let detailTableViewController = segue.destination as! ChooseProductViewController
                 detailTableViewController.dict = currentDict
                 detailTableViewController.navigationItem.title = dictObj["name"] as? String
             }

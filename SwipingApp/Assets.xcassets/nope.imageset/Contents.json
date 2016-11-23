@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "like-button.png",
+      "filename" : "unlike-button.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "like-button-1.png",
+      "filename" : "unlike-button-1.png",
       "scale" : "2x"
     },
     {
