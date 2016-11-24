@@ -19,7 +19,6 @@ class ChooseProductView: MDCSwipeToChooseView {
     var nameLabel: UILabel!
     var priceLabel: UILabel!
     var brandLabel: UILabel!
-    var infoLabelView:ImagelabelView!
     //    var interestsImageLabelView: ImagelabelView!
     //    var friendsImageLabelView: ImagelabelView!
     
@@ -36,10 +35,10 @@ class ChooseProductView: MDCSwipeToChooseView {
         //        UIViewAutoresizing.flexibleBottomMargin
         
         self.imageView.autoresizingMask = self.autoresizingMask
-        constructTopInformationView()
+         constructTopInformationView()
         
         self.imageView.autoresizingMask = self.autoresizingMask
-        constructInformationView()
+         constructInformationView()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -56,7 +55,7 @@ class ChooseProductView: MDCSwipeToChooseView {
         self.topInformationView.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleTopMargin]
         self.addSubview(self.topInformationView)
         constructNameLabel()
-        //        constructInfoLabelView()
+        constructInfoButton()
     }
     
     func constructInformationView() -> Void{
@@ -66,13 +65,15 @@ class ChooseProductView: MDCSwipeToChooseView {
                                         width: (self.bounds).width,
                                         height: bottomHeight);
         self.informationView = UIView(frame: bottomFrame)
-        self.informationView.backgroundColor = UIColor.white
-        self.informationView.clipsToBounds = true
+        //        self.informationView.alignmentRectInsets.bottom = 4
+        self.informationView.backgroundColor = UIColor.white.withAlphaComponent(0.5)
+        // self.informationView.clipsToBounds = true
+        self.informationView.layer.cornerRadius = 20.0
+        //        self.informationView.center =
         self.informationView.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleTopMargin]
         self.addSubview(self.informationView)
         constructBrandLabel()
         constructPriceLabel()
-        //        constructCameraImageLabelView()
     }
     
     func constructNameLabel() -> Void{
@@ -84,15 +85,30 @@ class ChooseProductView: MDCSwipeToChooseView {
                                   height: self.topInformationView.frame.height - topPadding)
         self.nameLabel = UILabel(frame: frame)
         self.nameLabel.baselineAdjustment = .alignCenters
+        self.nameLabel.numberOfLines = 0
         self.nameLabel.text = "\(product.productName)"
         self.nameLabel.textAlignment = .center
-        self.nameLabel.font = UIFont(name: "Proxima-Nova-Regular.otf", size: 18)
+        self.nameLabel.font = UIFont(name: "Proxima-Nova-Bold.otf", size: 12)
+        self.nameLabel.adjustsFontSizeToFitWidth = true
         self.topInformationView .addSubview(self.nameLabel)
+    }
+    
+    func constructInfoButton() -> Void {
+        
+        //        let rightPadding: CGFloat = 12.0
+        //        let topPadding: CGFloat = 8.0
+        let button : UIButton = UIButton(type: UIButtonType.system)
+        let image: UIImage = UIImage(named: "info")!
+        button.frame = CGRect(x: 20, y: 20, width: 20, height: 20)
+        button.setImage(image, for: UIControlState())
+        button.tintColor = UIColor.blue
+        button.addTarget(self, action: #selector(ChooseProductViewController.nopeFrontCardView), for: UIControlEvents.touchUpInside)
+        self.topInformationView.addSubview(button)
     }
     
     func constructBrandLabel() -> Void{
         let leftPadding:CGFloat = 12.0
-        let topPadding:CGFloat = 8.0
+        let topPadding:CGFloat = -24.0
         let frame:CGRect = CGRect(x: leftPadding,
                                   y: topPadding,
                                   width: floor(self.informationView.frame.width),
@@ -101,32 +117,29 @@ class ChooseProductView: MDCSwipeToChooseView {
         self.brandLabel.baselineAdjustment = .alignCenters
         self.brandLabel.text = "\(product.productBrand)"
         self.brandLabel.textAlignment = .center
+        self.brandLabel.font = UIFont(name: "Proxima-Nova-Bold.otf", size: 18)
+        self.brandLabel.adjustsFontSizeToFitWidth = true
         self.informationView .addSubview(self.brandLabel)
     }
     
     func constructPriceLabel() -> Void {
         let rightPadding: CGFloat = 12.0
-        let topPadding: CGFloat = 38.0
+        let topPadding: CGFloat = 30.0
         let frame: CGRect = CGRect(x: rightPadding, y: topPadding, width: floor(self.informationView.frame.width), height: self.informationView.frame.height - topPadding)
         let priceOfProduct = product.productPrice
         self.priceLabel = UILabel(frame: frame)
         self.priceLabel.text = String(format: "€ %.2f", priceOfProduct)
         self.priceLabel.textAlignment = .center
+        self.priceLabel.font = UIFont(name: "Proxima-Nova-Bold.otf", size: 18)
+        self.priceLabel.adjustsFontSizeToFitWidth = true
         self.informationView .addSubview(self.priceLabel)
         
     }
     
-    //    func constructInfoLabelView() -> Void{
-    //        var rightPadding:CGFloat = 10.0
-    //        let image: UIImage = UIImage(named: "info")!
-    ////        self.infoLabelView = image
-    //        self.infoLabelView = buildImageLabelViewLeftOf(self.topInformationView.bounds.width, image:image, text: "")
-    //        self.topInformationView .addSubview(self.infoLabelView)
-    //    }
     
     
     func buildImageLabelViewLeftOf(_ x:CGFloat, image:UIImage, text:String) -> ImagelabelView {
-        let frame: CGRect = CGRect(x: x-ChooseProductViewImageLabelWidth, y: 0,
+        let frame: CGRect = CGRect(x: x-ChooseProductViewImageLabelWidth, y: 40,
                                    width: ChooseProductViewImageLabelWidth,
                                    height: self.informationView.bounds.height)
         let view: ImagelabelView = ImagelabelView(frame: frame, image: image, text: text)
@@ -134,4 +147,3 @@ class ChooseProductView: MDCSwipeToChooseView {
         return view
     }
 }
-
