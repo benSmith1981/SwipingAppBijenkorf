@@ -40,12 +40,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KWt-mu-tuI">
-                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="wishListCell" textLabel="B9C-BW-hsM" style="IBUITableViewCellStyleDefault" id="KWt-mu-tuI">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KWt-mu-tuI" id="bCN-Vd-38l">
                                     <frame key="frameInset" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="B9C-BW-hsM">
+                                            <frame key="frameInset" minX="15" width="345" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -318,7 +327,6 @@
                     </view>
                     <connections>
                         <outlet property="activityIndicatorView" destination="3c4-kD-nFR" id="YNV-OE-gTb"/>
-                        <segue destination="exX-3s-RFt" kind="show" identifier="swipeToWishList" id="hQL-RB-Jwu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eRw-Je-PjE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -347,10 +355,7 @@
     </scenes>
     <resources>
         <image name="Basket" width="20" height="20"/>
-        <image name="Search" width="20" height="20"/>
-        <image name="Wishlist" width="20" height="20"/>
+        <image name="Search" width="25" height="25"/>
+        <image name="Wishlist" width="25" height="25"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="hQL-RB-Jwu"/>
-    </inferredMetricsTieBreakers>
 </document>

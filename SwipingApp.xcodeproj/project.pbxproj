@@ -17,6 +17,7 @@
 		7663376D1DDF1E7800B9EF05 /* SwipingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7663376C1DDF1E7800B9EF05 /* SwipingViewController.swift */; };
 		7663376F1DDF1F9F00B9EF05 /* ImageObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7663376E1DDF1F9F00B9EF05 /* ImageObject.swift */; };
 		7687D9001DE2FA34005D6FA5 /* WishListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7687D8FF1DE2FA34005D6FA5 /* WishListTableViewController.swift */; };
+		76B28BF21DE74434001340FA /* WishList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B28BF11DE74434001340FA /* WishList.swift */; };
 		76CDEF531DDE3EA500C83CF6 /* MainCategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CDEF521DDE3EA500C83CF6 /* MainCategoryTableViewController.swift */; };
 		76CDEF551DDE3EC500C83CF6 /* SubCategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CDEF541DDE3EC500C83CF6 /* SubCategoryTableViewController.swift */; };
 		76CDEF571DDE3EE400C83CF6 /* SecondSubCategoryTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CDEF561DDE3EE400C83CF6 /* SecondSubCategoryTableView.swift */; };
@@ -45,6 +46,7 @@
 		7663376E1DDF1F9F00B9EF05 /* ImageObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageObject.swift; sourceTree = "<group>"; };
 		7687D8FE1DE2F2FB005D6FA5 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		7687D8FF1DE2FA34005D6FA5 /* WishListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishListTableViewController.swift; sourceTree = "<group>"; };
+		76B28BF11DE74434001340FA /* WishList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishList.swift; sourceTree = "<group>"; };
 		76CDEF521DDE3EA500C83CF6 /* MainCategoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCategoryTableViewController.swift; sourceTree = "<group>"; };
 		76CDEF541DDE3EC500C83CF6 /* SubCategoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubCategoryTableViewController.swift; sourceTree = "<group>"; };
 		76CDEF561DDE3EE400C83CF6 /* SecondSubCategoryTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondSubCategoryTableView.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 		7681D2171DDED80600958339 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				76B28BF11DE74434001340FA /* WishList.swift */,
 				76CDEF5E1DDE3F9200C83CF6 /* CustomTableViewCell.swift */,
 				76CDEF5C1DDE3F4700C83CF6 /* DataManager.swift */,
 				76CDEF601DDE3FBA00C83CF6 /* Product.swift */,
@@ -321,6 +324,7 @@
 				76CDEF5F1DDE3F9200C83CF6 /* CustomTableViewCell.swift in Sources */,
 				7618E7701DE6188E00796762 /* ChooseProductView.swift in Sources */,
 				76CDEF531DDE3EA500C83CF6 /* MainCategoryTableViewController.swift in Sources */,
+				76B28BF21DE74434001340FA /* WishList.swift in Sources */,
 				7687D9001DE2FA34005D6FA5 /* WishListTableViewController.swift in Sources */,
 				7618E76E1DE6182600796762 /* ChooseProductViewController.swift in Sources */,
 				17135F3E1DD1E0BA00FF69D2 /* AppDelegate.swift in Sources */,

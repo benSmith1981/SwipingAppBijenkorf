@@ -8,7 +8,7 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
     
     
     
-    //    var product: [Product] = []
+    var sharedWishList = WishList.sharedInstance
     let ChooseProductButtonHorizontalPadding: CGFloat = 80.0
     let ChooseProductButtonVerticalPadding: CGFloat = 20.0
     var currentProduct: Product!
@@ -17,7 +17,7 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
     var dict: Dictionary<String,Any>?
     var productImageURL = UIImageView()
     var allProducts: [Product] = []
-    var productCodeArray: [String] = []
+//    var productCodeArray: [String] = []
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -164,8 +164,8 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
         else {
             let newProductCode = currentProduct.productCode
             print("You liked product: \(self.currentProduct.productCode)")
-            self.productCodeArray.append(newProductCode)
-            print(productCodeArray)
+            self.sharedWishList.addNewProductCode(productCode: newProductCode)
+            print(sharedWishList.productCodeArray)
         }
         
         // MDCSwipeToChooseView removes the view from the view hierarchy
