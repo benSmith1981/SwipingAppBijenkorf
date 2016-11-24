@@ -34,14 +34,14 @@
         <!--Wishlist-->
         <scene sceneID="gja-VQ-5FJ">
             <objects>
-                <tableViewController title="Wishlist" id="exX-3s-RFt" sceneMemberID="viewController">
+                <tableViewController title="Wishlist" id="exX-3s-RFt" customClass="WishListTableViewController" customModule="SwipingApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="bt9-VE-F8l">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KWt-mu-tuI">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KWt-mu-tuI" id="bCN-Vd-38l">
                                     <frame key="frameInset" width="375" height="43"/>
@@ -307,8 +307,19 @@
                     <view key="view" contentMode="scaleToFill" id="ZAN-9Z-rAw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="3c4-kD-nFR"/>
+                        </subviews>
                         <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="3c4-kD-nFR" firstAttribute="centerY" secondItem="ZAN-9Z-rAw" secondAttribute="centerY" id="3la-C3-Cu8"/>
+                            <constraint firstItem="3c4-kD-nFR" firstAttribute="centerX" secondItem="ZAN-9Z-rAw" secondAttribute="centerX" id="pcG-cg-XfJ"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="activityIndicatorView" destination="3c4-kD-nFR" id="YNV-OE-gTb"/>
+                        <segue destination="exX-3s-RFt" kind="show" identifier="swipeToWishList" id="hQL-RB-Jwu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eRw-Je-PjE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -320,7 +331,7 @@
                 <navigationController title="Search" automaticallyAdjustsScrollViewInsets="NO" id="llY-Rp-Yre" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="Search" id="o0t-rM-z3v"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="1tb-eT-hOG">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="1tb-eT-hOG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -339,4 +350,7 @@
         <image name="Search" width="20" height="20"/>
         <image name="Wishlist" width="20" height="20"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="hQL-RB-Jwu"/>
+    </inferredMetricsTieBreakers>
 </document>

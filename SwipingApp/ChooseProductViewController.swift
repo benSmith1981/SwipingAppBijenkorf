@@ -1,11 +1,3 @@
-//
-//  ChooseProductViewController.swift
-//  SwipingApp
-//
-//  Created by Thijs Lucassen on 23-11-16.
-//
-//
-
 import UIKit
 import MDCSwipeToChoose
 import Alamofire
@@ -61,6 +53,8 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
                 // See the `nopeFrontCardView` and `likeFrontCardView` methods.
                 self.constructNopeButton()
                 self.constructLikedButton()
+                
+                
             }
             
             
@@ -74,11 +68,9 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
         
     }
     
-    func startSpinning(sender: AnyObject) {
-        activityIndicatorView.startAnimating()
-    }
     
     func loadProductWith( completion:@escaping (_ product: [Product]) -> Void) {
+        activityIndicatorView.startAnimating()
         
         if let productQuery = dict!["query"] as? String {
             
@@ -107,7 +99,7 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
                                 let productPrice = sellingPrice["value"] as! Double
                                 
                                 let currentVariantProduct = item["currentVariantProduct"] as! Dictionary<String,Any>
-                                
+                                let productCode = currentVariantProduct["code"] as? String
                                 if let imageURL = currentVariantProduct["images"] as? [Dictionary<String,Any>] {
                                     let imageProductURL = imageURL[0]
                                     let frontImageURL = imageProductURL["url"] as! String
@@ -122,19 +114,20 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
                                         
                                     }
                                     
-                                    let newProduct = Product(productBrand: productBrand, productName: name, productPrice: Float(productPrice), productImage: productImage!)
+                                    let newProduct = Product(productBrand: productBrand, productName: name, productPrice: Float(productPrice), productImage: productImage!, productCode: productCode!)
                                     
                                     self.allProducts.append(newProduct)
                                     //print(self.allProducts)
-                                
+                                    print(productCode)
+                                    print(self.allProducts.count)
                                     
                                 }
                             }
-                            completion(self.allProducts)
+                            
                         }
                         
                     }
-                    
+                    completion(self.allProducts)
                 }
                 
             }
@@ -166,17 +159,40 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
         
         if(wasChosenWith == MDCSwipeDirection.left){
             print("You didn't like: \(self.currentProduct.productName)")
+            
         }
         else {
-            
-            print("You liked product: \(self.currentProduct.productName)")
-            
+            let newProductCode = currentProduct.productCode
+            print("You liked product: \(self.currentProduct.productCode)")
+            self.productCodeArray.append(newProductCode)
+            print(productCodeArray)
         }
         
         // MDCSwipeToChooseView removes the view from the view hierarchy
         // after it is swiped (this behavior can be customized via the
         // MDCSwipeOptions class). Since the front card view is gone, we
         // move the back card to the front, and create a new back card.
+        
+        //        if(self.backCardView != nil) {
+        //            self.frontCardView = self.backCardView
+        //        }
+        
+        //       self.frontCardView = self.backCardView
+        //
+        //        if(self.backCardView != nil) {
+        //
+        //            self.backCardView = self.frontCardView
+        //
+        //        if self.backCardView == self.popProductViewWithFrame(self.backCardViewFrame()) {
+        //
+        //            self.backCardView.alpha = 0.5
+        //            popProductViewWithFrame(self.backCardViewFrame())?.insertSubview(self.backCardView, belowSubview: self.frontCardView)
+        //            UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseInOut, animations: {
+        //                self.backCardView.alpha = 1.0
+        //                }, completion: nil)
+        //            }
+        
+        // Correct Swiping Code
         if(self.backCardView != nil) {
             self.setMyFrontCardView(self.backCardView)
         }
@@ -199,13 +215,14 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
         // Quick and dirty, just for the purposes of this sample app.
         self.frontCardView = frontCardView
         self.currentProduct = frontCardView.product
+        
     }
     
     func defaultProduct() -> [Product]{
         // It would be trivial to download these from a web service
         // as needed, but for the purposes of this sample app we'll
         // simply store them in memory.
-        //        return [Product(productBrand: "Merk1", productName: "Pump1", productPrice: 120.0, productImage: "finn"), Product(productBrand: "Merk2", productName: "Pump2", productPrice: 130.0, productImage: "jake"), Product(productBrand: "Merk3", productName: "Pump3", productPrice: 140.0, productImage: "fiona")]
+        //        return [Product(productBrand: "Merk1", productName: "Pump1", productPrice: 120.0, productImage: UIImage(named: "finn")!, productCode: "1"), Product(productBrand: "Merk2", productName: "Pump2", productPrice: 130.0, productImage: UIImage(named: "jake")!, productCode: "2"), Product(productBrand: "Merk3", productName: "Pump3", productPrice: 140.0, productImage: UIImage(named: "fiona")!, productCode: "3"), Product(productBrand: "Merk4", productName: "Pump4", productPrice: 150.0, productImage: UIImage(named: "prince")!, productCode: "4")]
         return allProducts
     }
     
@@ -220,6 +237,10 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
         // based on how far the user has panned the front card view.
         let options: MDCSwipeToChooseViewOptions = MDCSwipeToChooseViewOptions()
         options.delegate = self
+        options.threshold = 160.0
+        options.likedText = "Top"
+        options.likedColor = UIColor.green
+        options.likedRotationAngle = 0
         //options.threshold = 160.0
         options.onPan = { state -> Void in
             if(self.backCardView != nil){
@@ -249,6 +270,7 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
         return CGRect(x: frontFrame.origin.x, y: frontFrame.origin.y + 10.0, width: frontFrame.width, height: frontFrame.height)
     }
     
+    
     func constructNopeButton() -> Void{
         let button:UIButton =  UIButton(type: UIButtonType.system)
         let image:UIImage = UIImage(named:"nope")!
@@ -275,5 +297,19 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
     func likeFrontCardView() -> Void{
         self.frontCardView.mdc_swipe(MDCSwipeDirection.right)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        //        let index = productCodeArray
+        //        let currentArray = productCodeArray[index]
+        
+        if segue.identifier == "swipeToWishList" {
+            
+            //            var dictObj = currentArray.
+            let swipeViewController = segue.destination as! WishListTableViewController
+//            swipeViewController.productCodeArray = productCodeArray
+            //                subCatTableViewController.title = dictObj["name"] as? String
+        }
+        
+    }
 }
-
