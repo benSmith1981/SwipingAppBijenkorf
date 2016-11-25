@@ -88,7 +88,7 @@ class ChooseProductView: MDCSwipeToChooseView {
         self.nameLabel.numberOfLines = 0
         self.nameLabel.text = "\(product.productName)"
         self.nameLabel.textAlignment = .center
-        self.nameLabel.font = UIFont(name: "Proxima-Nova-Bold.otf", size: 12)
+        self.nameLabel.font = UIFont(name: "ProximaNova-Regular", size: 12)
         self.nameLabel.adjustsFontSizeToFitWidth = true
         self.topInformationView .addSubview(self.nameLabel)
     }
@@ -117,7 +117,7 @@ class ChooseProductView: MDCSwipeToChooseView {
         self.brandLabel.baselineAdjustment = .alignCenters
         self.brandLabel.text = "\(product.productBrand)"
         self.brandLabel.textAlignment = .center
-        self.brandLabel.font = UIFont(name: "Proxima-Nova-Bold.otf", size: 18)
+        self.brandLabel.font = UIFont(name: "ProximaNova-Bold", size: 18)
         self.brandLabel.adjustsFontSizeToFitWidth = true
         self.informationView .addSubview(self.brandLabel)
     }
@@ -130,7 +130,7 @@ class ChooseProductView: MDCSwipeToChooseView {
         self.priceLabel = UILabel(frame: frame)
         self.priceLabel.text = String(format: "€ %.2f", priceOfProduct)
         self.priceLabel.textAlignment = .center
-        self.priceLabel.font = UIFont(name: "Proxima-Nova-Bold.otf", size: 18)
+        self.priceLabel.font = UIFont(name: "ProximaNova-Bold", size: 18)
         self.priceLabel.adjustsFontSizeToFitWidth = true
         self.informationView .addSubview(self.priceLabel)
         
