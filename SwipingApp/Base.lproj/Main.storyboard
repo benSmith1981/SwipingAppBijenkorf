@@ -15,7 +15,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="iJl-H1-Pa7">
             <objects>
-                <tabBarController id="ZoQ-cV-pAX" sceneMemberID="viewController">
+                <tabBarController id="ZoQ-cV-pAX" customClass="TabBarController" customModule="SwipingApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="zTE-ar-Jkh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -103,10 +103,13 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Wishlist" id="zLG-Eg-X0x"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="usS-Th-w8A">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tac-y2-YEo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1088.8" y="149.77511244377811"/>
+            <point key="canvasLocation" x="921" y="215"/>
         </scene>
         <!--Basket-->
         <scene sceneID="6rV-YL-065">
@@ -395,7 +398,7 @@
         <scene sceneID="Fr5-mO-UCr">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HyM-zo-OxG" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="Wishlist" id="3pb-0J-1x5"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="" image="Wishlist" badgeValue="0" id="3pb-0J-1x5"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="nXR-VH-YdW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

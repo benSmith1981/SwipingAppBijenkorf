@@ -16,6 +16,7 @@
 		7618E7721DE618ED00796762 /* ImageLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7618E7711DE618ED00796762 /* ImageLabelView.swift */; };
 		764509A41DEC33D100683C8B /* CustomWishListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764509A31DEC33D100683C8B /* CustomWishListTableViewCell.swift */; };
 		764509A61DEC34D100683C8B /* WishListProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764509A51DEC34D100683C8B /* WishListProduct.swift */; };
+		764509AA1DEC7CE800683C8B /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764509A91DEC7CE800683C8B /* TabBarController.swift */; };
 		7663376D1DDF1E7800B9EF05 /* SwipingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7663376C1DDF1E7800B9EF05 /* SwipingViewController.swift */; };
 		7663376F1DDF1F9F00B9EF05 /* ImageObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7663376E1DDF1F9F00B9EF05 /* ImageObject.swift */; };
 		7687D9001DE2FA34005D6FA5 /* WishListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7687D8FF1DE2FA34005D6FA5 /* WishListTableViewController.swift */; };
@@ -46,6 +47,7 @@
 		7618E7711DE618ED00796762 /* ImageLabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLabelView.swift; sourceTree = "<group>"; };
 		764509A31DEC33D100683C8B /* CustomWishListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomWishListTableViewCell.swift; sourceTree = "<group>"; };
 		764509A51DEC34D100683C8B /* WishListProduct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishListProduct.swift; sourceTree = "<group>"; };
+		764509A91DEC7CE800683C8B /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		7663376C1DDF1E7800B9EF05 /* SwipingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipingViewController.swift; sourceTree = "<group>"; };
 		7663376E1DDF1F9F00B9EF05 /* ImageObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageObject.swift; sourceTree = "<group>"; };
 		7687D8FE1DE2F2FB005D6FA5 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				7663376C1DDF1E7800B9EF05 /* SwipingViewController.swift */,
+				764509A91DEC7CE800683C8B /* TabBarController.swift */,
 				7618E76D1DE6182600796762 /* ChooseProductViewController.swift */,
 				76CDEF521DDE3EA500C83CF6 /* MainCategoryTableViewController.swift */,
 				76CDEF541DDE3EC500C83CF6 /* SubCategoryTableViewController.swift */,
@@ -325,6 +328,7 @@
 				76CDEF571DDE3EE400C83CF6 /* SecondSubCategoryTableView.swift in Sources */,
 				76CDEF611DDE3FBA00C83CF6 /* Product.swift in Sources */,
 				76CDEF5D1DDE3F4700C83CF6 /* DataManager.swift in Sources */,
+				764509AA1DEC7CE800683C8B /* TabBarController.swift in Sources */,
 				764509A41DEC33D100683C8B /* CustomWishListTableViewCell.swift in Sources */,
 				7618E7721DE618ED00796762 /* ImageLabelView.swift in Sources */,
 				76CDEF591DDE3EFE00C83CF6 /* DetailTableViewController.swift in Sources */,
