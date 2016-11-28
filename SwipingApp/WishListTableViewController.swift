@@ -10,16 +10,22 @@ import UIKit
 
 class WishListTableViewController: UITableViewController {
     
-    var sharedWishList = WishList.sharedInstance
-    var wishListArray: [String] = []
-
+    var wishListProductArray = [WishListProduct]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        wishListArray = sharedWishList.productCodeArray
         
+        DataManager.sharedInstance.getProductsFromProductCodeAPI()
+        
+        NotificationCenter.default.addObserver(forName: notificationQuery, object: nil, queue: nil) { (notification) in
+            let wishListObject = notification.object
+            print(wishListObject)
+            self.wishListProductArray = wishListObject as! [WishListProduct]
+            self.tableView.reloadData()
+        }
     }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -30,18 +36,20 @@ class WishListTableViewController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
-        return wishListArray.count
+        return wishListProductArray.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "wishListCell", for: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "wishListCell", for: indexPath) as! CustomWishListTableViewCell
         
-        cell.textLabel?.text = wishListArray[indexPath.row]
+        var product = self.wishListProductArray[indexPath.row]
+        let priceOfProduct = product.productPrice
+        cell.productName?.text = product.productName
+        cell.productBrand?.text = product.productBrand
+        cell.productPrice?.text = String(format: "€ %.2f", priceOfProduct)
+        cell.imageView?.image = product.productImage
         
         return cell
     }
-    
-
-    
 }
+
