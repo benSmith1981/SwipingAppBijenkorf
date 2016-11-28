@@ -42,14 +42,28 @@ class WishListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "wishListCell", for: indexPath) as! CustomWishListTableViewCell
         
-        var product = self.wishListProductArray[indexPath.row]
+        let product = self.wishListProductArray[indexPath.row]
         let priceOfProduct = product.productPrice
         cell.productName?.text = product.productName
         cell.productBrand?.text = product.productBrand
         cell.productPrice?.text = String(format: "€ %.2f", priceOfProduct)
         cell.imageView?.image = product.productImage
+        cell.backgroundColor = UIColor(red: 242/255, green: 242/255, blue: 242/255, alpha: 1)
         
         return cell
     }
+    
+//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+//        if editingStyle == .delete {
+//            
+////            let productToRemove = WishList.sharedInstance.productCodeArray[indexPath.row]
+//            WishList.sharedInstance.removeProductCode(index: indexPath.row)
+//        
+//            
+//            tableView.deleteRows(at: [indexPath], with: .automatic)
+//        }
+//    }
+    
+    
 }
 

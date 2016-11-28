@@ -7,7 +7,6 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     
     
-    
     var sharedWishList = WishList.sharedInstance
     let ChooseProductButtonHorizontalPadding: CGFloat = 80.0
     let ChooseProductButtonVerticalPadding: CGFloat = 20.0
@@ -17,7 +16,6 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
     var dict: Dictionary<String,Any>?
     var productImageURL = UIImageView()
     var allProducts: [Product] = []
-//    var productCodeArray: [String] = []
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -53,19 +51,13 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
                 // See the `nopeFrontCardView` and `likeFrontCardView` methods.
                 self.constructNopeButton()
                 self.constructLikedButton()
-                
-                
+  
             }
-            
-            
         }
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
     }
     
     
@@ -120,7 +112,7 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
                                     //print(self.allProducts)
                                     print(productCode)
                                     print(self.allProducts.count)
-                                    
+  
                                 }
                             }
                             
@@ -298,18 +290,4 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
         self.frontCardView.mdc_swipe(MDCSwipeDirection.right)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        //        let index = productCodeArray
-        //        let currentArray = productCodeArray[index]
-        
-        if segue.identifier == "swipeToWishList" {
-            
-            //            var dictObj = currentArray.
-            let swipeViewController = segue.destination as! WishListTableViewController
-//            swipeViewController.productCodeArray = productCodeArray
-            //                subCatTableViewController.title = dictObj["name"] as? String
-        }
-        
-    }
 }
