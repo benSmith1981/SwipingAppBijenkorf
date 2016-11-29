@@ -13,10 +13,11 @@ import UIKit
 let notificationName = Notification.Name("NotificationIdentifier")
 let notificationQuery = Notification.Name("NotificationQuery")
 
+
 class DataManager {
     
     static let sharedInstance = DataManager()
-    var allWishListProducts: [WishListProduct] = []
+    
     
     
     func getDataFromAPI () {
@@ -24,13 +25,12 @@ class DataManager {
         Alamofire.request("https://ceres-catalog.debijenkorf.nl/catalog/navigation/tree?locale=nl_NL&excludeFields=refinementCount,selected,id,url,complete").responseJSON { response in
             
             if let JSON = response.result.value {
-                
                 let jsonDict = JSON as! Dictionary<String, Any>
+
                 let jsonData = jsonDict["data"] as! Dictionary<String, Any>
+
                 let jsonCat = jsonData["categories"] as! Dictionary<String, Any>
-                
-                
-                
+
                 NotificationCenter.default.post(name: notificationName, object: jsonCat)
                 
             }
@@ -39,6 +39,8 @@ class DataManager {
     
     func getProductsFromProductCodeAPI () {
         
+        var allWishListProducts: [AnyObject] = []
+//        var allWishListProductCodes = [WishList.sharedInstance.productCodeArray]
         let productCodeQuery = WishList.sharedInstance.productCodeArray
         let productCodeString = productCodeQuery.joined(separator: ",")
         
@@ -78,10 +80,10 @@ class DataManager {
                         let newWishListProduct = WishListProduct(productBrand: productBrand!, productName: productName!, productPrice: Float(productPrice), productImage: productImage!, productCode: productCode!)
                         
                         
-                        self.allWishListProducts.append(newWishListProduct)
+                     allWishListProducts.append(newWishListProduct)
                     }
                 }
-                NotificationCenter.default.post(name: notificationQuery, object: self.allWishListProducts)
+                NotificationCenter.default.post(name: notificationQuery, object: allWishListProducts)
             }
             
         }

@@ -12,15 +12,24 @@ class WishListTableViewController: UITableViewController {
     
     var wishListProductArray = [WishListProduct]()
     
+    @IBOutlet weak var wishListEditButton: UIBarButtonItem!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         
         DataManager.sharedInstance.getProductsFromProductCodeAPI()
         
         NotificationCenter.default.addObserver(forName: notificationQuery, object: nil, queue: nil) { (notification) in
             let wishListObject = notification.object
-            print(wishListObject)
+            
             self.wishListProductArray = wishListObject as! [WishListProduct]
             self.tableView.reloadData()
         }
@@ -54,15 +63,20 @@ class WishListTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            
+            WishList.sharedInstance.removeProductCode(index: indexPath.row)
+        
+//            self.tableView.deleteRows(at: [indexPath], with: .fade)
+
+            
+        }
+    }
+    
 //    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .delete {
-//            
-////            let productToRemove = WishList.sharedInstance.productCodeArray[indexPath.row]
-//            WishList.sharedInstance.removeProductCode(index: indexPath.row)
+//        if editingStyle == .insert
 //        
-//            
-//            tableView.deleteRows(at: [indexPath], with: .automatic)
-//        }
 //    }
     
     

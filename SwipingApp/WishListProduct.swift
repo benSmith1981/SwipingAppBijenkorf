@@ -11,6 +11,8 @@ import UIKit
 
 class WishListProduct: NSObject {
     
+
+    var allProducts = [WishListProduct]()
     var productBrand: String
     var productName: String
     var productPrice: Float
@@ -29,6 +31,14 @@ class WishListProduct: NSObject {
         
         super.init()
         
+    }
+    
+    func removeProduct(item: WishListProduct) {
+        
+        if let index = allProducts.index(of: item) {
+            allProducts.remove(at: index)
+            
+        }
     }
     
 }

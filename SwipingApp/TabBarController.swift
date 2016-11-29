@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TabBarController: UITabBarController {
+class TabBarController: UITabBarController, UITableViewDelegate {
     
 
     override func viewDidLoad() {
@@ -23,7 +23,7 @@ class TabBarController: UITabBarController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        super.viewWillAppear(animated)
         
         let tabBarItemsCount = WishList.sharedInstance.productCodeArray.count
         print(tabBarItemsCount)
@@ -31,8 +31,8 @@ class TabBarController: UITabBarController {
         let tabBarItems = tabBar.items! as [UITabBarItem]
         tabBarItems[1].badgeColor = UIColor.green
         tabBarItems[1].badgeValue = tabBarItemsString
-        
-        
+
+   
     }
     
 

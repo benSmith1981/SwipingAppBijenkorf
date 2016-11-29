@@ -24,7 +24,7 @@
                     <connections>
                         <segue destination="llY-Rp-Yre" kind="relationship" relationship="viewControllers" id="dUF-ul-miw"/>
                         <segue destination="HyM-zo-OxG" kind="relationship" relationship="viewControllers" id="R5o-yK-gyy"/>
-                        <segue destination="Hgq-7E-ywn" kind="relationship" relationship="viewControllers" id="sqZ-ez-HES"/>
+                        <segue destination="yKP-8N-jFr" kind="relationship" relationship="viewControllers" id="sqZ-ez-HES"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iPk-gO-fSp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -35,24 +35,19 @@
         <scene sceneID="gja-VQ-5FJ">
             <objects>
                 <tableViewController title="Wishlist" id="exX-3s-RFt" customClass="WishListTableViewController" customModule="SwipingApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" id="bt9-VE-F8l">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" sectionHeaderHeight="28" sectionFooterHeight="28" id="bt9-VE-F8l">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="wishListCell" rowHeight="100" id="KWt-mu-tuI" customClass="CustomWishListTableViewCell" customModule="SwipingApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="375" height="100"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="wishListCell" rowHeight="120" id="KWt-mu-tuI" customClass="CustomWishListTableViewCell" customModule="SwipingApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="375" height="120"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KWt-mu-tuI" id="bCN-Vd-38l">
-                                    <frame key="frameInset" width="375" height="99"/>
+                                    <frame key="frameInset" width="375" height="119"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wNB-bQ-DEG">
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KPU-5d-fSj">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KPU-5d-fSj">
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -62,31 +57,36 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MJK-4n-dlh">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MJK-4n-dlh">
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                     <integer key="value" value="10"/>
                                                 </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.clipsToBounds" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wNB-bQ-DEG">
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="bottomMargin" secondItem="IEe-gv-PrP" secondAttribute="bottom" id="6YA-5T-vBB"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="KPU-5d-fSj" secondAttribute="bottom" constant="1" id="7Ag-oV-qHD"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="IEe-gv-PrP" secondAttribute="trailing" id="B3b-6M-s0y"/>
-                                        <constraint firstItem="KPU-5d-fSj" firstAttribute="top" secondItem="bCN-Vd-38l" secondAttribute="topMargin" constant="61" id="EFa-zB-X7o"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="MJK-4n-dlh" secondAttribute="trailing" constant="279" id="Moi-7F-YAo"/>
-                                        <constraint firstItem="MJK-4n-dlh" firstAttribute="top" secondItem="bCN-Vd-38l" secondAttribute="topMargin" constant="4" id="SF9-1f-VWN"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="KPU-5d-fSj" secondAttribute="bottom" constant="24" id="7Ag-oV-qHD"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="IEe-gv-PrP" secondAttribute="trailing" constant="24" id="B3b-6M-s0y"/>
+                                        <constraint firstItem="KPU-5d-fSj" firstAttribute="top" secondItem="bCN-Vd-38l" secondAttribute="topMargin" constant="38" id="EFa-zB-X7o"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="MJK-4n-dlh" secondAttribute="trailing" constant="270" id="Moi-7F-YAo"/>
+                                        <constraint firstItem="MJK-4n-dlh" firstAttribute="top" secondItem="bCN-Vd-38l" secondAttribute="topMargin" constant="14" id="SF9-1f-VWN"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="wNB-bQ-DEG" secondAttribute="trailing" constant="53" id="TbE-kP-JHp"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="KPU-5d-fSj" secondAttribute="trailing" constant="86" id="Tot-qK-3IN"/>
-                                        <constraint firstItem="IEe-gv-PrP" firstAttribute="leading" secondItem="bCN-Vd-38l" secondAttribute="leadingMargin" constant="292" id="Vsn-0s-wbV"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="KPU-5d-fSj" secondAttribute="trailing" constant="24" id="Tot-qK-3IN"/>
+                                        <constraint firstItem="IEe-gv-PrP" firstAttribute="leading" secondItem="bCN-Vd-38l" secondAttribute="leadingMargin" constant="268" id="Vsn-0s-wbV"/>
                                         <constraint firstItem="wNB-bQ-DEG" firstAttribute="leading" secondItem="bCN-Vd-38l" secondAttribute="leadingMargin" constant="97" id="YSb-G0-h2D"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="MJK-4n-dlh" secondAttribute="bottom" constant="4" id="bR2-E4-vkm"/>
-                                        <constraint firstAttribute="leadingMargin" secondItem="MJK-4n-dlh" secondAttribute="leading" constant="1" id="g2d-x3-t8n"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="MJK-4n-dlh" secondAttribute="bottom" constant="14" id="bR2-E4-vkm"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="MJK-4n-dlh" secondAttribute="leading" constant="-14" id="g2d-x3-t8n"/>
                                         <constraint firstItem="KPU-5d-fSj" firstAttribute="leading" secondItem="bCN-Vd-38l" secondAttribute="leadingMargin" constant="97" id="rXN-T2-T9c"/>
                                         <constraint firstItem="IEe-gv-PrP" firstAttribute="top" secondItem="bCN-Vd-38l" secondAttribute="topMargin" constant="62" id="uX2-fp-HB9"/>
-                                        <constraint firstItem="wNB-bQ-DEG" firstAttribute="top" secondItem="bCN-Vd-38l" secondAttribute="topMargin" constant="1" id="zza-bj-1RS"/>
+                                        <constraint firstItem="wNB-bQ-DEG" firstAttribute="top" secondItem="bCN-Vd-38l" secondAttribute="topMargin" constant="14" id="zza-bj-1RS"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -102,14 +102,19 @@
                             <outlet property="delegate" destination="exX-3s-RFt" id="nJB-6i-JVg"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Wishlist" id="zLG-Eg-X0x"/>
-                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="usS-Th-w8A">
+                    <navigationItem key="navigationItem" title="Verlanglijstje" id="zLG-Eg-X0x">
+                        <barButtonItem key="rightBarButtonItem" title="Bewerk" id="0mO-r9-MiU"/>
+                    </navigationItem>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="mcD-IY-iFV">
                         <autoresizingMask key="autoresizingMask"/>
                     </refreshControl>
+                    <connections>
+                        <outlet property="wishListEditButton" destination="0mO-r9-MiU" id="cLD-jS-MOK"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tac-y2-YEo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="921" y="215"/>
+            <point key="canvasLocation" x="920.79999999999995" y="214.54272863568218"/>
         </scene>
         <!--Basket-->
         <scene sceneID="6rV-YL-065">
@@ -121,7 +126,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="basketCell" id="bti-nd-QDw">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bti-nd-QDw" id="aLR-f5-CiM">
                                     <frame key="frameInset" width="375" height="43"/>
@@ -134,11 +139,13 @@
                             <outlet property="delegate" destination="Hgq-7E-ywn" id="jbP-xo-TKX"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="" image="Basket" id="c3G-3R-QU5"/>
+                    <navigationItem key="navigationItem" title="Winkelmandje" id="fJn-JM-el1">
+                        <barButtonItem key="rightBarButtonItem" title="Bewerk" id="QXK-9w-fCP"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o1T-ZG-PFD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="148" y="960"/>
+            <point key="canvasLocation" x="921" y="959"/>
         </scene>
         <!--MainCategory-->
         <scene sceneID="3dt-Po-a2c">
@@ -412,6 +419,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZTJ-km-rS0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="148" y="215"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="nCr-Nw-5Lk">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yKP-8N-jFr" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="Basket" id="c3G-3R-QU5"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="do1-op-xmu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Hgq-7E-ywn" kind="relationship" relationship="rootViewController" id="gQK-qh-zgv"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y2F-Qq-pax" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="148" y="959.37031484257875"/>
         </scene>
     </scenes>
     <resources>
