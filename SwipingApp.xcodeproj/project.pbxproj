@@ -12,6 +12,7 @@
 		17135F451DD1E0BA00FF69D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17135F441DD1E0BA00FF69D2 /* Assets.xcassets */; };
 		17135F481DD1E0BA00FF69D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17135F461DD1E0BA00FF69D2 /* LaunchScreen.storyboard */; };
 		33C648941DEED1FB00CCCF04 /* DetailProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C648931DEED1FB00CCCF04 /* DetailProduct.swift */; };
+		33D027B61DEF2D13004AD1D5 /* BasketWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D027B51DEF2D13004AD1D5 /* BasketWebViewController.swift */; };
 		7618E76E1DE6182600796762 /* ChooseProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7618E76D1DE6182600796762 /* ChooseProductViewController.swift */; };
 		7618E7701DE6188E00796762 /* ChooseProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7618E76F1DE6188E00796762 /* ChooseProductView.swift */; };
 		7618E7721DE618ED00796762 /* ImageLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7618E7711DE618ED00796762 /* ImageLabelView.swift */; };
@@ -46,6 +47,7 @@
 		17135F471DD1E0BA00FF69D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		17135F491DD1E0BA00FF69D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		33C648931DEED1FB00CCCF04 /* DetailProduct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailProduct.swift; sourceTree = "<group>"; };
+		33D027B51DEF2D13004AD1D5 /* BasketWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasketWebViewController.swift; sourceTree = "<group>"; };
 		7618E76D1DE6182600796762 /* ChooseProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseProductViewController.swift; sourceTree = "<group>"; };
 		7618E76F1DE6188E00796762 /* ChooseProductView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseProductView.swift; sourceTree = "<group>"; };
 		7618E7711DE618ED00796762 /* ImageLabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLabelView.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				76CDEF581DDE3EFE00C83CF6 /* DetailTableViewController.swift */,
 				76CDEF561DDE3EE400C83CF6 /* SecondSubCategoryTableView.swift */,
 				7687D8FF1DE2FA34005D6FA5 /* WishListTableViewController.swift */,
+				33D027B51DEF2D13004AD1D5 /* BasketWebViewController.swift */,
 				76A0D4D11DEEA9870069CA8B /* DetailViewController.swift */,
 			);
 			name = Controller;
@@ -341,6 +344,7 @@
 				764509A41DEC33D100683C8B /* CustomWishListTableViewCell.swift in Sources */,
 				7618E7721DE618ED00796762 /* ImageLabelView.swift in Sources */,
 				76CDEF591DDE3EFE00C83CF6 /* DetailTableViewController.swift in Sources */,
+				33D027B61DEF2D13004AD1D5 /* BasketWebViewController.swift in Sources */,
 				76A0D4D21DEEA9870069CA8B /* DetailViewController.swift in Sources */,
 				76CDEF5F1DDE3F9200C83CF6 /* CustomTableViewCell.swift in Sources */,
 				7618E7701DE6188E00796762 /* ChooseProductView.swift in Sources */,
