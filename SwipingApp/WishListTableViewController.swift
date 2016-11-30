@@ -7,12 +7,25 @@
 //
 
 import UIKit
+import UserNotifications
 
-class WishListTableViewController: UITableViewController {
+class WishListTableViewController: UITableViewController, UITabBarControllerDelegate {
     
     var wishListProductArray = [WishListProduct]()
     
-    @IBOutlet weak var wishListEditButton: UIBarButtonItem!
+    @IBAction func toggleEditingMode(_ sender: AnyObject) {
+        
+        if isEditing {
+            sender.setTitle("Bewerk", for: .normal)
+            
+            setEditing(false, animated: true)
+        } else {
+            sender.setTitle("Klaar", for: .normal)
+            
+            setEditing(true, animated: true)
+        }
+    }
+
     
     
     
@@ -24,7 +37,6 @@ class WishListTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        
         DataManager.sharedInstance.getProductsFromProductCodeAPI()
         
         NotificationCenter.default.addObserver(forName: notificationQuery, object: nil, queue: nil) { (notification) in
@@ -33,6 +45,14 @@ class WishListTableViewController: UITableViewController {
             self.wishListProductArray = wishListObject as! [WishListProduct]
             self.tableView.reloadData()
         }
+        
+//        let tabBarItemsCount = WishList.sharedInstance.productCodeArray.count
+//        print(tabBarItemsCount)
+//        let tabBarItemsString = String(tabBarItemsCount)
+////        let tabBarItems = tabBar.items! as [UITabBarItem]
+//        let tabBarItems = [tabBarItem!] as [UITabBarItem]
+//
+//        tabBarItems[1].badgeValue = tabBarItemsString
     }
     
     
@@ -66,9 +86,9 @@ class WishListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             
-            WishList.sharedInstance.removeProductCode(index: indexPath.row)
+//            WishList.sharedInstance.removeProductCode(index: indexPath.row)
         
-//            self.tableView.deleteRows(at: [indexPath], with: .fade)
+            self.tableView.deleteRows(at: [indexPath], with: .fade)
 
             
         }

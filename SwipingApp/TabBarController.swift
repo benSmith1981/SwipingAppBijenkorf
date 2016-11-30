@@ -14,6 +14,13 @@ class TabBarController: UITabBarController, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let tabBarItemsCount = WishList.sharedInstance.productCodeArray.count
+        print(tabBarItemsCount)
+        let tabBarItemsString = String(tabBarItemsCount)
+        let tabBarItems = tabBar.items! as [UITabBarItem]
+        tabBarItems[1].badgeColor = UIColor.green
+        tabBarItems[1].badgeValue = tabBarItemsString
+        
         // Do any additional setup after loading the view.
     }
 
@@ -31,8 +38,7 @@ class TabBarController: UITabBarController, UITableViewDelegate {
         let tabBarItems = tabBar.items! as [UITabBarItem]
         tabBarItems[1].badgeColor = UIColor.green
         tabBarItems[1].badgeValue = tabBarItemsString
-
-   
+        
     }
     
 

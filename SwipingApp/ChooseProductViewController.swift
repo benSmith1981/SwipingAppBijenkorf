@@ -1,6 +1,7 @@
 import UIKit
 import MDCSwipeToChoose
 import Alamofire
+import UserNotifications
 
 class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
     
@@ -160,29 +161,6 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
             print(sharedWishList.productCodeArray)
         }
         
-        // MDCSwipeToChooseView removes the view from the view hierarchy
-        // after it is swiped (this behavior can be customized via the
-        // MDCSwipeOptions class). Since the front card view is gone, we
-        // move the back card to the front, and create a new back card.
-        
-        //        if(self.backCardView != nil) {
-        //            self.frontCardView = self.backCardView
-        //        }
-        
-        //       self.frontCardView = self.backCardView
-        //
-        //        if(self.backCardView != nil) {
-        //
-        //            self.backCardView = self.frontCardView
-        //
-        //        if self.backCardView == self.popProductViewWithFrame(self.backCardViewFrame()) {
-        //
-        //            self.backCardView.alpha = 0.5
-        //            popProductViewWithFrame(self.backCardViewFrame())?.insertSubview(self.backCardView, belowSubview: self.frontCardView)
-        //            UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseInOut, animations: {
-        //                self.backCardView.alpha = 1.0
-        //                }, completion: nil)
-        //            }
         
         // Correct Swiping Code
         if(self.backCardView != nil) {
@@ -289,5 +267,6 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
     func likeFrontCardView() -> Void{
         self.frontCardView.mdc_swipe(MDCSwipeDirection.right)
     }
+    
     
 }

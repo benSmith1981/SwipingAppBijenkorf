@@ -40,7 +40,6 @@ class DataManager {
     func getProductsFromProductCodeAPI () {
         
         var allWishListProducts: [AnyObject] = []
-//        var allWishListProductCodes = [WishList.sharedInstance.productCodeArray]
         let productCodeQuery = WishList.sharedInstance.productCodeArray
         let productCodeString = productCodeQuery.joined(separator: ",")
         
@@ -88,4 +87,5 @@ class DataManager {
             
         }
     }
+    
 }

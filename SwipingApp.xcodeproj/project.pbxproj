@@ -20,6 +20,7 @@
 		7663376D1DDF1E7800B9EF05 /* SwipingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7663376C1DDF1E7800B9EF05 /* SwipingViewController.swift */; };
 		7663376F1DDF1F9F00B9EF05 /* ImageObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7663376E1DDF1F9F00B9EF05 /* ImageObject.swift */; };
 		7687D9001DE2FA34005D6FA5 /* WishListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7687D8FF1DE2FA34005D6FA5 /* WishListTableViewController.swift */; };
+		76A0D4D21DEEA9870069CA8B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A0D4D11DEEA9870069CA8B /* DetailViewController.swift */; };
 		76B28BF21DE74434001340FA /* WishList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B28BF11DE74434001340FA /* WishList.swift */; };
 		76CDEF531DDE3EA500C83CF6 /* MainCategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CDEF521DDE3EA500C83CF6 /* MainCategoryTableViewController.swift */; };
 		76CDEF551DDE3EC500C83CF6 /* SubCategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CDEF541DDE3EC500C83CF6 /* SubCategoryTableViewController.swift */; };
@@ -32,6 +33,7 @@
 		76DB87C71DD1EA8900D9E912 /* Proxima-Nova-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 76DB87C41DD1EA8900D9E912 /* Proxima-Nova-Regular.otf */; };
 		76DB87C81DD1EA8900D9E912 /* VelinoDisplay-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 76DB87C51DD1EA8900D9E912 /* VelinoDisplay-Medium.otf */; };
 		76DC9D881DE2E56200ABAC27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 76DC9D871DE2E56200ABAC27 /* GoogleService-Info.plist */; };
+		76ECE4701DEE0830002C66BC /* ProductCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76ECE46F1DEE0830002C66BC /* ProductCode.swift */; };
 		D8839D642BA33BCA57675D3C /* Pods_SwipingApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC1E72F9867761812A3A6FF2 /* Pods_SwipingApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +54,7 @@
 		7663376E1DDF1F9F00B9EF05 /* ImageObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageObject.swift; sourceTree = "<group>"; };
 		7687D8FE1DE2F2FB005D6FA5 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		7687D8FF1DE2FA34005D6FA5 /* WishListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishListTableViewController.swift; sourceTree = "<group>"; };
+		76A0D4D11DEEA9870069CA8B /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		76B28BF11DE74434001340FA /* WishList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishList.swift; sourceTree = "<group>"; };
 		76CDEF521DDE3EA500C83CF6 /* MainCategoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCategoryTableViewController.swift; sourceTree = "<group>"; };
 		76CDEF541DDE3EC500C83CF6 /* SubCategoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubCategoryTableViewController.swift; sourceTree = "<group>"; };
@@ -64,6 +67,7 @@
 		76DB87C41DD1EA8900D9E912 /* Proxima-Nova-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Proxima-Nova-Regular.otf"; path = "../Proxima-Nova-Regular.otf"; sourceTree = "<group>"; };
 		76DB87C51DD1EA8900D9E912 /* VelinoDisplay-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "VelinoDisplay-Medium.otf"; path = "../VelinoDisplay-Medium.otf"; sourceTree = "<group>"; };
 		76DC9D871DE2E56200ABAC27 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		76ECE46F1DEE0830002C66BC /* ProductCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCode.swift; sourceTree = "<group>"; };
 		9AEF24947FF141077981091E /* Pods-SwipingApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwipingApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwipingApp/Pods-SwipingApp.debug.xcconfig"; sourceTree = "<group>"; };
 		EC1E72F9867761812A3A6FF2 /* Pods_SwipingApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwipingApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3805B7042C8E72891A7FEA3 /* Pods-SwipingApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwipingApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwipingApp/Pods-SwipingApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -128,6 +132,7 @@
 			children = (
 				76B28BF11DE74434001340FA /* WishList.swift */,
 				764509A51DEC34D100683C8B /* WishListProduct.swift */,
+				76ECE46F1DEE0830002C66BC /* ProductCode.swift */,
 				76CDEF5E1DDE3F9200C83CF6 /* CustomTableViewCell.swift */,
 				764509A31DEC33D100683C8B /* CustomWishListTableViewCell.swift */,
 				76CDEF5C1DDE3F4700C83CF6 /* DataManager.swift */,
@@ -148,6 +153,7 @@
 				76CDEF581DDE3EFE00C83CF6 /* DetailTableViewController.swift */,
 				76CDEF561DDE3EE400C83CF6 /* SecondSubCategoryTableView.swift */,
 				7687D8FF1DE2FA34005D6FA5 /* WishListTableViewController.swift */,
+				76A0D4D11DEEA9870069CA8B /* DetailViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -332,8 +338,10 @@
 				764509A41DEC33D100683C8B /* CustomWishListTableViewCell.swift in Sources */,
 				7618E7721DE618ED00796762 /* ImageLabelView.swift in Sources */,
 				76CDEF591DDE3EFE00C83CF6 /* DetailTableViewController.swift in Sources */,
+				76A0D4D21DEEA9870069CA8B /* DetailViewController.swift in Sources */,
 				76CDEF5F1DDE3F9200C83CF6 /* CustomTableViewCell.swift in Sources */,
 				7618E7701DE6188E00796762 /* ChooseProductView.swift in Sources */,
+				76ECE4701DEE0830002C66BC /* ProductCode.swift in Sources */,
 				764509A61DEC34D100683C8B /* WishListProduct.swift in Sources */,
 				76CDEF531DDE3EA500C83CF6 /* MainCategoryTableViewController.swift in Sources */,
 				76B28BF21DE74434001340FA /* WishList.swift in Sources */,
