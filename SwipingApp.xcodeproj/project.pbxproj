@@ -11,6 +11,7 @@
 		17135F431DD1E0BA00FF69D2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17135F411DD1E0BA00FF69D2 /* Main.storyboard */; };
 		17135F451DD1E0BA00FF69D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17135F441DD1E0BA00FF69D2 /* Assets.xcassets */; };
 		17135F481DD1E0BA00FF69D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17135F461DD1E0BA00FF69D2 /* LaunchScreen.storyboard */; };
+		33C648941DEED1FB00CCCF04 /* DetailProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C648931DEED1FB00CCCF04 /* DetailProduct.swift */; };
 		7618E76E1DE6182600796762 /* ChooseProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7618E76D1DE6182600796762 /* ChooseProductViewController.swift */; };
 		7618E7701DE6188E00796762 /* ChooseProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7618E76F1DE6188E00796762 /* ChooseProductView.swift */; };
 		7618E7721DE618ED00796762 /* ImageLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7618E7711DE618ED00796762 /* ImageLabelView.swift */; };
@@ -44,6 +45,7 @@
 		17135F441DD1E0BA00FF69D2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		17135F471DD1E0BA00FF69D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		17135F491DD1E0BA00FF69D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		33C648931DEED1FB00CCCF04 /* DetailProduct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailProduct.swift; sourceTree = "<group>"; };
 		7618E76D1DE6182600796762 /* ChooseProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseProductViewController.swift; sourceTree = "<group>"; };
 		7618E76F1DE6188E00796762 /* ChooseProductView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseProductView.swift; sourceTree = "<group>"; };
 		7618E7711DE618ED00796762 /* ImageLabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLabelView.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 			children = (
 				76B28BF11DE74434001340FA /* WishList.swift */,
 				764509A51DEC34D100683C8B /* WishListProduct.swift */,
+				33C648931DEED1FB00CCCF04 /* DetailProduct.swift */,
 				76ECE46F1DEE0830002C66BC /* ProductCode.swift */,
 				76CDEF5E1DDE3F9200C83CF6 /* CustomTableViewCell.swift */,
 				764509A31DEC33D100683C8B /* CustomWishListTableViewCell.swift */,
@@ -347,6 +350,7 @@
 				76B28BF21DE74434001340FA /* WishList.swift in Sources */,
 				7687D9001DE2FA34005D6FA5 /* WishListTableViewController.swift in Sources */,
 				7618E76E1DE6182600796762 /* ChooseProductViewController.swift in Sources */,
+				33C648941DEED1FB00CCCF04 /* DetailProduct.swift in Sources */,
 				17135F3E1DD1E0BA00FF69D2 /* AppDelegate.swift in Sources */,
 				7663376D1DDF1E7800B9EF05 /* SwipingViewController.swift in Sources */,
 				7663376F1DDF1F9F00B9EF05 /* ImageObject.swift in Sources */,

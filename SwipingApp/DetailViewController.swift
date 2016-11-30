@@ -9,10 +9,37 @@
 import UIKit
 
 class DetailViewController: UIViewController {
-
+    
+    
+    @IBOutlet weak var detailProductNameLabel: UILabel!
+    
+    @IBOutlet weak var detailProductImageView: UIImageView!
+ 
+    @IBOutlet weak var detailProductBrandLabel: UILabel!
+ 
+    @IBOutlet weak var detailProductPriceLabel: UILabel!
+ 
+    @IBOutlet weak var detailProductDescriptionView: UITextView!
+    
+    
+var detailProductArray = [DetailProduct]()
+    
+    var detailViewProduct: DetailProduct!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        DataManager.sharedInstance.productDetailsFromProductsCodeAPI()
+        
+        NotificationCenter.default.addObserver(forName: notificationDetail, object: nil, queue: nil) { (notification) in
+            let detailObject = notification.object
+            
+            self.detailProductArray = detailObject as! [DetailProduct]
+            
+            
+        }
+        
+//        detailProductNameLabel.text = DetailProduct
         // Do any additional setup after loading the view.
     }
 
