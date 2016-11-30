@@ -22,25 +22,35 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var detailProductDescriptionView: UITextView!
     
     
-var detailProductArray = [DetailProduct]()
-    
-    var detailViewProduct: DetailProduct!
+    var detailProductArray = [DetailProduct]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         DataManager.sharedInstance.productDetailsFromProductsCodeAPI()
         
         NotificationCenter.default.addObserver(forName: notificationDetail, object: nil, queue: nil) { (notification) in
-            let detailObject = notification.object
+            let detailObject = notification.object as! [DetailProduct]
+            self.detailProductArray = detailObject
             
-            self.detailProductArray = detailObject as! [DetailProduct]
+            let priceOfProduct = self.detailProductArray[0].productPrice
+            
+            self.detailProductNameLabel.text = self.detailProductArray[0].productName
+            self.detailProductDescriptionView.text = self.detailProductArray[0].detailProductDescription
+            self.detailProductBrandLabel.text = self.detailProductArray[0].productBrand
+            self.detailProductImageView.image = self.detailProductArray[0].productImage
+            self.detailProductPriceLabel.text = String(format: "€ %.2f", priceOfProduct)
             
             
         }
+    
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
         
-//        detailProductNameLabel.text = DetailProduct
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {

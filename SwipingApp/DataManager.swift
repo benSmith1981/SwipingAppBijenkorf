@@ -88,24 +88,33 @@ class DataManager {
             
         }
     }
-    func productDetailsFromProductsCodeAPI() {
+    
+    func productDetailsFromProductsCodeAPI () {
         
         var detailProducts: [AnyObject] = []
-        
+        //        let productCodeQuery = WishList.sharedInstance.productCodeArray
+        //        let productCodeString = productCodeQuery.joined(separator: ",")
         
         Alamofire.request("https://ceres-catalog.debijenkorf.nl/catalog/product/list?productCodes=430504000486003").responseJSON { response in
+            //430504000486003
+            //208009011100000
+            //208009011200000
             
             if let JSON = response.result.value {
+                
                 let jsonArray = JSON as! Dictionary<String, Any>
                 let jsonData = jsonArray["data"] as! [[String : AnyObject]]
                 
                 for item in jsonData {
-                    
+                    var detailProductDescription = ""
                     let jsonProducts = item["product"] as! [String : AnyObject]
                     
                     let productName = jsonProducts["name"] as? String
-                    if let detailProductDescription = jsonProducts["description"] as? String {
-                        
+                    if let description = jsonProducts["description"] as? String {
+                        detailProductDescription = description }
+                    else {
+                        detailProductDescription = "Sorry, there is no description"
+                    }
                         let brand = jsonProducts["brand"] as? Dictionary<String,Any>
                         let productBrand = brand?["name"] as? String
                         
@@ -129,15 +138,14 @@ class DataManager {
                             
                             let newDetailProduct = DetailProduct(productBrand: productBrand!, productName: productName!, productPrice: productPrice, productImage: productImage!, productCode: productCode!, detailProductDescription: detailProductDescription)
                             
+                            
                             detailProducts.append(newDetailProduct)
-                            
-                            
                         }
-                        
                     }
-                    NotificationCenter.default.post(name: notificationDetail, object: detailProducts)
+                NotificationCenter.default.post(name: notificationDetail, object: detailProducts)
                 }
             }
+            
+            
         }
     }
-}
