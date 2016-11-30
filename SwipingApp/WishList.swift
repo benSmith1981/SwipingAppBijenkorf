@@ -12,6 +12,7 @@ import UIKit
 class WishList {
     
     var productCodeArray: [String] = []
+    var allProducts = [WishListProduct]()
     
     static let sharedInstance = WishList()
     
@@ -25,5 +26,12 @@ class WishList {
         productCodeArray.remove(at: index)
         
     }
+    
+//    func removeProductCode(item: WishListProduct) {
+//        
+//        if let index = productCodeArray.index(of: item) {
+//            productCodeArray.remove(at: index)
+//        }
+//    }
     
 }
