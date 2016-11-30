@@ -12,11 +12,13 @@ class DetailProduct: WishListProduct {
     
     
     var detailProductDescription: String
+    var detailProductImages: [UIImage]
 
-    init(productBrand: String, productName: String, productPrice: Float, productImage: UIImage, productCode: String, detailProductDescription: String) {
+    init(productBrand: String, productName: String, productPrice: Float, productImage: UIImage, productCode: String, detailProductDescription: String, detailProductImages: [UIImage]) {
         
         
         self.detailProductDescription = detailProductDescription
+        self.detailProductImages = detailProductImages
       
         super.init(productBrand: productBrand, productName: productName, productPrice: productPrice, productImage: productImage, productCode: productCode)
         

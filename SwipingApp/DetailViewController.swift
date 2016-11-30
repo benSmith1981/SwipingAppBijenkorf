@@ -23,6 +23,8 @@ class DetailViewController: UIViewController {
     
     
     var detailProductArray = [DetailProduct]()
+    var detailProductImages = [UIImage]()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +33,15 @@ class DetailViewController: UIViewController {
         
         NotificationCenter.default.addObserver(forName: notificationDetail, object: nil, queue: nil) { (notification) in
             let detailObject = notification.object as! [DetailProduct]
+//            let imageObject = self.detailProductArray[0].detailProductImages
+            let imageObject = self.detailProductImages
+//            let imageObject = notification.object as! [UIImage]
             self.detailProductArray = detailObject
+            self.detailProductImages = imageObject
+            
+            for i in imageObject {
+                self.detailProductImages.append(i as UIImage)
+                    }
             
             let priceOfProduct = self.detailProductArray[0].productPrice
             
@@ -40,6 +50,7 @@ class DetailViewController: UIViewController {
             self.detailProductBrandLabel.text = self.detailProductArray[0].productBrand
             self.detailProductImageView.image = self.detailProductArray[0].productImage
             self.detailProductPriceLabel.text = String(format: "€ %.2f", priceOfProduct)
+            
             
             
         }

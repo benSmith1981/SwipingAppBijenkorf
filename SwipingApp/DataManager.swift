@@ -92,6 +92,7 @@ class DataManager {
     func productDetailsFromProductsCodeAPI () {
         
         var detailProducts: [AnyObject] = []
+        var imageArray: [UIImage] = []
         //        let productCodeQuery = WishList.sharedInstance.productCodeArray
         //        let productCodeString = productCodeQuery.joined(separator: ",")
         
@@ -136,9 +137,14 @@ class DataManager {
                                 productImage = UIImage(data:(data)!)
                             }
                             
-                            let newDetailProduct = DetailProduct(productBrand: productBrand!, productName: productName!, productPrice: productPrice, productImage: productImage!, productCode: productCode!, detailProductDescription: detailProductDescription)
-                            
-                            
+                            let detailProductImages = productImage
+                            imageArray.append(detailProductImages!)
+//                            for i in imageArray {
+//                                imageArray.append(i)
+//                            }
+
+                            let newDetailProduct = DetailProduct(productBrand: productBrand!, productName: productName!, productPrice: productPrice, productImage: productImage!, productCode: productCode!, detailProductDescription: detailProductDescription, detailProductImages: [detailProductImages!])
+
                             detailProducts.append(newDetailProduct)
                         }
                     }
