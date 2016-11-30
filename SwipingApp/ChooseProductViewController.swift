@@ -53,7 +53,7 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
                 // See the `nopeFrontCardView` and `likeFrontCardView` methods.
                 self.constructNopeButton()
                 self.constructLikedButton()
-                
+//                self.constructUndoButton()
                 
             }
             
@@ -270,6 +270,16 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
         return CGRect(x: frontFrame.origin.x, y: frontFrame.origin.y + 10.0, width: frontFrame.width, height: frontFrame.height)
     }
     
+//    func constructUndoButton() -> Void{
+//        let button:UIButton = UIButton(type: UIButtonType.system)
+//        let image:UIImage = UIImage(named:"undo")!
+//        button.frame = CGRect(x: 150, y: 445, width: (image.size.width), height: (image.size.height))
+//        button.setImage(image, for: UIControlState())
+//        button.tintColor = UIColor.darkGray
+//        self.view.addSubview(button)
+//        
+//        
+//    }
     
     func constructNopeButton() -> Void{
         let button:UIButton =  UIButton(type: UIButtonType.system)

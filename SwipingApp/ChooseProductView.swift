@@ -19,6 +19,7 @@ class ChooseProductView: MDCSwipeToChooseView {
     var nameLabel: UILabel!
     var priceLabel: UILabel!
     var brandLabel: UILabel!
+    var infoButtonImage: ImagelabelView!
     //    var interestsImageLabelView: ImagelabelView!
     //    var friendsImageLabelView: ImagelabelView!
     
@@ -55,7 +56,6 @@ class ChooseProductView: MDCSwipeToChooseView {
         self.topInformationView.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleTopMargin]
         self.addSubview(self.topInformationView)
         constructNameLabel()
-        constructInfoButton()
     }
     
     func constructInformationView() -> Void{
@@ -74,6 +74,8 @@ class ChooseProductView: MDCSwipeToChooseView {
         self.addSubview(self.informationView)
         constructBrandLabel()
         constructPriceLabel()
+        constructInfoButton()
+//        constructInfoButtonImageLabelView()
     }
     
     func constructNameLabel() -> Void{
@@ -95,15 +97,27 @@ class ChooseProductView: MDCSwipeToChooseView {
     
     func constructInfoButton() -> Void {
         
-        //        let rightPadding: CGFloat = 12.0
-        //        let topPadding: CGFloat = 8.0
+//                let rightPadding: CGFloat = 10.0
+//                let topPadding: CGFloat = 8.0
+
         let button : UIButton = UIButton(type: UIButtonType.system)
         let image: UIImage = UIImage(named: "info")!
-        button.frame = CGRect(x: 20, y: 20, width: 20, height: 20)
+        
+        let informationWidth = self.topInformationView.frame.size.width
+        let informationHeigth = self.topInformationView.frame.size.height
+        
+//        print("This is the width: \(informationWidth)")
+//        print("This is the height\(informationHeigth)")
+        
+//        button.frame.size = CGSize(width: 20, height: 20)
+        button.frame = CGRect(x: informationWidth-50, y: informationHeigth-20, width: 20, height: 20)
         button.setImage(image, for: UIControlState())
         button.tintColor = UIColor.blue
-        button.addTarget(self, action: #selector(ChooseProductViewController.nopeFrontCardView), for: UIControlEvents.touchUpInside)
-        self.topInformationView.addSubview(button)
+        button.addTarget(self, action: #selector(ChooseProductView.infoButton), for: UIControlEvents.touchUpInside)
+        self.informationView.addSubview(button)
+    }
+    func infoButton() -> Void{
+        print("You pressed the info button")
     }
     
     func constructBrandLabel() -> Void{
