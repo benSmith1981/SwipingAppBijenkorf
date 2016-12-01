@@ -89,19 +89,19 @@ class DataManager {
         }
     }
     
-    func getDetailProductFromAPI () {
-        
+    func getDetailProductFromAPI (completion:@escaping (_ detailProduct: DetailProduct) -> Void) {
+
+        var newDetailProduct : DetailProduct?
+
         var detailProducts: [AnyObject] = []
-        var imageArray: [UIImage] = []
-        var imageURLArray: [Dictionary<String, Any>] = []
+        var imageURLArray: [UIImage] = []
         //        let productCodeQuery = WishList.sharedInstance.productCodeArray
         //        let productCodeString = productCodeQuery.joined(separator: ",")
         
-        Alamofire.request("https://ceres-catalog.debijenkorf.nl/catalog/product/list?productCodes=208009011100000").responseJSON { response in
+        Alamofire.request("https://ceres-catalog.debijenkorf.nl/catalog/product/list?productCodes=430504000486003").responseJSON { response in
             //430504000486003
             //208009011100000
             //208009011200000
-            
             if let JSON = response.result.value {
                 
                 let jsonArray = JSON as! Dictionary<String, Any>
@@ -127,51 +127,29 @@ class DataManager {
                         
                         if let imageURL = currentVariantProduct["images"] as? [Dictionary<String,Any>] {
                             
-//                            let imageProductURL = imageURL
-//                            
-//                            for i in imageURL {
-//                                imageURLArray.append(imageProductURL)
-//                            }
-//                            
                             for i in imageURL {
-                                imageURLArray.append(i)
-                            }
-//
-//                            for (key, subJson) in json["items"] {
-//                                if let title = subJson["title"].string {
-//                                    println(title)
-//                                }
-//                            }
-                            
-                            let imageProductURL = imageURL[0]
-                            let frontImageURL = imageProductURL["url"] as! String
-                            
-                            let httpURL = "https:\(frontImageURL)"
-                            let url = URL(string: httpURL)
-                            let data = try? Data(contentsOf: url!)
-                            
-                            var productImage : UIImage?
-                            if data != nil {
-                                productImage = UIImage(data:(data)!)
+                                
+                                let url = i["url"] as! String
+                                let httpsURL = "https:\(url)"
+                                let urlString = URL(string: httpsURL)
+                                let data = try? Data(contentsOf: urlString!)
+                                let detailProductImage = UIImage(data: (data)!)
+
+                                imageURLArray.append(detailProductImage!)
                             }
                             
-                            imageArray.append(productImage!)
-                            let detailProductImages = imageArray
-                            //imageArray.append(detailProductImages)
+                            let detailProductImages = imageURLArray
+                            let productImage = imageURLArray[0]
+
+                            newDetailProduct = DetailProduct(productBrand: productBrand!, productName: productName!, productPrice: productPrice, productImage: productImage, productCode: productCode!, detailProductDescription: detailProductDescription, detailProductImages: detailProductImages)
                             
-//                            for i in detailProductImages {
-//                                imageArray.append(i)
-//                            }
-
-                            let newDetailProduct = DetailProduct(productBrand: productBrand!, productName: productName!, productPrice: productPrice, productImage: productImage!, productCode: productCode!, detailProductDescription: detailProductDescription, detailProductImages: detailProductImages)
-
-                            detailProducts.append(newDetailProduct)
                         }
                     }
-                NotificationCenter.default.post(name: notificationDetail, object: detailProducts)
+                completion(newDetailProduct!)
                 }
-            }
             
+            }
+        
             
         }
     }

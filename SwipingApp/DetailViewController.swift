@@ -8,72 +8,60 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     
     @IBOutlet weak var detailProductNameLabel: UILabel!
     @IBOutlet weak var detailProductImageView: UIImageView!
-    @IBOutlet weak var detailProductVariantImageView: UIImageView!
+    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var detailProductBrandLabel: UILabel!
     @IBOutlet weak var detailProductPriceLabel: UILabel!
     @IBOutlet weak var detailProductDescriptionView: UITextView!
     
-    var detailProductArray = [DetailProduct]()
+    
+    var detailProductArray = [UIImage]()
+//    private let reuseIdentifier = "imageCell"
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        DataManager.sharedInstance.getDetailProductFromAPI()
+        collectionView.delegate = self
+        collectionView.dataSource = self
         
-        NotificationCenter.default.addObserver(forName: notificationDetail, object: nil, queue: nil) { (notification) in
-            let detailObject = notification.object as! [DetailProduct]
-//            let imageObject = self.detailProductArray[0].detailProductImages
-//            let imageObject = self.detailProductImages
-//            let imageObject = notification.object as! [UIImage]
-            self.detailProductArray = detailObject
-//            self.detailProductImages = imageObject
+        DataManager.sharedInstance.getDetailProductFromAPI { (detailProduct) in
             
-//            for i in imageObject {
-//                self.detailProductImages.append(i as UIImage)
-//                    }
-//            
-            let priceOfProduct = self.detailProductArray[0].productPrice
-            
-            self.detailProductNameLabel.text = self.detailProductArray[0].productName
-            self.detailProductDescriptionView.text = self.detailProductArray[0].detailProductDescription
-            self.detailProductBrandLabel.text = self.detailProductArray[0].productBrand
-            self.detailProductImageView.image = self.detailProductArray[0].productImage
+            self.detailProductArray = detailProduct.detailProductImages
+            let priceOfProduct = detailProduct.productPrice
+            self.detailProductNameLabel.text = detailProduct.productName
+            self.detailProductDescriptionView.text = detailProduct.detailProductDescription
+            self.detailProductBrandLabel.text = detailProduct.productBrand
+            self.detailProductImageView.image = detailProduct.productImage
             self.detailProductPriceLabel.text = String(format: "€ %.2f", priceOfProduct)
-//            self.detailProductImageView.image = self.detailProductArray[0].detailProductImages[0]
-//            self.detailProductVariantImageView.image = self.detailProductArray.detailProductImages[1]
-            
-            
-            
+            print("Product images count \(detailProduct.detailProductImages.count)")
+            self.collectionView.reloadData()
         }
-    
     }
-    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.setScreenName(name: navigationItem.title!)
+        //self.setScreenName(name: navigationItem.title!)
         
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if self.detailProductArray.count == 0 {
+            return 0 }
+        else {
+            return detailProductArray.count
+        }
     }
     
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as! CustomCollectionViewCell
+    
+       cell.detailProductImage.image = detailProductArray[indexPath.row]
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        return cell
     }
-    */
 
 }
