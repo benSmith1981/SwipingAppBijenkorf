@@ -21,8 +21,7 @@ class ChooseProductView: MDCSwipeToChooseView {
     var priceLabel: UILabel!
     var brandLabel: UILabel!
     var infoButtonImage: ImagelabelView!
-    //    var interestsImageLabelView: ImagelabelView!
-    //    var friendsImageLabelView: ImagelabelView!
+
     
     init(frame: CGRect, product: Product, options: MDCSwipeToChooseViewOptions) {
         
@@ -34,7 +33,6 @@ class ChooseProductView: MDCSwipeToChooseView {
         }
         
         self.autoresizingMask = [UIViewAutoresizing.flexibleHeight, UIViewAutoresizing.flexibleWidth]
-        //        UIViewAutoresizing.flexibleBottomMargin
         
         self.imageView.autoresizingMask = self.autoresizingMask
          constructTopInformationView()
@@ -76,7 +74,6 @@ class ChooseProductView: MDCSwipeToChooseView {
         constructBrandLabel()
         constructPriceLabel()
         constructInfoButton()
-//        constructInfoButtonImageLabelView()
     }
     
     func constructNameLabel() -> Void{
@@ -98,17 +95,11 @@ class ChooseProductView: MDCSwipeToChooseView {
     
     func constructInfoButton() -> Void {
         
-//                let rightPadding: CGFloat = 10.0
-//                let topPadding: CGFloat = 8.0
-
         let button : UIButton = UIButton(type: UIButtonType.system)
         let image: UIImage = UIImage(named: "info")!
         
         let informationWidth = self.topInformationView.frame.size.width
         let informationHeigth = self.topInformationView.frame.size.height
-        
-//        print("This is the width: \(informationWidth)")
-//        print("This is the height\(informationHeigth)")
         
 //        button.frame.size = CGSize(width: 20, height: 20)
         button.frame = CGRect(x: informationWidth-50, y: informationHeigth-20, width: 20, height: 20)
@@ -120,17 +111,6 @@ class ChooseProductView: MDCSwipeToChooseView {
     func notification() {
         NotificationCenter.default.post(note)
     }
-    
-//    func showViewController() {
-//        if let superview = superview as? DetailViewController {
-//            (superview).show
-//        }
-//    }
-//    func infoButton() {
-//      
-//        print("You pressed the info button")
-//        
-//    }
     
     func constructBrandLabel() -> Void{
         let leftPadding:CGFloat = 12.0

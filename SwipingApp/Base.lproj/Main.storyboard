@@ -126,7 +126,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="basketCell" id="bti-nd-QDw">
-                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bti-nd-QDw" id="aLR-f5-CiM">
                                     <frame key="frameInset" width="375" height="43"/>
@@ -145,7 +145,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o1T-ZG-PFD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="921" y="959"/>
+            <point key="canvasLocation" x="3734" y="959"/>
         </scene>
         <!--MainCategory-->
         <scene sceneID="3dt-Po-a2c">
@@ -433,7 +433,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Hgq-7E-ywn" kind="relationship" relationship="rootViewController" id="gQK-qh-zgv"/>
+                        <segue destination="cgm-R2-S3b" kind="relationship" relationship="rootViewController" id="fcQ-x5-vx7"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y2F-Qq-pax" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -544,21 +544,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q2G-LQ-wSf">
-                                <frame key="frameInset" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q2G-LQ-wSf">
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="q2G-LQ-wSf" firstAttribute="leading" secondItem="x3K-9e-K5l" secondAttribute="leading" id="BAb-Wf-Y6r"/>
+                            <constraint firstAttribute="trailing" secondItem="q2G-LQ-wSf" secondAttribute="trailing" id="JhN-dY-Jf4"/>
+                            <constraint firstItem="q2G-LQ-wSf" firstAttribute="top" secondItem="x3K-9e-K5l" secondAttribute="top" id="moI-qU-xos"/>
+                            <constraint firstAttribute="bottom" secondItem="q2G-LQ-wSf" secondAttribute="bottom" id="udm-dv-V2Q"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="aGd-gJ-CwP"/>
                     <connections>
                         <outlet property="basketWebView" destination="q2G-LQ-wSf" id="DTo-1X-yML"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4gv-fr-10c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3823.1999999999998" y="236.13193403298354"/>
+            <point key="canvasLocation" x="921" y="959"/>
         </scene>
     </scenes>
     <resources>

@@ -20,13 +20,13 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     
     var detailProductArray = [UIImage]()
-//    private let reuseIdentifier = "imageCell"
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         collectionView.delegate = self
         collectionView.dataSource = self
+        
         
         DataManager.sharedInstance.getDetailProductFromAPI { (detailProduct) in
             

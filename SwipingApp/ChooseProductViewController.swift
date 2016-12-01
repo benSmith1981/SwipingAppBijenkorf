@@ -2,6 +2,7 @@ import UIKit
 import MDCSwipeToChoose
 import Alamofire
 
+
 class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
     
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
@@ -18,7 +19,6 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
     var productImageURL = UIImageView()
     var allProducts: [Product] = []
     var productCodeToPass: String!
-//    var productCodeArray: [String] = []
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -28,7 +28,6 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         self.allProducts = defaultProduct()
-        // Here you can init your properties
     }
     
     
@@ -36,32 +35,20 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
         super.viewDidLoad()
         
         NotificationCenter.default.addObserver(self, selector: #selector(infoButton), name: note.name, object: nil)
+        
         self.loadProductWith { (productList) in
             
             if self.allProducts.count > 1 {
-                // Display the first ChoosePersonView in front. Users can swipe to indicate
-                // whether they like or dislike the person displayed.
                 self.setMyFrontCardView(self.popProductViewWithFrame(self.frontCardViewFrame())!)
                 self.view.addSubview(self.frontCardView)
                 
-                // Display the second ChoosePersonView in back. This view controller uses
-                // the MDCSwipeToChooseDelegate protocol methods to update the front and
-                // back views after each user swipe.
                 self.backCardView = self.popProductViewWithFrame(self.backCardViewFrame())!
                 self.view.insertSubview(self.backCardView, belowSubview: self.frontCardView)
                 
-                // Add buttons to programmatically swipe the view left or right.
-                // See the `nopeFrontCardView` and `likeFrontCardView` methods.
                 self.constructNopeButton()
                 self.constructLikedButton()
-//                self.constructUndoButton()
-                
             }
-            
-            
         }
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -74,7 +61,6 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
         activityIndicatorView.startAnimating()
         
         if let productQuery = dict!["query"] as? String {
-            
             
             Alamofire.request("https://ceres-catalog.debijenkorf.nl/catalog/navigation/show?query=\(productQuery)").responseJSON { response in
                 
@@ -118,23 +104,17 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
                                     let newProduct = Product(productBrand: productBrand, productName: name, productPrice: Float(productPrice), productImage: productImage!, productCode: productCode!)
                                     
                                     self.allProducts.append(newProduct)
-                                    //print(self.allProducts)
+                                    
                                     print(productCode)
                                     print(self.allProducts.count)
-                                    
                                 }
                             }
-                            
                         }
-                        
                     }
                     completion(self.allProducts)
                 }
-                
             }
-            
         }
-        
     }
     
     func stopSpinning(sender: AnyObject) {
@@ -197,10 +177,6 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
     }
     
     func defaultProduct() -> [Product]{
-        // It would be trivial to download these from a web service
-        // as needed, but for the purposes of this sample app we'll
-        // simply store them in memory.
-        //        return [Product(productBrand: "Merk1", productName: "Pump1", productPrice: 120.0, productImage: UIImage(named: "finn")!, productCode: "1"), Product(productBrand: "Merk2", productName: "Pump2", productPrice: 130.0, productImage: UIImage(named: "jake")!, productCode: "2"), Product(productBrand: "Merk3", productName: "Pump3", productPrice: 140.0, productImage: UIImage(named: "fiona")!, productCode: "3"), Product(productBrand: "Merk4", productName: "Pump4", productPrice: 150.0, productImage: UIImage(named: "prince")!, productCode: "4")]
         return allProducts
     }
     
@@ -209,26 +185,18 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
             return nil;
         }
         
-        // UIView+MDCSwipeToChoose and MDCSwipeToChooseView are heavily customizable.
-        // Each take an "options" argument. Here, we specify the view controller as
-        // a delegate, and provide a custom callback that moves the back card view
-        // based on how far the user has panned the front card view.
         let options: MDCSwipeToChooseViewOptions = MDCSwipeToChooseViewOptions()
         options.delegate = self
         options.threshold = 160.0
         options.likedText = "Top"
         options.likedColor = UIColor.green
         options.likedRotationAngle = 0
-        //options.threshold = 160.0
         options.onPan = { state -> Void in
             if(self.backCardView != nil){
                 let frame: CGRect = self.frontCardViewFrame()
                 self.backCardView.frame = CGRect(x: frame.origin.x, y: frame.origin.y-((state?.thresholdRatio)! * 10.0), width: frame.width, height: frame.height)
             }
         }
-        
-        // Create a personView with the top person in the people array, then pop
-        // that person off the stack.
         
         let productView: ChooseProductView = ChooseProductView(frame: frame, product: self.allProducts[0], options: options)
         self.allProducts.remove(at: 0)
@@ -248,16 +216,16 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
         return CGRect(x: frontFrame.origin.x, y: frontFrame.origin.y + 10.0, width: frontFrame.width, height: frontFrame.height)
     }
     
-//    func constructUndoButton() -> Void{
-//        let button:UIButton = UIButton(type: UIButtonType.system)
-//        let image:UIImage = UIImage(named:"undo")!
-//        button.frame = CGRect(x: 150, y: 445, width: (image.size.width), height: (image.size.height))
-//        button.setImage(image, for: UIControlState())
-//        button.tintColor = UIColor.darkGray
-//        self.view.addSubview(button)
-//        
-//        
-//    }
+    //    func constructUndoButton() -> Void{
+    //        let button:UIButton = UIButton(type: UIButtonType.system)
+    //        let image:UIImage = UIImage(named:"undo")!
+    //        button.frame = CGRect(x: 150, y: 445, width: (image.size.width), height: (image.size.height))
+    //        button.setImage(image, for: UIControlState())
+    //        button.tintColor = UIColor.darkGray
+    //        self.view.addSubview(button)
+    //
+    //
+    //    }
     
     func constructNopeButton() -> Void{
         let button:UIButton =  UIButton(type: UIButtonType.system)
@@ -286,40 +254,8 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
         self.frontCardView.mdc_swipe(MDCSwipeDirection.right)
     }
     func infoButton() {
-
+        
         print("You pressed the info button")
         performSegue(withIdentifier: "swipeToDetail", sender: self)
     }
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        
-//        //        let index = productCodeArray
-//        //        let currentArray = productCodeArray[index]
-//        
-//        if segue.identifier == "swipeToWishList" {
-//            
-//            //            var dictObj = currentArray.
-//            let swipeViewController = segue.destination as! WishListTableViewController
-////            swipeViewController.productCodeArray = productCodeArray
-//            //                subCatTableViewController.title = dictObj["name"] as? String
-//        }
-//        
-//    }
-    
-//    func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        
-//        
-//        let currentProductCode = WishList.sharedInstance.productCodeArray[0]
-//        if segue.identifier == "swipeToDetail" {
-//            
-//            var objectToPass = currentProductCode
-//            
-//            let chooseProductViewController = segue.destination as! DetailViewController
-//            chooseProductViewController
-//            chooseProductViewController.navigationItem.title = objectToPass["name"] as? String
-//            
-//            let controller = segue.destination as! ChooseProductViewController
-//            if let infoButton = sender as? UIButton
-//        }
-//    }
 }

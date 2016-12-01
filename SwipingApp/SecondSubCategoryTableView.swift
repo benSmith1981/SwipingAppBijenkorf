@@ -15,7 +15,6 @@ class SecondSubCategoryTableViewController: UITableViewController {
     var dict = Dictionary<String, Any>()
     var secondSubCatArray = [Dictionary<String, Any>]()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,49 +24,30 @@ class SecondSubCategoryTableViewController: UITableViewController {
             self.secondSubCatArray.append(i as! [String : Any])
             self.tableView.reloadData()
         }
-        
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
-    // MARK: - Table view data source
-    
-    
-    
-    
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return self.secondSubCatArray.count
-        
     }
-    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
-        // Configure the cell...
         var dictObj = self.secondSubCatArray[indexPath.row]
-        
         cell.textLabel?.text = dictObj["name"] as! String?
-        
-        
         return cell
     }
-    
-    
-    // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         let index = tableView.indexPathForSelectedRow?.row
         let currentDict = secondSubCatArray[index!]
-        
         if segue.identifier == "subToDetail" {
-            
             if let row = tableView.indexPathForSelectedRow?.row {
                 
                 var dictObj = secondSubCatArray[row]
@@ -78,28 +58,9 @@ class SecondSubCategoryTableViewController: UITableViewController {
         }
     }
     
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        
-//        let index = tableView.indexPathForSelectedRow?.row
-//        let currentDict = secondSubCatArray[index!]
-//        
-//        if segue.identifier == "subToDetail" {
-//            
-//            if let row = tableView.indexPathForSelectedRow?.row {
-//                
-//                var dictObj = secondSubCatArray[row]
-//                let detailTableViewController = segue.destination as! DetailTableViewController
-//                detailTableViewController.dict = currentDict
-//                detailTableViewController.navigationItem.title = dictObj["name"] as? String
-//            }
-//        }
-//    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.setScreenName(name: navigationItem.title!)
-
     }
 }
 
