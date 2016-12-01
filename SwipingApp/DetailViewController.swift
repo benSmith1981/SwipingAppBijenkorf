@@ -12,37 +12,31 @@ class DetailViewController: UIViewController {
     
     
     @IBOutlet weak var detailProductNameLabel: UILabel!
-    
     @IBOutlet weak var detailProductImageView: UIImageView!
- 
+    @IBOutlet weak var detailProductVariantImageView: UIImageView!
     @IBOutlet weak var detailProductBrandLabel: UILabel!
- 
     @IBOutlet weak var detailProductPriceLabel: UILabel!
- 
     @IBOutlet weak var detailProductDescriptionView: UITextView!
     
-    
     var detailProductArray = [DetailProduct]()
-    var detailProductImages = [UIImage]()
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        DataManager.sharedInstance.productDetailsFromProductsCodeAPI()
+        DataManager.sharedInstance.getDetailProductFromAPI()
         
         NotificationCenter.default.addObserver(forName: notificationDetail, object: nil, queue: nil) { (notification) in
             let detailObject = notification.object as! [DetailProduct]
 //            let imageObject = self.detailProductArray[0].detailProductImages
-            let imageObject = self.detailProductImages
+//            let imageObject = self.detailProductImages
 //            let imageObject = notification.object as! [UIImage]
             self.detailProductArray = detailObject
-            self.detailProductImages = imageObject
+//            self.detailProductImages = imageObject
             
-            for i in imageObject {
-                self.detailProductImages.append(i as UIImage)
-                    }
-            
+//            for i in imageObject {
+//                self.detailProductImages.append(i as UIImage)
+//                    }
+//            
             let priceOfProduct = self.detailProductArray[0].productPrice
             
             self.detailProductNameLabel.text = self.detailProductArray[0].productName
@@ -50,6 +44,8 @@ class DetailViewController: UIViewController {
             self.detailProductBrandLabel.text = self.detailProductArray[0].productBrand
             self.detailProductImageView.image = self.detailProductArray[0].productImage
             self.detailProductPriceLabel.text = String(format: "€ %.2f", priceOfProduct)
+//            self.detailProductImageView.image = self.detailProductArray[0].detailProductImages[0]
+//            self.detailProductVariantImageView.image = self.detailProductArray.detailProductImages[1]
             
             
             
@@ -60,7 +56,7 @@ class DetailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        self.setScreenName(name: navigationItem.title!)
         
     }
 

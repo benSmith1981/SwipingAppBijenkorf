@@ -89,14 +89,15 @@ class DataManager {
         }
     }
     
-    func productDetailsFromProductsCodeAPI () {
+    func getDetailProductFromAPI () {
         
         var detailProducts: [AnyObject] = []
         var imageArray: [UIImage] = []
+        var imageURLArray: [Dictionary<String, Any>] = []
         //        let productCodeQuery = WishList.sharedInstance.productCodeArray
         //        let productCodeString = productCodeQuery.joined(separator: ",")
         
-        Alamofire.request("https://ceres-catalog.debijenkorf.nl/catalog/product/list?productCodes=430504000486003").responseJSON { response in
+        Alamofire.request("https://ceres-catalog.debijenkorf.nl/catalog/product/list?productCodes=208009011100000").responseJSON { response in
             //430504000486003
             //208009011100000
             //208009011200000
@@ -114,7 +115,7 @@ class DataManager {
                     if let description = jsonProducts["description"] as? String {
                         detailProductDescription = description }
                     else {
-                        detailProductDescription = "Sorry, there is no description"
+                        detailProductDescription = "Helaas is er geen beschrijving beschikbaar"
                     }
                         let brand = jsonProducts["brand"] as? Dictionary<String,Any>
                         let productBrand = brand?["name"] as? String
@@ -125,6 +126,23 @@ class DataManager {
                         let productCode = jsonProducts["code"] as? String
                         
                         if let imageURL = currentVariantProduct["images"] as? [Dictionary<String,Any>] {
+                            
+//                            let imageProductURL = imageURL
+//                            
+//                            for i in imageURL {
+//                                imageURLArray.append(imageProductURL)
+//                            }
+//                            
+                            for i in imageURL {
+                                imageURLArray.append(i)
+                            }
+//
+//                            for (key, subJson) in json["items"] {
+//                                if let title = subJson["title"].string {
+//                                    println(title)
+//                                }
+//                            }
+                            
                             let imageProductURL = imageURL[0]
                             let frontImageURL = imageProductURL["url"] as! String
                             
@@ -137,13 +155,15 @@ class DataManager {
                                 productImage = UIImage(data:(data)!)
                             }
                             
-                            let detailProductImages = productImage
-                            imageArray.append(detailProductImages!)
-//                            for i in imageArray {
+                            imageArray.append(productImage!)
+                            let detailProductImages = imageArray
+                            //imageArray.append(detailProductImages)
+                            
+//                            for i in detailProductImages {
 //                                imageArray.append(i)
 //                            }
 
-                            let newDetailProduct = DetailProduct(productBrand: productBrand!, productName: productName!, productPrice: productPrice, productImage: productImage!, productCode: productCode!, detailProductDescription: detailProductDescription, detailProductImages: [detailProductImages!])
+                            let newDetailProduct = DetailProduct(productBrand: productBrand!, productName: productName!, productPrice: productPrice, productImage: productImage!, productCode: productCode!, detailProductDescription: detailProductDescription, detailProductImages: detailProductImages)
 
                             detailProducts.append(newDetailProduct)
                         }

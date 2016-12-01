@@ -116,8 +116,9 @@ class ChooseProductView: MDCSwipeToChooseView {
         button.addTarget(self, action: #selector(ChooseProductView.infoButton), for: UIControlEvents.touchUpInside)
         self.informationView.addSubview(button)
     }
-    func infoButton() -> Void{
+    func infoButton() -> Void {
         print("You pressed the info button")
+        
     }
     
     func constructBrandLabel() -> Void{

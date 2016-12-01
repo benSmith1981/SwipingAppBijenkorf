@@ -46,13 +46,7 @@ class WishListTableViewController: UITableViewController, UITabBarControllerDele
             self.tableView.reloadData()
         }
         
-//        let tabBarItemsCount = WishList.sharedInstance.productCodeArray.count
-//        print(tabBarItemsCount)
-//        let tabBarItemsString = String(tabBarItemsCount)
-////        let tabBarItems = tabBar.items! as [UITabBarItem]
-//        let tabBarItems = [tabBarItem!] as [UITabBarItem]
-//
-//        tabBarItems[1].badgeValue = tabBarItemsString
+        self.setScreenName(name: navigationItem.title!)
     }
     
     

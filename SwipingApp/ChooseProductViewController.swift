@@ -17,6 +17,7 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
     var dict: Dictionary<String,Any>?
     var productImageURL = UIImageView()
     var allProducts: [Product] = []
+    var productCodeToPass: String!
 //    var productCodeArray: [String] = []
     
     required init?(coder aDecoder: NSCoder) {
@@ -65,7 +66,7 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        self.setScreenName(name: navigationItem.title!)
     }
     
     
@@ -168,29 +169,6 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
             print(sharedWishList.productCodeArray)
         }
         
-        // MDCSwipeToChooseView removes the view from the view hierarchy
-        // after it is swiped (this behavior can be customized via the
-        // MDCSwipeOptions class). Since the front card view is gone, we
-        // move the back card to the front, and create a new back card.
-        
-        //        if(self.backCardView != nil) {
-        //            self.frontCardView = self.backCardView
-        //        }
-        
-        //       self.frontCardView = self.backCardView
-        //
-        //        if(self.backCardView != nil) {
-        //
-        //            self.backCardView = self.frontCardView
-        //
-        //        if self.backCardView == self.popProductViewWithFrame(self.backCardViewFrame()) {
-        //
-        //            self.backCardView.alpha = 0.5
-        //            popProductViewWithFrame(self.backCardViewFrame())?.insertSubview(self.backCardView, belowSubview: self.frontCardView)
-        //            UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseInOut, animations: {
-        //                self.backCardView.alpha = 1.0
-        //                }, completion: nil)
-        //            }
         
         // Correct Swiping Code
         if(self.backCardView != nil) {
@@ -308,18 +286,35 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
         self.frontCardView.mdc_swipe(MDCSwipeDirection.right)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        //        let index = productCodeArray
-        //        let currentArray = productCodeArray[index]
-        
-        if segue.identifier == "swipeToWishList" {
-            
-            //            var dictObj = currentArray.
-            let swipeViewController = segue.destination as! WishListTableViewController
-//            swipeViewController.productCodeArray = productCodeArray
-            //                subCatTableViewController.title = dictObj["name"] as? String
-        }
-        
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        
+//        //        let index = productCodeArray
+//        //        let currentArray = productCodeArray[index]
+//        
+//        if segue.identifier == "swipeToWishList" {
+//            
+//            //            var dictObj = currentArray.
+//            let swipeViewController = segue.destination as! WishListTableViewController
+////            swipeViewController.productCodeArray = productCodeArray
+//            //                subCatTableViewController.title = dictObj["name"] as? String
+//        }
+//        
+//    }
+    
+//    func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        
+//        
+//        let currentProductCode = WishList.sharedInstance.productCodeArray[0]
+//        if segue.identifier == "swipeToDetail" {
+//            
+//            var objectToPass = currentProductCode
+//            
+//            let chooseProductViewController = segue.destination as! DetailViewController
+//            chooseProductViewController
+//            chooseProductViewController.navigationItem.title = objectToPass["name"] as? String
+//            
+//            let controller = segue.destination as! ChooseProductViewController
+//            if let infoButton = sender as? UIButton
+//        }
+//    }
 }

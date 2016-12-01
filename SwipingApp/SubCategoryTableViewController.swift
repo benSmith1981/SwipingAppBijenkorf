@@ -85,7 +85,6 @@ class SubCategoryTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        self.setScreenName(name: "SubCategoryTableViewController")
         self.setScreenName(name: navigationItem.title!)
         
     }
