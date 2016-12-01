@@ -69,7 +69,11 @@ class DataManager {
                         let frontImageURL = imageProductURL["url"] as! String
                         
                         let httpURL = "https:\(frontImageURL)"
-                        let url = URL(string: httpURL)
+                        
+                        let defaultString = httpURL
+                        let webListerString = httpURL.replacingOccurrences(of: "default", with: "web_detail_2x")
+                        
+                        let url = URL(string: webListerString)
                         let data = try? Data(contentsOf: url!)
                         
                         var productImage : UIImage?
@@ -131,7 +135,11 @@ class DataManager {
                                 
                                 let url = i["url"] as! String
                                 let httpsURL = "https:\(url)"
-                                let urlString = URL(string: httpsURL)
+                                
+                                let defaultString = httpsURL
+                                let webListerString = httpsURL.replacingOccurrences(of: "default", with: "web_lister_2x")
+                                
+                                let urlString = URL(string: webListerString)
                                 let data = try? Data(contentsOf: urlString!)
                                 let detailProductImage = UIImage(data: (data)!)
 
