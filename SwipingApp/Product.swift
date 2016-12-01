@@ -32,3 +32,13 @@ class Product: NSObject {
     }
     
 }
+
+//init(dictionary: JSONDICT) {
+//    
+//    self.productBrand = dictionary["brand"]
+//    self.productName = dictionary["name"]
+//    self.productPrice = productPrice
+//    self.productImage = productImage
+//    self.productCode = productCode
+//    
+//    super.init()
