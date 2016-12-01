@@ -35,7 +35,7 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(infoButton), name: note.name, object: nil)
         self.loadProductWith { (productList) in
             
             if self.allProducts.count > 1 {
@@ -284,6 +284,11 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
     }
     func likeFrontCardView() -> Void{
         self.frontCardView.mdc_swipe(MDCSwipeDirection.right)
+    }
+    func infoButton() {
+
+        print("You pressed the info button")
+        performSegue(withIdentifier: "swipeToDetail", sender: self)
     }
     
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

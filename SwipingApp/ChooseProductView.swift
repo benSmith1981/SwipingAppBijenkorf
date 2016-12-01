@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import MDCSwipeToChoose
+var note = Notification(name: Notification.Name(rawValue: "Send"))
 
 class ChooseProductView: MDCSwipeToChooseView {
     
@@ -113,13 +114,23 @@ class ChooseProductView: MDCSwipeToChooseView {
         button.frame = CGRect(x: informationWidth-50, y: informationHeigth-20, width: 20, height: 20)
         button.setImage(image, for: UIControlState())
         button.tintColor = UIColor.blue
-        button.addTarget(self, action: #selector(ChooseProductView.infoButton), for: UIControlEvents.touchUpInside)
+        button.addTarget(self, action: #selector(notification), for: UIControlEvents.touchUpInside)
         self.informationView.addSubview(button)
     }
-    func infoButton() -> Void {
-        print("You pressed the info button")
-        
+    func notification() {
+        NotificationCenter.default.post(note)
     }
+    
+//    func showViewController() {
+//        if let superview = superview as? DetailViewController {
+//            (superview).show
+//        }
+//    }
+//    func infoButton() {
+//      
+//        print("You pressed the info button")
+//        
+//    }
     
     func constructBrandLabel() -> Void{
         let leftPadding:CGFloat = 12.0
