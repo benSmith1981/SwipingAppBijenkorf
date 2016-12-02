@@ -63,6 +63,11 @@ class DataManager {
                     let price = currentVariantProduct["sellingPrice"] as! Dictionary<String,Any>
                     let productPrice = price["value"] as! Float
                     let productCode = jsonProducts["code"] as? String
+                    var productColor = ""
+                    if let color = currentVariantProduct["color"] as? String {
+                        productColor = color }
+                    else {
+                        productColor = "onbekend" }
                     
                     if let imageURL = currentVariantProduct["images"] as? [Dictionary<String,Any>] {
                         let imageProductURL = imageURL[0]
@@ -81,7 +86,7 @@ class DataManager {
                             productImage = UIImage(data:(data)!)
                         }
                         
-                        let newWishListProduct = WishListProduct(productBrand: productBrand!, productName: productName!, productPrice: Float(productPrice), productImage: productImage!, productCode: productCode!)
+                        let newWishListProduct = WishListProduct(productBrand: productBrand!, productName: productName!, productPrice: Float(productPrice), productImage: productImage!, productCode: productCode!, productColor: productColor)
                         
                         
                         allWishListProducts.append(newWishListProduct)
@@ -128,7 +133,12 @@ class DataManager {
                         let price = currentVariantProduct["sellingPrice"] as! Dictionary<String,Any>
                         let productPrice = price["value"] as! Float
                         let productCode = jsonProducts["code"] as? String
-                        
+                    var productColor = ""
+                    if let color = currentVariantProduct["color"] as? String {
+                        productColor = color }
+                    else {
+                        productColor = "onbekend" }
+                    
                         if let imageURL = currentVariantProduct["images"] as? [Dictionary<String,Any>] {
                             
                             for i in imageURL {
@@ -149,7 +159,7 @@ class DataManager {
                             let detailProductImages = imageURLArray
                             let productImage = imageURLArray[0]
 
-                            newDetailProduct = DetailProduct(productBrand: productBrand!, productName: productName!, productPrice: productPrice, productImage: productImage, productCode: productCode!, detailProductDescription: detailProductDescription, detailProductImages: detailProductImages)
+                            newDetailProduct = DetailProduct(productBrand: productBrand!, productName: productName!, productPrice: productPrice, productImage: productImage, productCode: productCode!, productColor: productColor, detailProductDescription: detailProductDescription, detailProductImages: detailProductImages)
                             
                         }
                     }

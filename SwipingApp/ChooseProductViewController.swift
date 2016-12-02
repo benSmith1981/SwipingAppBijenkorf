@@ -10,6 +10,7 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
     
     
     var sharedWishList = WishList.sharedInstance
+    var preferredProductList = PreferredProductList.sharedInstance
     let ChooseProductButtonHorizontalPadding: CGFloat = 80.0
     let ChooseProductButtonVerticalPadding: CGFloat = 20.0
     var currentProduct: Product!
@@ -18,6 +19,8 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
     var dict: Dictionary<String,Any>?
     var productImageURL = UIImageView()
     var allProducts: [Product] = []
+    var preferredProduct: [PreferredProduct] = []
+    var currentPreferredProduct = PreferredProduct.self
     var productCodeToPass: String!
     
     required init?(coder aDecoder: NSCoder) {
@@ -60,6 +63,9 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
     func loadProductWith( completion:@escaping (_ product: [Product]) -> Void) {
         activityIndicatorView.startAnimating()
         
+        let productCategory = dict?["name"] as? String
+        print("Categorie \(productCategory)")
+        
         if let productQuery = dict!["query"] as? String {
             
             Alamofire.request("https://ceres-catalog.debijenkorf.nl/catalog/navigation/show?query=\(productQuery)").responseJSON { response in
@@ -84,9 +90,13 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
                                 
                                 let sellingPrice = item["sellingPrice"] as! Dictionary<String,Any>
                                 let productPrice = sellingPrice["value"] as! Double
-                                
+                                var productColor = " "
                                 let currentVariantProduct = item["currentVariantProduct"] as! Dictionary<String,Any>
                                 let productCode = currentVariantProduct["code"] as? String
+                                if let color = currentVariantProduct["color"] as? String {
+                                    productColor = color }
+                                else {
+                                    productColor = "onbekend" }
                                 if let imageURL = currentVariantProduct["images"] as? [Dictionary<String,Any>] {
                                     let imageProductURL = imageURL[0]
                                     let frontImageURL = imageProductURL["url"] as! String
@@ -101,9 +111,13 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
                                         
                                     }
                                     
-                                    let newProduct = Product(productBrand: productBrand, productName: name, productPrice: Float(productPrice), productImage: productImage!, productCode: productCode!)
+                                    let newProduct = Product(productBrand: productBrand, productName: name, productPrice: Float(productPrice), productImage: productImage!, productCode: productCode!, productColor: productColor, productCategory: productCategory!)
                                     
                                     self.allProducts.append(newProduct)
+                                    
+                                    let newPreferredProduct = PreferredProduct(preferredProductColor: productColor, preferredProductCategory: productCategory!)
+                                
+                                    self.preferredProduct.append(newPreferredProduct)
                                     
                                     print(productCode)
                                     print(self.allProducts.count)
@@ -144,9 +158,14 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
         }
         else {
             let newProductCode = currentProduct.productCode
+            let productColor = currentProduct.productColor
             print("You liked product: \(self.currentProduct.productCode)")
+            print("Color is \(self.currentProduct.productColor)")
+            print("Category is \(self.currentProduct.productCategory)")
             self.sharedWishList.addNewProductCode(productCode: newProductCode)
+            //self.preferredProductList.addNewPreferredProduct(newPreferredProduct: preferredProduct)
             print(sharedWishList.productCodeArray)
+            print(preferredProductList.preferredProductArray)
         }
         
         
