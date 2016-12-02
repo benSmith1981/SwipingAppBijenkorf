@@ -18,16 +18,20 @@ class WishListProduct: NSObject {
     var productPrice: Float
     var productImage: UIImage
     var productCode: String
+    var productColor: String
+
     
     //    init(productBrand: String, productName: String, productPrice: Double, productImage: String) {
     
-    init(productBrand: String, productName: String, productPrice: Float, productImage: UIImage, productCode: String) {
+    init(productBrand: String, productName: String, productPrice: Float, productImage: UIImage, productCode: String, productColor: String) {
         
         self.productBrand = productBrand
         self.productName = productName
         self.productPrice = productPrice
         self.productImage = productImage
         self.productCode = productCode
+        self.productColor = productColor
+
         
         super.init()
         

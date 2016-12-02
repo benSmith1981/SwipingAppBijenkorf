@@ -7,3 +7,20 @@
 //
 
 import Foundation
+import UIKit
+
+class PreferredProductList {
+    
+    var preferredProductArray: [String] = []
+    var allPreferredProducts = [PreferredProduct]()
+    var preferredProduct: PreferredProduct!
+    
+    static let sharedInstance = PreferredProductList()
+    
+    func addNewPreferredProduct(newPreferredProduct: String) {
+        
+        preferredProductArray.append(newPreferredProduct)
+
+    }
+
+}

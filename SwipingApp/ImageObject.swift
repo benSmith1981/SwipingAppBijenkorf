@@ -6,21 +6,21 @@
 //
 //
 
-import Foundation
-import UIKit
-
-class ImageObject: NSObject {
-    
-    var prodOfImage: String
-    
-    
-    init(prodOfImage: String) {
-        
-        self.prodOfImage = prodOfImage
-        
-        
-        super.init()
-        
-    }
-    
-}
+//import Foundation
+//import UIKit
+//
+//class ImageObject: NSObject {
+//    
+//    var prodOfImage: String
+//    
+//    
+//    init(prodOfImage: String) {
+//        
+//        self.prodOfImage = prodOfImage
+//        
+//        
+//        super.init()
+//        
+//    }
+//    
+//}
