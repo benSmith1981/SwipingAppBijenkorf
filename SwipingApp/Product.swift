@@ -18,9 +18,6 @@ class Product: NSObject {
     var productCode: String
     var productColor: String
     var productCategory: String
-
-    
-    //    init(productBrand: String, productName: String, productPrice: Double, productImage: String) {
     
     init(productBrand: String, productName: String, productPrice: Float, productImage: UIImage, productCode: String, productColor: String, productCategory: String) {
         

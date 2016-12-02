@@ -15,7 +15,6 @@ class MainCategoryTableViewController: UITableViewController {
     
     var dictArray = [Dictionary<String, Any>]()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,18 +32,10 @@ class MainCategoryTableViewController: UITableViewController {
             }
         }
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return self.dictArray.count
-        
     }
-    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
@@ -77,16 +68,13 @@ class MainCategoryTableViewController: UITableViewController {
         super.viewDidAppear(animated)
         
         navigationItem.title = "Bijenkorf"
-//        navigationItem.titleView = UIImage(named: "bijenkorfNavigationLogo.png")
         navigationController?.navigationBar.barTintColor = UIColor(red: 238, green: 238, blue: 238, alpha: 1)
     }
     
     override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
             self.setScreenName(name: "Bijenkorf")
-        
     }
-    
 }
 
 extension UIViewController {

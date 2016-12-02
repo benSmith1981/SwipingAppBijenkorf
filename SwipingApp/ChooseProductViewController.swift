@@ -159,14 +159,49 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
         else {
             let newProductCode = currentProduct.productCode
             let productColor = currentProduct.productColor
+            let productCat = currentProduct.productCategory
+            let preferredProduct = PreferredProduct(preferredProductColor: productColor, preferredProductCategory: productCat)
             print("You liked product: \(self.currentProduct.productCode)")
             print("Color is \(self.currentProduct.productColor)")
             print("Category is \(self.currentProduct.productCategory)")
             self.sharedWishList.addNewProductCode(productCode: newProductCode)
-            self.preferredProductList.addNewPreferredProduct(newPreferredProduct: preferredProduct as AnyObject)
+            self.preferredProductList.addNewPreferredProduct(newPreferredProduct: preferredProduct)
             print(sharedWishList.productCodeArray)
             print(preferredProductList.preferredProductArray)
+            
+            for count in preferredProductList.preferredProductArray {
+
+//                if count.preferredProductColor >= 5 {
+//                    print("Your favourite color is \(productColor)")
+//                }
+                print(count.preferredProductCategory)
+
+            }
+
+            
+            for count in preferredProductList.preferredProductArray {
+                print(count.preferredProductColor)
+            }
+            
         }
+        
+//        func notifyUser() {
+//            
+//            let preferredArray = preferredProductList.preferredProductArray
+//            var counts: [String] = []
+//            
+//            for item in preferredArray {
+//                counts[item] = (counts[item] ?? 0) + 1
+//            }
+//            
+//            print(counts)
+//            
+//            for (key, value) in counts {
+//                print("\(key) occurs \(value) time(s)")
+//            }
+//        }
+        
+        
         
         
         // Correct Swiping Code

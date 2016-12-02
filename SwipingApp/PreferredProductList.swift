@@ -11,13 +11,13 @@ import UIKit
 
 class PreferredProductList {
     
-    var preferredProductArray: [AnyObject] = []
+    var preferredProductArray: [PreferredProduct] = []
     var allPreferredProducts = [PreferredProduct]()
     var preferredProduct: PreferredProduct!
     
     static let sharedInstance = PreferredProductList()
     
-    func addNewPreferredProduct(newPreferredProduct: AnyObject) {
+    func addNewPreferredProduct(newPreferredProduct: PreferredProduct) {
         
         preferredProductArray.append(newPreferredProduct)
 

@@ -10,7 +10,6 @@ import UIKit
 
 class TabBarController: UITabBarController, UITableViewDelegate {
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -20,13 +19,7 @@ class TabBarController: UITabBarController, UITableViewDelegate {
         let tabBarItems = tabBar.items! as [UITabBarItem]
         tabBarItems[1].badgeColor = UIColor.green
         tabBarItems[1].badgeValue = tabBarItemsString
-        
-        // Do any additional setup after loading the view.
-    }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,16 +33,4 @@ class TabBarController: UITabBarController, UITableViewDelegate {
         tabBarItems[1].badgeValue = tabBarItemsString
         
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

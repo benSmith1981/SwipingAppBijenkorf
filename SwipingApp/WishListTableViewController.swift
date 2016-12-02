@@ -17,18 +17,13 @@ class WishListTableViewController: UITableViewController, UITabBarControllerDele
         
         if isEditing {
             sender.setTitle("Bewerk", for: .normal)
-            
             setEditing(false, animated: true)
         } else {
             sender.setTitle("Klaar", for: .normal)
-            
             setEditing(true, animated: true)
         }
     }
 
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -45,23 +40,12 @@ class WishListTableViewController: UITableViewController, UITabBarControllerDele
             self.wishListProductArray = wishListObject as! [WishListProduct]
             self.tableView.reloadData()
         }
-        
         self.setScreenName(name: navigationItem.title!)
     }
-    
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    // MARK: - Table view data source
-    
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return wishListProductArray.count
     }
-    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "wishListCell", for: indexPath) as! CustomWishListTableViewCell
@@ -83,16 +67,7 @@ class WishListTableViewController: UITableViewController, UITabBarControllerDele
 //            WishList.sharedInstance.removeProductCode(index: indexPath.row)
         
             self.tableView.deleteRows(at: [indexPath], with: .fade)
-
-            
         }
     }
-    
-//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .insert
-//        
-//    }
-    
-    
 }
 
