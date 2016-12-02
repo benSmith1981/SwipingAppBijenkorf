@@ -254,8 +254,18 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
         self.frontCardView.mdc_swipe(MDCSwipeDirection.right)
     }
     func infoButton() {
-        
         print("You pressed the info button")
         performSegue(withIdentifier: "swipeToDetail", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "swipeToDetail"{
+            let _productCode = currentProduct.productCode
+            let detailViewController = segue.destination as! DetailViewController
+            
+            detailViewController.currentProductCode = _productCode
+            
+        }
     }
 }
