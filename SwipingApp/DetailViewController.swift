@@ -17,18 +17,18 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
     @IBOutlet weak var detailProductBrandLabel: UILabel!
     @IBOutlet weak var detailProductPriceLabel: UILabel!
     @IBOutlet weak var detailProductDescriptionView: UITextView!
-    
-    
-    var detailProductArray = [UIImage]()
 
+    var detailProductArray = [UIImage]()
+    var currentProductCode : String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        
-        DataManager.sharedInstance.getDetailProductFromAPI { (detailProduct) in
+        print(currentProductCode)
+        DataManager.sharedInstance.getDetailProductFromAPI(code:currentProductCode!) { (detailProduct) in
             
             self.detailProductArray = detailProduct.detailProductImages
             let priceOfProduct = detailProduct.productPrice

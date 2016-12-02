@@ -93,7 +93,7 @@ class DataManager {
         }
     }
     
-    func getDetailProductFromAPI (completion:@escaping (_ detailProduct: DetailProduct) -> Void) {
+    func getDetailProductFromAPI (code: String, completion:@escaping (_ detailProduct: DetailProduct) -> Void) {
 
         var newDetailProduct : DetailProduct?
 
@@ -102,7 +102,7 @@ class DataManager {
         //        let productCodeQuery = WishList.sharedInstance.productCodeArray
         //        let productCodeString = productCodeQuery.joined(separator: ",")
         
-        Alamofire.request("https://ceres-catalog.debijenkorf.nl/catalog/product/list?productCodes=430504000486003").responseJSON { response in
+        Alamofire.request("https://ceres-catalog.debijenkorf.nl/catalog/product/list?productCodes=\(code)").responseJSON { response in
             //430504000486003
             //208009011100000
             //208009011200000
