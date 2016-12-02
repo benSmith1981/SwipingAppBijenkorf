@@ -163,7 +163,7 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
             print("Color is \(self.currentProduct.productColor)")
             print("Category is \(self.currentProduct.productCategory)")
             self.sharedWishList.addNewProductCode(productCode: newProductCode)
-            //self.preferredProductList.addNewPreferredProduct(newPreferredProduct: preferredProduct)
+            self.preferredProductList.addNewPreferredProduct(newPreferredProduct: preferredProduct as AnyObject)
             print(sharedWishList.productCodeArray)
             print(preferredProductList.preferredProductArray)
         }
