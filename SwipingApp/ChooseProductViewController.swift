@@ -67,7 +67,7 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
     func loadProductWith( completion:@escaping (_ product: [Product]) -> Void) {
         activityIndicatorView.startAnimating()
         
-        var imageURLString: [String] = []
+        //var imageURLString: [String] = []
         var imageURLArray: [UIImage] = []
         
         let productCategory = dict?["name"] as? String
@@ -122,14 +122,14 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
                                     if data != nil {
                                         productImage = UIImage(data:(data)!)
                                         
-                                        imageURLString.append(urlString!)
+                                        //imageURLString.append(urlString!)
                                         imageURLArray.append(productImage!)
                                     }
                                     
 //                                    let detailProductImages = imageURLArray
-                                    let productImageString = imageURLString[0]
+                                    let productImageString = urlString
                                     
-                                    let newProduct = Product(productBrand: productBrand, productName: name, productPrice: Float(productPrice), productImage: productImage!, productCode: productCode!, productColor: productColor, productCategory: productCategory!, productImageString: productImageString)
+                                    let newProduct = Product(productBrand: productBrand, productName: name, productPrice: Float(productPrice), productImage: productImage!, productCode: productCode!, productColor: productColor, productCategory: productCategory!, productImageString: productImageString!)
                                     
                                     self.allProducts.append(newProduct)
                                     
