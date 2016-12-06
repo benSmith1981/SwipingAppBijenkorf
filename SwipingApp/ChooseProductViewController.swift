@@ -1,13 +1,16 @@
 import UIKit
 import MDCSwipeToChoose
 import Alamofire
+import RealmSwift
 
 
 class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
     
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     
-    
+    let realm = try! Realm()
+    lazy var realmProductArray: Results<RealmProduct> = { self.realm.objects(RealmProduct.self) }()
+    var allProductCodes: RealmProduct!
     
     var sharedWishList = WishList.sharedInstance
     var preferredProductList = PreferredProductList.sharedInstance
@@ -52,6 +55,7 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
                 self.constructLikedButton()
             }
         }
+        print("Realm config \(Realm.Configuration.defaultConfiguration)")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,6 +66,9 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
     
     func loadProductWith( completion:@escaping (_ product: [Product]) -> Void) {
         activityIndicatorView.startAnimating()
+        
+        var imageURLString: [String] = []
+        var imageURLArray: [UIImage] = []
         
         let productCategory = dict?["name"] as? String
         print("Categorie \(productCategory)")
@@ -105,13 +112,24 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
                                     let url = URL(string: httpURL)
                                     let data = try? Data(contentsOf: url!)
                                     
+                                    let defaultString = httpURL
+                                    let webListerString = httpURL.replacingOccurrences(of: "default", with: "web_lister_2x")
+                                    
+                                    let urlString = String(webListerString)
+                                    
+                                    
                                     var productImage : UIImage?
                                     if data != nil {
                                         productImage = UIImage(data:(data)!)
                                         
+                                        imageURLString.append(urlString!)
+                                        imageURLArray.append(productImage!)
                                     }
                                     
-                                    let newProduct = Product(productBrand: productBrand, productName: name, productPrice: Float(productPrice), productImage: productImage!, productCode: productCode!, productColor: productColor, productCategory: productCategory!)
+//                                    let detailProductImages = imageURLArray
+                                    let productImageString = imageURLString[0]
+                                    
+                                    let newProduct = Product(productBrand: productBrand, productName: name, productPrice: Float(productPrice), productImage: productImage!, productCode: productCode!, productColor: productColor, productCategory: productCategory!, productImageString: productImageString)
                                     
                                     self.allProducts.append(newProduct)
                                     
@@ -168,6 +186,24 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
             self.preferredProductList.addNewPreferredProduct(newPreferredProduct: preferredProduct)
             print(sharedWishList.productCodeArray)
             print(preferredProductList.preferredProductArray)
+            
+            try! realm.write() {
+                
+                let realmURL = URL(string: currentProduct.productImageString)
+                let realmImage = NSData(contentsOf: realmURL!)
+                
+                let newRealmProduct = RealmProduct()
+                newRealmProduct.productCode = self.currentProduct.productCode
+                newRealmProduct.productName = self.currentProduct.productName
+                newRealmProduct.productBrand = self.currentProduct.productBrand
+                newRealmProduct.productImage = realmImage!
+                newRealmProduct.productCategory = self.currentProduct.productCategory
+                newRealmProduct.productPrice = Double(self.currentProduct.productPrice)
+                realm.add(newRealmProduct)
+                self.allProductCodes = newRealmProduct
+                
+                
+            }
             
             for count in preferredProductList.preferredProductArray {
 
