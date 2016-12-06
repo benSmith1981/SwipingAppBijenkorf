@@ -10,6 +10,6 @@ target 'SwipingApp' do
 pod 'Alamofire', '~> 4.0'
 pod 'MDCSwipeToChoose'
 pod 'Google/Analytics'
-pod 'Realm', '~> 2.1'
+pod 'RealmSwift', '~> 2.1'
 
 end
