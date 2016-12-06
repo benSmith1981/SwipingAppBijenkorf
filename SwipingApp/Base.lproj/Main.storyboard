@@ -66,9 +66,9 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="bottomMargin" secondItem="IEe-gv-PrP" secondAttribute="bottom" id="6YA-5T-vBB"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="KPU-5d-fSj" secondAttribute="bottom" constant="24" id="7Ag-oV-qHD"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="KPU-5d-fSj" secondAttribute="bottom" constant="0.5" id="7Ag-oV-qHD"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="IEe-gv-PrP" secondAttribute="trailing" constant="24" id="B3b-6M-s0y"/>
-                                        <constraint firstItem="KPU-5d-fSj" firstAttribute="top" secondItem="bCN-Vd-38l" secondAttribute="topMargin" constant="38" id="EFa-zB-X7o"/>
+                                        <constraint firstItem="KPU-5d-fSj" firstAttribute="top" secondItem="bCN-Vd-38l" secondAttribute="topMargin" constant="62" id="EFa-zB-X7o"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="MJK-4n-dlh" secondAttribute="trailing" constant="270" id="Moi-7F-YAo"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="wNB-bQ-DEG" secondAttribute="trailing" constant="53" id="TbE-kP-JHp"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="KPU-5d-fSj" secondAttribute="trailing" constant="24" id="Tot-qK-3IN"/>
@@ -312,7 +312,7 @@
                 <navigationController title="Search" automaticallyAdjustsScrollViewInsets="NO" id="llY-Rp-Yre" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="Search" id="o0t-rM-z3v"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="1tb-eT-hOG">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="1tb-eT-hOG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -331,7 +331,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HyM-zo-OxG" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" tag="1" title="" image="Wishlist" badgeValue="0" id="3pb-0J-1x5"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nXR-VH-YdW">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="nXR-VH-YdW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
