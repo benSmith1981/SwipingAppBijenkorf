@@ -24,7 +24,7 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
     var allProducts: [Product] = []
     var preferredProduct: [PreferredProduct] = []
     var currentPreferredProduct = PreferredProduct.self
-    var productCodeToPass: String!
+    //var productCodeToPass: String!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -267,7 +267,9 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
     }
     
     func defaultProduct() -> [Product]{
-        return allProducts
+        
+        let shuffledProducts = allProducts.shuffle
+        return shuffledProducts
     }
     
     func popProductViewWithFrame(_ frame: CGRect) -> ChooseProductView?{
@@ -357,5 +359,41 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
             detailViewController.currentProductCode = _productCode
             
         }
+    }
+}
+
+extension Int {
+    var random: Int {
+        return Int(arc4random_uniform(UInt32(abs(self))))
+    }
+    var indexRandom: [Int] {
+        return  Array(0..<self).shuffle
+    }
+}
+
+extension Array {
+    var shuffle:[Element] {
+        var elements = self
+        for index in indices {
+            let anotherIndex = Int(arc4random_uniform(UInt32(elements.count - index))) + index
+            anotherIndex != index ? swap(&elements[index], &elements[anotherIndex]) : ()
+        }
+        return elements
+    }
+    mutating func shuffled() {
+        self = shuffle
+    }
+    var chooseOne: Element {
+        return self[Int(arc4random_uniform(UInt32(count)))]
+    }
+    
+    func choose(x:Int) -> [Element] {
+        if x > count { return shuffle }
+        let indexes = count.indexRandom[0..<x]
+        var result: [Element] = []
+        for index in indexes {
+            result.append(self[index])
+        }
+        return result
     }
 }

@@ -39,14 +39,6 @@ class WishListTableViewController: UITableViewController, UITabBarControllerDele
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-//        DataManager.sharedInstance.getProductsFromProductCodeAPI()
-//        
-//        NotificationCenter.default.addObserver(forName: notificationQuery, object: nil, queue: nil) { (notification) in
-//            let wishListObject = notification.object
-//            
-//            self.wishListProductArray = wishListObject as! [WishListProduct]
-//            self.tableView.reloadData()
-//        }
         self.tableView.reloadData()
         self.setScreenName(name: navigationItem.title!)
     }

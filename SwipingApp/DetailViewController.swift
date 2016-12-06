@@ -36,6 +36,7 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
                 let priceOfProduct = detailProduct.productPrice
                 self.detailProductNameLabel.text = detailProduct.productName
                 self.detailProductDescriptionView.text = detailProduct.detailProductDescription
+                //self.detailProductDescriptionView.text = stringFromHtml(string: detailProduct.detailProductDescription)
                 self.detailProductBrandLabel.text = detailProduct.productBrand
                 self.detailProductImageView.image = detailProduct.productImage
                 self.detailProductPriceLabel.text = String(format: "€ %.2f", priceOfProduct)
@@ -43,10 +44,20 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
                 self.collectionView.reloadData()
             }
         }
-        
+    }
     
-
-        
+    private func stringFromHtml(string: String) -> NSAttributedString? {
+        do {
+            let data = string.data(using: String.Encoding.utf8, allowLossyConversion: true)
+            if let d = data {
+                let str = try NSAttributedString(data: d,
+                                                 options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
+                                                 documentAttributes: nil)
+                return str
+            }
+        } catch {
+        }
+        return nil
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -69,6 +80,13 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
        cell.detailProductImage.image = detailProductArray[indexPath.row]
 
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let cell = detailProductImageView
+        cell?.image = detailProductArray[indexPath.row]
+
     }
 
 }
