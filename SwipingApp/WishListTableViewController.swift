@@ -11,7 +11,9 @@ import UserNotifications
 
 class WishListTableViewController: UITableViewController, UITabBarControllerDelegate {
     
+    var sharedWishList = WishList.sharedInstance
     var wishListProductArray = [WishListProduct]()
+
     
     @IBAction func toggleEditingMode(_ sender: AnyObject) {
         
@@ -64,10 +66,22 @@ class WishListTableViewController: UITableViewController, UITabBarControllerDele
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             
-//            WishList.sharedInstance.removeProductCode(index: indexPath.row)
         
             self.tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
+
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let item = wishListProductArray[indexPath.row]
+        
+        let detailViewController = storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+        detailViewController.currentProductCode = item.productCode
+        
+        self.navigationController?.pushViewController(detailViewController, animated: true)
+    }
+
+
 }
+
 

@@ -20,32 +20,39 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
 
     var detailProductArray = [UIImage]()
     var currentProductCode : String?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         collectionView.delegate = self
         collectionView.dataSource = self
-        
-        print(currentProductCode)
-        DataManager.sharedInstance.getDetailProductFromAPI(code:currentProductCode!) { (detailProduct) in
+  //safely unwrapping currentProductCode
+        if let currentProductCode = self.currentProductCode {
             
-            self.detailProductArray = detailProduct.detailProductImages
-            let priceOfProduct = detailProduct.productPrice
-            self.detailProductNameLabel.text = detailProduct.productName
-            self.detailProductDescriptionView.text = detailProduct.detailProductDescription
-            self.detailProductBrandLabel.text = detailProduct.productBrand
-            self.detailProductImageView.image = detailProduct.productImage
-            self.detailProductPriceLabel.text = String(format: "€ %.2f", priceOfProduct)
-            print("Product images count \(detailProduct.detailProductImages.count)")
-            self.collectionView.reloadData()
+            DataManager.sharedInstance.getDetailProductFromAPI(code:(currentProductCode)) { (detailProduct) in
+                
+                self.detailProductArray = detailProduct.detailProductImages
+                let priceOfProduct = detailProduct.productPrice
+                self.detailProductNameLabel.text = detailProduct.productName
+                self.detailProductDescriptionView.text = detailProduct.detailProductDescription
+                self.detailProductBrandLabel.text = detailProduct.productBrand
+                self.detailProductImageView.image = detailProduct.productImage
+                self.detailProductPriceLabel.text = String(format: "€ %.2f", priceOfProduct)
+                print("Product images count \(detailProduct.detailProductImages.count)")
+                self.collectionView.reloadData()
+            }
         }
+        
+    
+
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //self.setScreenName(name: navigationItem.title!)
-        
+
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
