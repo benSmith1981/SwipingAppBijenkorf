@@ -7,6 +7,8 @@ import RealmSwift
 class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
     
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+    @IBAction func unwindToSwipe(segue:UIStoryboardSegue) {
+    }
     
     let realm = try! Realm()
     lazy var realmProductArray: Results<RealmProduct> = { self.realm.objects(RealmProduct.self) }()
@@ -112,7 +114,7 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
                                     let url = URL(string: httpURL)
                                     let data = try? Data(contentsOf: url!)
                                     
-                                    let defaultString = httpURL
+                                    //let defaultString = httpURL
                                     let webListerString = httpURL.replacingOccurrences(of: "default", with: "web_lister_2x")
                                     
                                     let urlString = String(webListerString)
@@ -199,6 +201,7 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
                 newRealmProduct.productImage = realmImage!
                 newRealmProduct.productCategory = self.currentProduct.productCategory
                 newRealmProduct.productPrice = Double(self.currentProduct.productPrice)
+ //               newRealmProduct.productColor = self.currentProduct.productColor
                 realm.add(newRealmProduct)
                 self.allProductCodes = newRealmProduct
                 

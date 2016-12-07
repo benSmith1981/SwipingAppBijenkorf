@@ -57,7 +57,7 @@ class WishListTableViewController: UITableViewController, UITabBarControllerDele
         cell.productName?.text = product.productName
         cell.productBrand?.text = product.productBrand
         cell.productPrice?.text = String(format: "€ %.2f", priceOfProduct)
-        cell.imageView?.image = realmImage
+        cell.imageView?.image = resizeImage(image: realmImage!, newWidth: 100)
         cell.backgroundColor = UIColor(red: 242/255, green: 242/255, blue: 242/255, alpha: 1)
         
         return cell
@@ -66,12 +66,28 @@ class WishListTableViewController: UITableViewController, UITabBarControllerDele
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             
+            let backImage = UIImageView(image: UIImage(named: "remove"))
+            backImage.contentMode = .scaleAspectFit
+            //remove.backgroundColor = UIColor(patternImage: backImage.image)!
+            
             try! realm.write {
                 let item = realmProductArray[indexPath.row]
                 realm.delete(item)
             }
             self.tableView.reloadData()
         }
+    }
+    
+    func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage? {
+        
+        let scale = newWidth / image.size.width
+        let newHeight = image.size.height * scale
+        UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
+        image.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
     }
 
 

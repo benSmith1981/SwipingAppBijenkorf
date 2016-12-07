@@ -18,5 +18,6 @@ class RealmProduct: Object {
     dynamic var productCategory = ""
     dynamic var productCode = ""
     dynamic var productPrice = 0.0
+//    dynamic var productColor = ""
     
 }

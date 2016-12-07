@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class DetailViewController: UIViewController, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     
     @IBOutlet weak var detailProductNameLabel: UILabel!
@@ -17,17 +17,25 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
     @IBOutlet weak var detailProductBrandLabel: UILabel!
     @IBOutlet weak var detailProductPriceLabel: UILabel!
     @IBOutlet weak var detailProductDescriptionView: UITextView!
-
+    
+    @IBAction func buttonTapped(_ segue: UIStoryboardSegue) {
+        //_ = self.navigationController?.popViewController(animated: true)
+        self.performSegue(withIdentifier: "unwindToSwipe", sender: self)
+        //let chooseProductViewController = segue.source as? ChooseProductViewController
+        
+    }
+    
+    
     var detailProductArray = [UIImage]()
     var currentProductCode : String?
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         collectionView.delegate = self
         collectionView.dataSource = self
-  //safely unwrapping currentProductCode
+        //safely unwrapping currentProductCode
         if let currentProductCode = self.currentProductCode {
             
             DataManager.sharedInstance.getDetailProductFromAPI(code:(currentProductCode)) { (detailProduct) in
@@ -36,7 +44,6 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
                 let priceOfProduct = detailProduct.productPrice
                 self.detailProductNameLabel.text = detailProduct.productName
                 self.detailProductDescriptionView.text = detailProduct.detailProductDescription
-                //self.detailProductDescriptionView.text = stringFromHtml(string: detailProduct.detailProductDescription)
                 self.detailProductBrandLabel.text = detailProduct.productBrand
                 self.detailProductImageView.image = detailProduct.productImage
                 self.detailProductPriceLabel.text = String(format: "€ %.2f", priceOfProduct)
@@ -46,24 +53,10 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
         }
     }
     
-    private func stringFromHtml(string: String) -> NSAttributedString? {
-        do {
-            let data = string.data(using: String.Encoding.utf8, allowLossyConversion: true)
-            if let d = data {
-                let str = try NSAttributedString(data: d,
-                                                 options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
-                                                 documentAttributes: nil)
-                return str
-            }
-        } catch {
-        }
-        return nil
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //self.setScreenName(name: navigationItem.title!)
-
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -76,9 +69,9 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as! CustomCollectionViewCell
-    
-       cell.detailProductImage.image = detailProductArray[indexPath.row]
-
+        
+        cell.detailProductImage.image = detailProductArray[indexPath.row]
+        
         return cell
     }
     
@@ -86,7 +79,13 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
         
         let cell = detailProductImageView
         cell?.image = detailProductArray[indexPath.row]
-
+        
     }
-
+    
+    //    override func unwind(for unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
+    //        if segue.identifier == "swipeToDetail"{
+    //        let detailViewController = segue.destination as! ChooseProductViewController
+    //        }
+    //    }
+    
 }
