@@ -13,8 +13,8 @@ import RealmSwift
 class WishListTableViewController: UITableViewController, UITabBarControllerDelegate {
     
     let realm = try! Realm()
-    lazy var realmProductArray: Results<RealmProduct> = { self.realm.objects(RealmProduct.self) }()
-    var allProductCodes: RealmProduct!
+    lazy var realmProductArray: Results<RealmWishListProduct> = { self.realm.objects(RealmWishListProduct.self)}()
+    var allProductCodes: RealmWishListProduct!
     
     var sharedWishList = WishList.sharedInstance
     var wishListProductArray = [WishListProduct]()
@@ -33,6 +33,7 @@ class WishListTableViewController: UITableViewController, UITabBarControllerDele
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
     }
     

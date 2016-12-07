@@ -1,5 +1,5 @@
 //
-//  RealmProduct.swift
+//  RealmWishListProduct.swift
 //  SwipingApp
 //
 //  Created by Thijs Lucassen on 06-12-16.
@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import RealmSwift
 
-class RealmProduct: Object {
+class RealmWishListProduct: Object {
     
     dynamic var productName = ""
     dynamic var productBrand = ""
@@ -18,6 +18,6 @@ class RealmProduct: Object {
     dynamic var productCategory = ""
     dynamic var productCode = ""
     dynamic var productPrice = 0.0
-//    dynamic var productColor = ""
+    dynamic var productColor = ""
     
 }

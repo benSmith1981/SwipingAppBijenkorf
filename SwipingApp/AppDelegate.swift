@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 
 @UIApplicationMain
@@ -15,13 +16,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         // Configure tracker from GoogleService-Info.plist.
         var configureError:NSError?
         GGLContext.sharedInstance().configureWithError(&configureError)
         assert(configureError == nil, "Error configuring Google services: \(configureError)")
+        
+        //try! FileManager.default.removeItem(at: Realm.Configuration.defaultConfiguration.fileURL!)
 
         return true
     }

@@ -11,8 +11,8 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
     }
     
     let realm = try! Realm()
-    lazy var realmProductArray: Results<RealmProduct> = { self.realm.objects(RealmProduct.self) }()
-    var allProductCodes: RealmProduct!
+    lazy var realmProductArray: Results<RealmWishListProduct> = { self.realm.objects(RealmWishListProduct.self) }()
+    var allProductCodes: RealmWishListProduct!
     
     var sharedWishList = WishList.sharedInstance
     var preferredProductList = PreferredProductList.sharedInstance
@@ -194,18 +194,17 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
                 let realmURL = URL(string: currentProduct.productImageString)
                 let realmImage = NSData(contentsOf: realmURL!)
                 
-                let newRealmProduct = RealmProduct()
+                let newRealmProduct = RealmWishListProduct()
+        
                 newRealmProduct.productCode = self.currentProduct.productCode
                 newRealmProduct.productName = self.currentProduct.productName
                 newRealmProduct.productBrand = self.currentProduct.productBrand
                 newRealmProduct.productImage = realmImage!
                 newRealmProduct.productCategory = self.currentProduct.productCategory
                 newRealmProduct.productPrice = Double(self.currentProduct.productPrice)
- //               newRealmProduct.productColor = self.currentProduct.productColor
+                newRealmProduct.productColor = self.currentProduct.productColor
                 realm.add(newRealmProduct)
                 self.allProductCodes = newRealmProduct
-                
-                
             }
             
             for count in preferredProductList.preferredProductArray {

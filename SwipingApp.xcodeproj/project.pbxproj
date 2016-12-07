@@ -36,7 +36,7 @@
 		76DB87C81DD1EA8900D9E912 /* VelinoDisplay-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 76DB87C51DD1EA8900D9E912 /* VelinoDisplay-Medium.otf */; };
 		76DC9D881DE2E56200ABAC27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 76DC9D871DE2E56200ABAC27 /* GoogleService-Info.plist */; };
 		76ECE4701DEE0830002C66BC /* ProductCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76ECE46F1DEE0830002C66BC /* ProductCode.swift */; };
-		76F32BC71DF6DEC10073038E /* RealmProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F32BC61DF6DEC10073038E /* RealmProduct.swift */; };
+		76F32BC71DF6DEC10073038E /* RealmWishListProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F32BC61DF6DEC10073038E /* RealmWishListProduct.swift */; };
 		D8839D642BA33BCA57675D3C /* Pods_SwipingApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC1E72F9867761812A3A6FF2 /* Pods_SwipingApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -73,7 +73,7 @@
 		76DB87C51DD1EA8900D9E912 /* VelinoDisplay-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "VelinoDisplay-Medium.otf"; path = "../VelinoDisplay-Medium.otf"; sourceTree = "<group>"; };
 		76DC9D871DE2E56200ABAC27 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		76ECE46F1DEE0830002C66BC /* ProductCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCode.swift; sourceTree = "<group>"; };
-		76F32BC61DF6DEC10073038E /* RealmProduct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmProduct.swift; sourceTree = "<group>"; };
+		76F32BC61DF6DEC10073038E /* RealmWishListProduct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmWishListProduct.swift; sourceTree = "<group>"; };
 		9AEF24947FF141077981091E /* Pods-SwipingApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwipingApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwipingApp/Pods-SwipingApp.debug.xcconfig"; sourceTree = "<group>"; };
 		EC1E72F9867761812A3A6FF2 /* Pods_SwipingApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwipingApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3805B7042C8E72891A7FEA3 /* Pods-SwipingApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwipingApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwipingApp/Pods-SwipingApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -138,7 +138,7 @@
 			children = (
 				76B28BF11DE74434001340FA /* WishList.swift */,
 				764509A51DEC34D100683C8B /* WishListProduct.swift */,
-				76F32BC61DF6DEC10073038E /* RealmProduct.swift */,
+				76F32BC61DF6DEC10073038E /* RealmWishListProduct.swift */,
 				763B8C091DF17DE800974CAA /* PreferredProduct.swift */,
 				763B8C0B1DF183E900974CAA /* PreferredProductList.swift */,
 				33C648931DEED1FB00CCCF04 /* DetailProduct.swift */,
@@ -357,7 +357,7 @@
 				76CDEF531DDE3EA500C83CF6 /* MainCategoryTableViewController.swift in Sources */,
 				76B28BF21DE74434001340FA /* WishList.swift in Sources */,
 				7687D9001DE2FA34005D6FA5 /* WishListTableViewController.swift in Sources */,
-				76F32BC71DF6DEC10073038E /* RealmProduct.swift in Sources */,
+				76F32BC71DF6DEC10073038E /* RealmWishListProduct.swift in Sources */,
 				7618E76E1DE6182600796762 /* ChooseProductViewController.swift in Sources */,
 				765E89771DF035080025E2A1 /* CustomCollectionViewCell.swift in Sources */,
 				33C648941DEED1FB00CCCF04 /* DetailProduct.swift in Sources */,

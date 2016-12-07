@@ -19,16 +19,11 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
     @IBOutlet weak var detailProductDescriptionView: UITextView!
     
     @IBAction func buttonTapped(_ segue: UIStoryboardSegue) {
-        //_ = self.navigationController?.popViewController(animated: true)
         self.performSegue(withIdentifier: "unwindToSwipe", sender: self)
-        //let chooseProductViewController = segue.source as? ChooseProductViewController
-        
     }
-    
     
     var detailProductArray = [UIImage]()
     var currentProductCode : String?
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
