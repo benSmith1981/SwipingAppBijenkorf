@@ -112,14 +112,14 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
                                     
                                     let httpURL = "https:\(frontImageURL)"
                                     let url = URL(string: httpURL)
-                                    let data = try? Data(contentsOf: url!)
+                                    var data = try? Data(contentsOf: url!)
                                     
                                     //let defaultString = httpURL
                                     let webListerString = httpURL.replacingOccurrences(of: "default", with: "web_lister_2x")
                                     
                                     let urlString = String(webListerString)
                                     
-                                    
+                                    data = try? Data(contentsOf: URL(string: urlString!)!)
                                     var productImage : UIImage?
                                     if data != nil {
                                         productImage = UIImage(data:(data)!)

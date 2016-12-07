@@ -7,9 +7,9 @@ target 'SwipingApp' do
 
   # Pods for SwipingApp
 
-pod 'Alamofire', '~> 4.0'
-pod 'MDCSwipeToChoose'
-pod 'Google/Analytics'
-pod 'RealmSwift', '~> 2.1'
+    pod 'Alamofire', '~> 4.0'
+    pod 'MDCSwipeToChoose'
+    pod 'Google/Analytics'
+    pod 'RealmSwift', '~> 2.1'
 
 end
