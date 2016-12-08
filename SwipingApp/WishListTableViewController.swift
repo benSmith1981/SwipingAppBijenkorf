@@ -13,8 +13,10 @@ import RealmSwift
 class WishListTableViewController: UITableViewController, UITabBarControllerDelegate {
     
     let realm = try! Realm()
-    lazy var realmProductArray: Results<RealmWishListProduct> = { self.realm.objects(RealmWishListProduct.self)}()
-    var allProductCodes: RealmWishListProduct!
+    lazy var realmProductArray: Results<RealmProduct> = { self.realm.objects(RealmProduct.self) }()
+    lazy var realmPreferences: Results<Preferences> = { self.realm.objects(Preferences.self) }()
+    var allProductCodes: RealmProduct!
+    var preferences: Preferences!
     
     var sharedWishList = WishList.sharedInstance
     var wishListProductArray = [WishListProduct]()
@@ -74,6 +76,8 @@ class WishListTableViewController: UITableViewController, UITabBarControllerDele
             try! realm.write {
                 let item = realmProductArray[indexPath.row]
                 realm.delete(item)
+                let pref = realmPreferences[indexPath.row]
+                realm.delete(pref)
             }
             self.tableView.reloadData()
         }

@@ -11,8 +11,10 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
     }
     
     let realm = try! Realm()
-    lazy var realmProductArray: Results<RealmWishListProduct> = { self.realm.objects(RealmWishListProduct.self) }()
-    var allProductCodes: RealmWishListProduct!
+    lazy var realmProductArray: Results<RealmProduct> = { self.realm.objects(RealmProduct.self) }()
+    lazy var realmPreferences: Results<Preferences> = { self.realm.objects(Preferences.self) }()
+    var allProductCodes: RealmProduct!
+    var preferences: Preferences!
     
     var sharedWishList = WishList.sharedInstance
     var preferredProductList = PreferredProductList.sharedInstance
@@ -26,6 +28,7 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
     var allProducts: [Product] = []
     var preferredProduct: [PreferredProduct] = []
     var currentPreferredProduct = PreferredProduct.self
+    var prefDict: Dictionary<String, Int>?
     //var productCodeToPass: String!
     
     required init?(coder aDecoder: NSCoder) {
@@ -44,20 +47,24 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
         
         NotificationCenter.default.addObserver(self, selector: #selector(infoButton), name: note.name, object: nil)
         
-        self.loadProductWith { (productList) in
+        self.activityIndicatorView.startAnimating()
+        
+        DataManager.sharedInstance.loadProductWith(dict: dict!) { (productList) in
             
-            if self.allProducts.count > 1 {
+                self.allProducts = productList
+            
                 self.setMyFrontCardView(self.popProductViewWithFrame(self.frontCardViewFrame())!)
                 self.view.addSubview(self.frontCardView)
-                
+            
                 self.backCardView = self.popProductViewWithFrame(self.backCardViewFrame())!
                 self.view.insertSubview(self.backCardView, belowSubview: self.frontCardView)
-                
+            
                 self.constructNopeButton()
                 self.constructLikedButton()
+
             }
-        }
         print("Realm config \(Realm.Configuration.defaultConfiguration)")
+        //DataManager.sharedInstance.colorBasedAlgorithm()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -65,92 +72,8 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
         self.setScreenName(name: navigationItem.title!)
     }
     
-    
-    func loadProductWith( completion:@escaping (_ product: [Product]) -> Void) {
-        activityIndicatorView.startAnimating()
-        
-        //var imageURLString: [String] = []
-        var imageURLArray: [UIImage] = []
-        
-        let productCategory = dict?["name"] as? String
-        print("Categorie \(productCategory)")
-        
-        if let productQuery = dict!["query"] as? String {
-            
-            Alamofire.request("https://ceres-catalog.debijenkorf.nl/catalog/navigation/show?query=\(productQuery)").responseJSON { response in
-                
-                if let productJSON = response.result.value {
-                    
-                    let jsonDict = productJSON as! Dictionary<String, Any>
-                    let jsonData = jsonDict["data"] as! Dictionary<String, Any>
-                    let jsonQuery = jsonData["products"] as! [[String : AnyObject]]
-                    let productItem = jsonQuery[0]
-                    
-                    
-                    for item in jsonQuery {
-                        
-                        // Data into object
-                        
-                        if let name = item["name"] as? String {
-                            let brand = item["brand"] as? Dictionary<String,Any>
-                            
-                            if let productBrand = brand?["name"] as? String {
-                                
-                                
-                                let sellingPrice = item["sellingPrice"] as! Dictionary<String,Any>
-                                let productPrice = sellingPrice["value"] as! Double
-                                var productColor = " "
-                                let currentVariantProduct = item["currentVariantProduct"] as! Dictionary<String,Any>
-                                let productCode = currentVariantProduct["code"] as? String
-                                if let color = currentVariantProduct["color"] as? String {
-                                    productColor = color }
-                                else {
-                                    productColor = "onbekend" }
-                                if let imageURL = currentVariantProduct["images"] as? [Dictionary<String,Any>] {
-                                    let imageProductURL = imageURL[0]
-                                    let frontImageURL = imageProductURL["url"] as! String
-                                    
-                                    let httpURL = "https:\(frontImageURL)"
-                                    let url = URL(string: httpURL)
-                                    let data = try? Data(contentsOf: url!)
-                                    
-                                    //let defaultString = httpURL
-                                    let webListerString = httpURL.replacingOccurrences(of: "default", with: "web_lister_2x")
-                                    
-                                    let urlString = String(webListerString)
-                                    
-                                    
-                                    var productImage : UIImage?
-                                    if data != nil {
-                                        productImage = UIImage(data:(data)!)
-                                        
-                                        //imageURLString.append(urlString!)
-                                        imageURLArray.append(productImage!)
-                                    }
-                                    
-//                                    let detailProductImages = imageURLArray
-                                    let productImageString = urlString
-                                    
-                                    let newProduct = Product(productBrand: productBrand, productName: name, productPrice: Float(productPrice), productImage: productImage!, productCode: productCode!, productColor: productColor, productCategory: productCategory!, productImageString: productImageString!)
-                                    
-                                    self.allProducts.append(newProduct)
-                                    
-                                    let newPreferredProduct = PreferredProduct(preferredProductColor: productColor, preferredProductCategory: productCategory!)
-                                
-                                    self.preferredProduct.append(newPreferredProduct)
-                                    
-                                    print(productCode)
-                                    print(self.allProducts.count)
-                                }
-                            }
-                        }
-                    }
-                    completion(self.allProducts)
-                }
-            }
-        }
-    }
-    
+
+
     func stopSpinning(sender: AnyObject) {
         activityIndicatorView.stopAnimating()
     }
@@ -180,6 +103,7 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
             let newProductCode = currentProduct.productCode
             let productColor = currentProduct.productColor
             let productCat = currentProduct.productCategory
+            let productBrand = currentProduct.productBrand
             let preferredProduct = PreferredProduct(preferredProductColor: productColor, preferredProductCategory: productCat)
             print("You liked product: \(self.currentProduct.productCode)")
             print("Color is \(self.currentProduct.productColor)")
@@ -189,23 +113,68 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
             print(sharedWishList.productCodeArray)
             print(preferredProductList.preferredProductArray)
             
+            //var oldValue = someOtherDict.updateValue(blauw+1, forKey: "Blauw")
+//            var count = 0
+//            var preferredDict:[String: Int] = [:]
+//            for (_, value) in preferredDict {
+//            preferredDict[productColor] = count+1
+//            preferredDict[productCat] = count+1
+//            preferredDict[productBrand] = count+1
+//            
+//            var updateColorCount = preferredDict.updateValue(count+1, forKey: productColor)
+//                var newColorCount = preferredDict[productColor]
+//            var updateCategoryCount = preferredDict.updateValue(count+1, forKey: productCat)
+//                var newCatCount = preferredDict[productCat]
+//            var updateBrandCount = preferredDict.updateValue(count+1, forKey: productBrand)
+//                var newBrandCount = preferredDict[productBrand]
+            
+//            var newColorCount = preferredDict[productColor]
+//            var newCatCount = preferredDict[productCat]
+//            var newBrandCount = preferredDict[productBrand]
+//            }
+            
             try! realm.write() {
                 
                 let realmURL = URL(string: currentProduct.productImageString)
                 let realmImage = NSData(contentsOf: realmURL!)
                 
-                let newRealmProduct = RealmWishListProduct()
-        
+                let newRealmProduct = RealmProduct()
                 newRealmProduct.productCode = self.currentProduct.productCode
                 newRealmProduct.productName = self.currentProduct.productName
                 newRealmProduct.productBrand = self.currentProduct.productBrand
                 newRealmProduct.productImage = realmImage!
-                newRealmProduct.productCategory = self.currentProduct.productCategory
                 newRealmProduct.productPrice = Double(self.currentProduct.productPrice)
-                newRealmProduct.productColor = self.currentProduct.productColor
+                //let newProductPref = Preferences()
+//                let color = self.currentProduct.productColor
+//                let brand = self.currentProduct.productBrand
+//                let category = self.currentProduct.productCategory
+                let newProductPref = Preferences()
+                newProductPref.productColor = self.currentProduct.productColor
+                newProductPref.productBrand = self.currentProduct.productBrand
+                newProductPref.productCategory = self.currentProduct.productCategory
+                
+                newRealmProduct.preferences.append(newProductPref)
                 realm.add(newRealmProduct)
                 self.allProductCodes = newRealmProduct
+                
+//                let newPreferences = Preferences()
+//                newPreferences.productCategory = self.currentProduct.productCategory
+//                newPreferences.productColor = self.currentProduct.productColor
+//                newPreferences.productBrand = self.currentProduct.productBrand
+//                realm.add(newPreferences)
+//                self.preferences = newPreferences
+
             }
+            
+//            try! realm.write() {
+//                
+//                let newPreferences = Preferences()
+//                
+//                newPreferences.productCategory = self.currentProduct.productCategory
+//                newPreferences.productColor = self.currentProduct.productColor
+//                realm.add(newPreferences)
+//                self.preferences = newPreferences
+//            }
             
             for count in preferredProductList.preferredProductArray {
 
@@ -261,22 +230,18 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
     
     func setMyFrontCardView(_ frontCardView:ChooseProductView) -> Void{
         
-        // Keep track of the person currently being chosen.
-        // Quick and dirty, just for the purposes of this sample app.
         self.frontCardView = frontCardView
         self.currentProduct = frontCardView.product
         
     }
     
     func defaultProduct() -> [Product]{
-        
-        let shuffledProducts = allProducts.shuffle
-        return shuffledProducts
+        return allProducts
     }
     
     func popProductViewWithFrame(_ frame: CGRect) -> ChooseProductView?{
         if(self.allProducts.count == 0){
-            return nil;
+            return nil
         }
         
         let options: MDCSwipeToChooseViewOptions = MDCSwipeToChooseViewOptions()
@@ -295,7 +260,6 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
         let productView: ChooseProductView = ChooseProductView(frame: frame, product: self.allProducts[0], options: options)
         self.allProducts.remove(at: 0)
         return productView
-        
     }
     
     func frontCardViewFrame() -> CGRect{
@@ -364,38 +328,38 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
     }
 }
 
-extension Int {
-    var random: Int {
-        return Int(arc4random_uniform(UInt32(abs(self))))
-    }
-    var indexRandom: [Int] {
-        return  Array(0..<self).shuffle
-    }
-}
-
-extension Array {
-    var shuffle:[Element] {
-        var elements = self
-        for index in indices {
-            let anotherIndex = Int(arc4random_uniform(UInt32(elements.count - index))) + index
-            anotherIndex != index ? swap(&elements[index], &elements[anotherIndex]) : ()
-        }
-        return elements
-    }
-    mutating func shuffled() {
-        self = shuffle
-    }
-    var chooseOne: Element {
-        return self[Int(arc4random_uniform(UInt32(count)))]
-    }
-    
-    func choose(x:Int) -> [Element] {
-        if x > count { return shuffle }
-        let indexes = count.indexRandom[0..<x]
-        var result: [Element] = []
-        for index in indexes {
-            result.append(self[index])
-        }
-        return result
-    }
-}
+//extension Int {
+//    var random: Int {
+//        return Int(arc4random_uniform(UInt32(abs(self))))
+//    }
+//    var indexRandom: [Int] {
+//        return  Array(0..<self).shuffle
+//    }
+//}
+//
+//extension Array {
+//    var shuffle:[Element] {
+//        var elements = self
+//        for index in indices {
+//            let anotherIndex = Int(arc4random_uniform(UInt32(elements.count - index))) + index
+//            anotherIndex != index ? swap(&elements[index], &elements[anotherIndex]) : ()
+//        }
+//        return elements
+//    }
+//    mutating func shuffled() {
+//        self = shuffle
+//    }
+//    var chooseOne: Element {
+//        return self[Int(arc4random_uniform(UInt32(count)))]
+//    }
+//    
+//    func choose(x:Int) -> [Element] {
+//        if x > count { return shuffle }
+//        let indexes = count.indexRandom[0..<x]
+//        var result: [Element] = []
+//        for index in indexes {
+//            result.append(self[index])
+//        }
+//        return result
+//    }
+//}

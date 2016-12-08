@@ -20,8 +20,8 @@ class DataManager {
     
     static let sharedInstance = DataManager()
     let realm = try! Realm()
-    lazy var realmProductArray: Results<RealmWishListProduct> = { self.realm.objects(RealmWishListProduct.self) }()
-    var allProductCodes: RealmWishListProduct!
+    lazy var realmProductArray: Results<RealmProduct> = { self.realm.objects(RealmProduct.self) }()
+    var allProductCodes: RealmProduct!
     
     func getDataFromAPI () {
         
@@ -36,6 +36,100 @@ class DataManager {
                 
                 NotificationCenter.default.post(name: notificationName, object: jsonCat)
                 
+            }
+        }
+    }
+    
+    func loadProductWith(dict: Dictionary<String,Any>, completion:@escaping (_ product: [Product]) -> Void) {
+        //activityIndicatorView.startAnimating()
+    
+        var allProducts: [Product] = []
+        var preferredProduct: [PreferredProduct] = []
+//
+        var imageURLArray: [UIImage] = []
+//        
+        let productCategory = dict["name"] as? String
+//        print("Categorie \(productCategory)")
+//        
+        if let productQuery = dict["query"] as? String {
+        
+            Alamofire.request("https://ceres-catalog.debijenkorf.nl/catalog/navigation/show?query=\(productQuery)").responseJSON { response in
+                
+                if let productJSON = response.result.value {
+                    
+                    let jsonDict = productJSON as! Dictionary<String, Any>
+                    let jsonData = jsonDict["data"] as! Dictionary<String, Any>
+                    let jsonQuery = jsonData["products"] as! [[String : AnyObject]]
+                    let pageQuery = jsonData["pagination"] as! Dictionary<String, Any>
+                    let nextPage = pageQuery["nextPage"] as! Dictionary<String, Any>
+                    let nextPageQuery = nextPage["query"] as! String
+                    let productItem = jsonQuery[0]
+                    
+                    print("Next page is \(nextPageQuery)")
+                    
+                    for item in jsonQuery {
+                        
+                        // Data into object
+                        
+                        if let name = item["name"] as? String {
+                            let brand = item["brand"] as? Dictionary<String,Any>
+                            
+                            if let productBrand = brand?["name"] as? String {
+                                
+                                
+                                let sellingPrice = item["sellingPrice"] as! Dictionary<String,Any>
+                                let productPrice = sellingPrice["value"] as! Double
+                                var productColor = " "
+                                let currentVariantProduct = item["currentVariantProduct"] as! Dictionary<String,Any>
+                                let productCode = currentVariantProduct["code"] as? String
+                                if let color = currentVariantProduct["color"] as? String {
+                                    productColor = color }
+                                else {
+                                    productColor = "onbekend" }
+                                if let imageURL = currentVariantProduct["images"] as? [Dictionary<String,Any>] {
+                                    let imageProductURL = imageURL[0]
+                                    let frontImageURL = imageProductURL["url"] as! String
+                                    
+                                    let httpURL = "https:\(frontImageURL)"
+                                    let url = URL(string: httpURL)
+                                    var data = try? Data(contentsOf: url!)
+                                    
+                                    //let defaultString = httpURL
+                                    let webListerString = httpURL.replacingOccurrences(of: "default", with: "web_lister_2x")
+                                    
+                                    let urlString = String(webListerString)
+                                    
+                                    var productImage : UIImage?
+                                    data = try? Data(contentsOf: URL(string: urlString!)!)
+                                    if data != nil {
+                                        productImage = UIImage(data:(data)!)
+                                        
+                                        //imageURLString.append(urlString!)
+                                        imageURLArray.append(productImage!)
+                                    }
+                                    
+                                    //let detailProductImages = imageURLArray
+                                    let productImageString = urlString
+                                    
+                                    let newProduct = Product(productBrand: productBrand, productName: name, productPrice: Float(productPrice), productImage: productImage!, productCode: productCode!, productColor: productColor, productCategory: productCategory!, productImageString: productImageString!)
+                                    
+                                    allProducts.append(newProduct)
+                                    
+                                    let newPreferredProduct = PreferredProduct(preferredProductColor: productColor, preferredProductCategory: productCategory!)
+                                    
+                                    preferredProduct.append(newPreferredProduct)
+                                    
+                                    print(productCode)
+                                    print(allProducts.count)
+                                }
+                            }
+                        }
+                        if allProducts.count == 2 {
+                            completion(allProducts)
+                        }
+                    }
+                    completion(allProducts)
+                }
             }
         }
     }
@@ -100,10 +194,16 @@ class DataManager {
         }
     }
     
-    func colorBasedAlgorithm () {
-        
-//        let color =
-    }
+//    func colorBasedAlgorithm () {
+//        
+//        var color = realm.objects(Preferences.self).filter("productColor = 'Blauw' AND productCategory = 'Truien'")
+////        let predicate = NSPredicate(format: "productColor = %@ AND productCategory = %@", "Blauw", "Truien")
+////        color = realm.objects(Preferences.self).filter(predicate)
+////        let test1 = realm.objects(RealmWishListProduct.self).filter("productColor.@count > 5")
+////        print(test1)
+//        print(color)
+//    
+//    }
     
     func getDetailProductFromAPI (code: String, completion:@escaping (_ detailProduct: DetailProduct) -> Void) {
 
@@ -171,7 +271,6 @@ class DataManager {
                 }
             
             }
-        
-            
         }
     }
+
