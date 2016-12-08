@@ -45,15 +45,16 @@ class DataManager {
     
         var allProducts: [Product] = []
         var preferredProduct: [PreferredProduct] = []
-//
         var imageURLArray: [UIImage] = []
-//        
+       
         let productCategory = dict["name"] as? String
-//        print("Categorie \(productCategory)")
-//        
+        
         if let productQuery = dict["query"] as? String {
         
             Alamofire.request("https://ceres-catalog.debijenkorf.nl/catalog/navigation/show?query=\(productQuery)").responseJSON { response in
+                
+                DispatchQueue.global(qos: .background).async {
+            
                 
                 if let productJSON = response.result.value {
                     
@@ -124,11 +125,18 @@ class DataManager {
                                 }
                             }
                         }
+                        DispatchQueue.main.async {
+                        
                         if allProducts.count == 2 {
                             completion(allProducts)
                         }
+                        }
                     }
-                    completion(allProducts)
+                    DispatchQueue.main.async {
+                        completion(allProducts)
+                    }
+                    
+                }
                 }
             }
         }

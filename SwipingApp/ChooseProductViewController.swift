@@ -54,6 +54,7 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
                 self.allProducts = productList
             
                 self.setMyFrontCardView(self.popProductViewWithFrame(self.frontCardViewFrame())!)
+            
                 self.view.addSubview(self.frontCardView)
             
                 self.backCardView = self.popProductViewWithFrame(self.backCardViewFrame())!
