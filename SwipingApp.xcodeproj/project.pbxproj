@@ -140,12 +140,11 @@
 			children = (
 				76B28BF11DE74434001340FA /* WishList.swift */,
 				764509A51DEC34D100683C8B /* WishListProduct.swift */,
-<<<<<<< Updated upstream
+
 				76F32BC61DF6DEC10073038E /* RealmProduct.swift */,
-=======
+
 				76F32BC61DF6DEC10073038E /* RealmWishListProduct.swift */,
 				33FA9B851DF95F2900956448 /* RealmBasketProduct.swift */,
->>>>>>> Stashed changes
 				763B8C091DF17DE800974CAA /* PreferredProduct.swift */,
 				763B8C0B1DF183E900974CAA /* PreferredProductList.swift */,
 				33C648931DEED1FB00CCCF04 /* DetailProduct.swift */,

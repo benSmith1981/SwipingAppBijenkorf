@@ -13,18 +13,15 @@ import RealmSwift
 class WishListTableViewController: UITableViewController, UITabBarControllerDelegate {
     
     let realm = try! Realm()
-<<<<<<< Updated upstream
     lazy var realmProductArray: Results<RealmProduct> = { self.realm.objects(RealmProduct.self) }()
     lazy var realmPreferences: Results<Preferences> = { self.realm.objects(Preferences.self) }()
     var allProductCodes: RealmProduct!
     var preferences: Preferences!
-=======
     lazy var realmProductArray: Results<RealmWishListProduct> = { self.realm.objects(RealmWishListProduct.self)}()
     var allProductCodes: RealmWishListProduct!
 
     lazy var realmProductArrayToBasket: Results<RealmBasketProduct> = { self.realm.objects(RealmBasketProduct.self)}()
     var allProductCodesToBasket: RealmBasketProduct!
->>>>>>> Stashed changes
     
     var sharedWishList = WishList.sharedInstance
     var wishListProductArray = [WishListProduct]()
