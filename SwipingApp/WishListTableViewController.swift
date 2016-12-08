@@ -13,14 +13,22 @@ import RealmSwift
 class WishListTableViewController: UITableViewController, UITabBarControllerDelegate {
     
     let realm = try! Realm()
+<<<<<<< Updated upstream
     lazy var realmProductArray: Results<RealmProduct> = { self.realm.objects(RealmProduct.self) }()
     lazy var realmPreferences: Results<Preferences> = { self.realm.objects(Preferences.self) }()
     var allProductCodes: RealmProduct!
     var preferences: Preferences!
+=======
+    lazy var realmProductArray: Results<RealmWishListProduct> = { self.realm.objects(RealmWishListProduct.self)}()
+    var allProductCodes: RealmWishListProduct!
+
+    lazy var realmProductArrayToBasket: Results<RealmBasketProduct> = { self.realm.objects(RealmBasketProduct.self)}()
+    var allProductCodesToBasket: RealmBasketProduct!
+>>>>>>> Stashed changes
     
     var sharedWishList = WishList.sharedInstance
     var wishListProductArray = [WishListProduct]()
-
+    var currentProduct: Product!
     
     @IBAction func toggleEditingMode(_ sender: AnyObject) {
         
@@ -81,6 +89,7 @@ class WishListTableViewController: UITableViewController, UITabBarControllerDele
             }
             self.tableView.reloadData()
         }
+        
     }
     
     func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage? {
@@ -108,4 +117,14 @@ class WishListTableViewController: UITableViewController, UITabBarControllerDele
 
 }
 
-
+//try! realm.write() {
+//    
+//    let realmURL = URL(string: currentProduct.productImageString)
+//    let realmImage = NSData(contentsOf: realmURL!)
+//    
+//    let newRealmProductToBasket = RealmBasketProduct()
+//    
+//    newRealmProductToBasket.productCode = self.currentProduct.productCode
+//    
+//    self.allProductCodes = newRealmProductToBasket
+//}

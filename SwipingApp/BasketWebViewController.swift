@@ -8,8 +8,11 @@
 
 import UIKit
 import WebKit
+import RealmSwift
 class BasketWebViewController: UIViewController {
-
+    let realm = try! Realm()
+    lazy var realmProductArrayToBasket: Results<RealmBasketProduct> = { self.realm.objects(RealmBasketProduct.self)}()
+    var allProductCodesToBasket: RealmBasketProduct!
     
     @IBOutlet weak var basketWebView: UIWebView!
     

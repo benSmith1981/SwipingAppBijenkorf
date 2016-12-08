@@ -13,6 +13,7 @@
 		17135F481DD1E0BA00FF69D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17135F461DD1E0BA00FF69D2 /* LaunchScreen.storyboard */; };
 		33C648941DEED1FB00CCCF04 /* DetailProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C648931DEED1FB00CCCF04 /* DetailProduct.swift */; };
 		33D027B61DEF2D13004AD1D5 /* BasketWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D027B51DEF2D13004AD1D5 /* BasketWebViewController.swift */; };
+		33FA9B861DF95F2900956448 /* RealmBasketProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FA9B851DF95F2900956448 /* RealmBasketProduct.swift */; };
 		7618E76E1DE6182600796762 /* ChooseProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7618E76D1DE6182600796762 /* ChooseProductViewController.swift */; };
 		7618E7701DE6188E00796762 /* ChooseProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7618E76F1DE6188E00796762 /* ChooseProductView.swift */; };
 		7618E7721DE618ED00796762 /* ImageLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7618E7711DE618ED00796762 /* ImageLabelView.swift */; };
@@ -49,6 +50,7 @@
 		17135F491DD1E0BA00FF69D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		33C648931DEED1FB00CCCF04 /* DetailProduct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailProduct.swift; sourceTree = "<group>"; };
 		33D027B51DEF2D13004AD1D5 /* BasketWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasketWebViewController.swift; sourceTree = "<group>"; };
+		33FA9B851DF95F2900956448 /* RealmBasketProduct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmBasketProduct.swift; sourceTree = "<group>"; };
 		7618E76D1DE6182600796762 /* ChooseProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseProductViewController.swift; sourceTree = "<group>"; };
 		7618E76F1DE6188E00796762 /* ChooseProductView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseProductView.swift; sourceTree = "<group>"; };
 		7618E7711DE618ED00796762 /* ImageLabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLabelView.swift; sourceTree = "<group>"; };
@@ -138,7 +140,12 @@
 			children = (
 				76B28BF11DE74434001340FA /* WishList.swift */,
 				764509A51DEC34D100683C8B /* WishListProduct.swift */,
+<<<<<<< Updated upstream
 				76F32BC61DF6DEC10073038E /* RealmProduct.swift */,
+=======
+				76F32BC61DF6DEC10073038E /* RealmWishListProduct.swift */,
+				33FA9B851DF95F2900956448 /* RealmBasketProduct.swift */,
+>>>>>>> Stashed changes
 				763B8C091DF17DE800974CAA /* PreferredProduct.swift */,
 				763B8C0B1DF183E900974CAA /* PreferredProductList.swift */,
 				33C648931DEED1FB00CCCF04 /* DetailProduct.swift */,
@@ -355,6 +362,7 @@
 				76ECE4701DEE0830002C66BC /* ProductCode.swift in Sources */,
 				764509A61DEC34D100683C8B /* WishListProduct.swift in Sources */,
 				76CDEF531DDE3EA500C83CF6 /* MainCategoryTableViewController.swift in Sources */,
+				33FA9B861DF95F2900956448 /* RealmBasketProduct.swift in Sources */,
 				76B28BF21DE74434001340FA /* WishList.swift in Sources */,
 				7687D9001DE2FA34005D6FA5 /* WishListTableViewController.swift in Sources */,
 				76F32BC71DF6DEC10073038E /* RealmProduct.swift in Sources */,
