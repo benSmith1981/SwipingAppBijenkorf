@@ -3,19 +3,18 @@ import MDCSwipeToChoose
 import Alamofire
 import RealmSwift
 
-
 class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
     
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     @IBAction func unwindToSwipe(segue:UIStoryboardSegue) {
     }
     
+    // MARK - Properties
+    
     let realm = try! Realm()
     lazy var realmProductArray: Results<RealmProduct> = { self.realm.objects(RealmProduct.self) }()
-//    lazy var realmPreferences: Results<Preferences> = { self.realm.objects(Preferences.self) }()
-    var allProductCodes: RealmProduct!
-//    var preferences: Preferences!
     
+    var allProductCodes: RealmProduct!
     var sharedWishList = WishList.sharedInstance
     var preferredProductList = PreferredProductList.sharedInstance
     let ChooseProductButtonHorizontalPadding: CGFloat = 80.0
@@ -30,7 +29,7 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
     var currentPreferredProduct = PreferredProduct.self
     var prefDict: Dictionary<String, Int>?
     var colorArray: [String] = []
-    //var productCodeToPass: String!
+    
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -42,7 +41,6 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
         self.allProducts = defaultProduct()
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -52,21 +50,15 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
         
         DataManager.sharedInstance.loadProductWith(dict: dict!) { (productList) in
             
-                self.allProducts = productList
-            
-                self.setMyFrontCardView(self.popProductViewWithFrame(self.frontCardViewFrame())!)
-            
-                self.view.addSubview(self.frontCardView)
-            
-                self.backCardView = self.popProductViewWithFrame(self.backCardViewFrame())!
-                self.view.insertSubview(self.backCardView, belowSubview: self.frontCardView)
-            
-                self.constructNopeButton()
-                self.constructLikedButton()
-
-            }
+            self.allProducts = productList
+            self.setMyFrontCardView(self.popProductViewWithFrame(self.frontCardViewFrame())!)
+            self.view.addSubview(self.frontCardView)
+            self.backCardView = self.popProductViewWithFrame(self.backCardViewFrame())!
+            self.view.insertSubview(self.backCardView, belowSubview: self.frontCardView)
+            self.constructNopeButton()
+            self.constructLikedButton()
+        }
         print("Realm config \(Realm.Configuration.defaultConfiguration)")
-        //DataManager.sharedInstance.colorBasedAlgorithm()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -102,18 +94,8 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
         }
         else {
             let newProductCode = currentProduct.productCode
-            let productColor = currentProduct.productColor
-            let productCat = currentProduct.productCategory
-            //let productBrand = currentProduct.productBrand
-            let preferredProduct = PreferredProduct(preferredProductColor: productColor, preferredProductCategory: productCat)
-            print("You liked product: \(self.currentProduct.productCode)")
-            print("Color is \(self.currentProduct.productColor)")
-            print("Category is \(self.currentProduct.productCategory)")
+
             self.sharedWishList.addNewProductCode(productCode: newProductCode)
-            self.preferredProductList.addNewPreferredProduct(newPreferredProduct: preferredProduct)
-            print(sharedWishList.productCodeArray)
-            print(preferredProductList.preferredProductArray)
-            
             
             try! realm.write() {
                 
@@ -142,21 +124,14 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
             
             let colors = realm.objects(Color.self)
             //print(colors)
-            print(colors.freqTuple())
-
-        
+            print("Dit zijn kleuren \(colors.freq())")
         }
         
-        
-        
-        // Correct Swiping Code
         if(self.backCardView != nil) {
             self.setMyFrontCardView(self.backCardView)
         }
         
         backCardView = self.popProductViewWithFrame(self.backCardViewFrame())
-        //if(true){
-        // Fade the back card into view.
         if(backCardView != nil) {
             self.backCardView.alpha = 0.0
             self.view.insertSubview(self.backCardView, belowSubview: self.frontCardView)
@@ -166,15 +141,12 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
         }
     }
     
+    // MARK - Set Cards
+    
     func setMyFrontCardView(_ frontCardView:ChooseProductView) -> Void{
         
         self.frontCardView = frontCardView
         self.currentProduct = frontCardView.product
-        
-    }
-    
-    func defaultProduct() -> [Product]{
-        return allProducts
     }
     
     func popProductViewWithFrame(_ frame: CGRect) -> ChooseProductView?{
@@ -212,17 +184,6 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
         return CGRect(x: frontFrame.origin.x, y: frontFrame.origin.y + 10.0, width: frontFrame.width, height: frontFrame.height)
     }
     
-    //    func constructUndoButton() -> Void{
-    //        let button:UIButton = UIButton(type: UIButtonType.system)
-    //        let image:UIImage = UIImage(named:"undo")!
-    //        button.frame = CGRect(x: 150, y: 445, width: (image.size.width), height: (image.size.height))
-    //        button.setImage(image, for: UIControlState())
-    //        button.tintColor = UIColor.darkGray
-    //        self.view.addSubview(button)
-    //
-    //
-    //    }
-    
     func constructNopeButton() -> Void{
         let button:UIButton =  UIButton(type: UIButtonType.system)
         let image:UIImage = UIImage(named:"nope")!
@@ -241,18 +202,17 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
         button.tintColor = UIColor(red: 29.0/255.0, green: 245.0/255.0, blue: 106.0/255.0, alpha: 1.0)
         button.addTarget(self, action: #selector(ChooseProductViewController.likeFrontCardView), for: UIControlEvents.touchUpInside)
         self.view.addSubview(button)
-        
     }
+    
     func nopeFrontCardView() -> Void{
         self.frontCardView.mdc_swipe(MDCSwipeDirection.left)
     }
     func likeFrontCardView() -> Void{
         self.frontCardView.mdc_swipe(MDCSwipeDirection.right)
     }
-    func infoButton() {
-        print("You pressed the info button")
-        performSegue(withIdentifier: "swipeToDetail", sender: self)
-    }
+    
+    
+    // MARK - Misc
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -261,82 +221,15 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
             let detailViewController = segue.destination as! DetailViewController
             
             detailViewController.currentProductCode = _productCode
-            
         }
     }
-}
-
-extension Sequence where Self.Iterator.Element: Equatable {
-    private typealias Element = Self.Iterator.Element
     
-    func freqTuple() -> [(element: Element, count: Int)] {
-        
-        let empty: [(Element, Int)] = []
-        
-        return reduce(empty) { (accu: [(Element, Int)], element) in
-            var accu = accu
-            for (index, value) in accu.enumerated() {
-                if value.0 == element {
-                    accu[index].1 += 1
-                    return accu
-                }
-            }
-            
-            return accu + [(element, 1)]
-        }
+    func defaultProduct() -> [Product]{
+        return allProducts
+    }
+    
+    func infoButton() {
+        print("You pressed the info button")
+        performSegue(withIdentifier: "swipeToDetail", sender: self)
     }
 }
-
-extension Results {
-    func toArray () -> [Object] {
-        var array = [Object]()
-        for result in self {
-            array.append(result)
-        }
-        return array
-    }
-}
-
-extension Results {
-    func toArray<T>(ofType: T.Type) -> [T] {
-        return flatMap { $0 as? T }
-    }
-}
-
-
-
-//extension Int {
-//    var random: Int {
-//        return Int(arc4random_uniform(UInt32(abs(self))))
-//    }
-//    var indexRandom: [Int] {
-//        return  Array(0..<self).shuffle
-//    }
-//}
-//
-//extension Array {
-//    var shuffle:[Element] {
-//        var elements = self
-//        for index in indices {
-//            let anotherIndex = Int(arc4random_uniform(UInt32(elements.count - index))) + index
-//            anotherIndex != index ? swap(&elements[index], &elements[anotherIndex]) : ()
-//        }
-//        return elements
-//    }
-//    mutating func shuffled() {
-//        self = shuffle
-//    }
-//    var chooseOne: Element {
-//        return self[Int(arc4random_uniform(UInt32(count)))]
-//    }
-//    
-//    func choose(x:Int) -> [Element] {
-//        if x > count { return shuffle }
-//        let indexes = count.indexRandom[0..<x]
-//        var result: [Element] = []
-//        for index in indexes {
-//            result.append(self[index])
-//        }
-//        return result
-//    }
-//}

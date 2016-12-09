@@ -14,11 +14,11 @@ class WishListTableViewController: UITableViewController, UITabBarControllerDele
     
     let realm = try! Realm()
     lazy var realmProductArray: Results<RealmProduct> = { self.realm.objects(RealmProduct.self) }()
-    lazy var realmPreferences: Results<Preferences> = { self.realm.objects(Preferences.self) }()
+    lazy var realmColorArray: Results<Color> = { self.realm.objects(Color.self) }()
+    lazy var realmBrandArray: Results<Brand> = { self.realm.objects(Brand.self) }()
+    lazy var realmCategoryArray: Results<Category> = { self.realm.objects(Category.self) }()
+
     var allProductCodes: RealmProduct!
-    var preferences: Preferences!
-    lazy var realmProductArray: Results<RealmWishListProduct> = { self.realm.objects(RealmWishListProduct.self)}()
-    var allProductCodes: RealmWishListProduct!
 
     lazy var realmProductArrayToBasket: Results<RealmBasketProduct> = { self.realm.objects(RealmBasketProduct.self)}()
     var allProductCodesToBasket: RealmBasketProduct!
@@ -81,8 +81,12 @@ class WishListTableViewController: UITableViewController, UITabBarControllerDele
             try! realm.write {
                 let item = realmProductArray[indexPath.row]
                 realm.delete(item)
-                let pref = realmPreferences[indexPath.row]
-                realm.delete(pref)
+                let color = realmColorArray[indexPath.row]
+                realm.delete(color)
+                let brand = realmBrandArray[indexPath.row]
+                realm.delete(brand)
+                let category = realmCategoryArray[indexPath.row]
+                realm.delete(category)
             }
             self.tableView.reloadData()
         }
