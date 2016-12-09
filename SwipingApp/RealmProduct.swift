@@ -21,6 +21,7 @@ class RealmProduct: Object {
     let color = List<Color>()
     let brand = List<Brand>()
     let category = List<Category>()
+    let seenProducts = List<SeenProduct>()
 }
 
 class Color: Object {
@@ -33,4 +34,8 @@ class Brand: Object {
 
 class Category: Object {
     dynamic var productCategory = ""
+}
+
+class SeenProduct: Object {
+    dynamic var productCode = ""
 }
