@@ -12,19 +12,25 @@ import RealmSwift
 
 class RealmProduct: Object {
     
+    dynamic var productCode = ""
     dynamic var productName = ""
     dynamic var productBrand = ""
     dynamic var productImage = NSData()
-    dynamic var productCode = ""
     dynamic var productPrice = 0.0
 
-    let preferences = List<Preferences>()
+    let color = List<Color>()
+    let brand = List<Brand>()
+    let category = List<Category>()
 }
 
-class Preferences: Object {
-    
+class Color: Object {
     dynamic var productColor = ""
-    dynamic var productCategory = ""
+}
+
+class Brand: Object {
     dynamic var productBrand = ""
 }
 
+class Category: Object {
+    dynamic var productCategory = ""
+}

@@ -46,6 +46,8 @@ class DataManager {
         var allProducts: [Product] = []
         var preferredProduct: [PreferredProduct] = []
         var imageURLArray: [UIImage] = []
+        //var colorFilter: [String] = []
+        var filterTypeArray: [String] = []
        
         let productCategory = dict["name"] as? String
         
@@ -64,7 +66,33 @@ class DataManager {
                     let pageQuery = jsonData["pagination"] as! Dictionary<String, Any>
                     let nextPage = pageQuery["nextPage"] as! Dictionary<String, Any>
                     let nextPageQuery = nextPage["query"] as! String
-                    let productItem = jsonQuery[0]
+                    let filters = jsonData["filters"] as! [[String: AnyObject]]
+                    
+                    for filterTypes in filters {
+                        
+                        let filterType = filterTypes["name"] as! String
+                        if filterType == "Kleur" {
+                        filterTypeArray.append(filterType)
+                            //let refinementType = colorRef
+                        }
+                    }
+                    
+                    //let filterType = filterTypeArray[0]
+                    //let colorRefinement = filterType["refinements"] as! [String: AnyObject]
+                    
+                    //let frontImageURL = imageProductURL["url"] as! String
+                    //let filterTypeString = filterType as! Int
+                    
+                    //let colorRefinement = filterType["refinements"] as! [Dictionary<String, Any>]
+                    
+//                    for colorItem in colorRefinement {
+//                        
+//                        let color = colorItem["name"] as! String
+//                        let colorQuery = colorItem["query"] as! String
+//                        
+//                        colorFilter.append(color)
+//                    }
+                    //let productItem = jsonQuery[0]
                     
                     print("Next page is \(nextPageQuery)")
                     
@@ -179,7 +207,6 @@ class DataManager {
                         
                         let httpURL = "https:\(frontImageURL)"
                         
-                        let defaultString = httpURL
                         let webListerString = httpURL.replacingOccurrences(of: "default", with: "web_detail_2x")
                         
                         let url = URL(string: webListerString)
@@ -258,7 +285,6 @@ class DataManager {
                                 let url = i["url"] as! String
                                 let httpsURL = "https:\(url)"
                                 
-                                let defaultString = httpsURL
                                 let webListerString = httpsURL.replacingOccurrences(of: "default", with: "web_lister_2x")
                                 
                                 let urlString = URL(string: webListerString)
