@@ -12,9 +12,9 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
     
     let realm = try! Realm()
     lazy var realmProductArray: Results<RealmProduct> = { self.realm.objects(RealmProduct.self) }()
-    lazy var realmPreferences: Results<Preferences> = { self.realm.objects(Preferences.self) }()
+//    lazy var realmPreferences: Results<Preferences> = { self.realm.objects(Preferences.self) }()
     var allProductCodes: RealmProduct!
-    var preferences: Preferences!
+//    var preferences: Preferences!
     
     var sharedWishList = WishList.sharedInstance
     var preferredProductList = PreferredProductList.sharedInstance
@@ -29,6 +29,7 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
     var preferredProduct: [PreferredProduct] = []
     var currentPreferredProduct = PreferredProduct.self
     var prefDict: Dictionary<String, Int>?
+    var colorArray: [String] = []
     //var productCodeToPass: String!
     
     required init?(coder aDecoder: NSCoder) {
@@ -103,7 +104,7 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
             let newProductCode = currentProduct.productCode
             let productColor = currentProduct.productColor
             let productCat = currentProduct.productCategory
-            let productBrand = currentProduct.productBrand
+            //let productBrand = currentProduct.productBrand
             let preferredProduct = PreferredProduct(preferredProductColor: productColor, preferredProductCategory: productCat)
             print("You liked product: \(self.currentProduct.productCode)")
             print("Color is \(self.currentProduct.productColor)")
@@ -113,25 +114,6 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
             print(sharedWishList.productCodeArray)
             print(preferredProductList.preferredProductArray)
             
-            //var oldValue = someOtherDict.updateValue(blauw+1, forKey: "Blauw")
-//            var count = 0
-//            var preferredDict:[String: Int] = [:]
-//            for (_, value) in preferredDict {
-//            preferredDict[productColor] = count+1
-//            preferredDict[productCat] = count+1
-//            preferredDict[productBrand] = count+1
-//            
-//            var updateColorCount = preferredDict.updateValue(count+1, forKey: productColor)
-//                var newColorCount = preferredDict[productColor]
-//            var updateCategoryCount = preferredDict.updateValue(count+1, forKey: productCat)
-//                var newCatCount = preferredDict[productCat]
-//            var updateBrandCount = preferredDict.updateValue(count+1, forKey: productBrand)
-//                var newBrandCount = preferredDict[productBrand]
-            
-//            var newColorCount = preferredDict[productColor]
-//            var newCatCount = preferredDict[productCat]
-//            var newBrandCount = preferredDict[productBrand]
-//            }
             
             try! realm.write() {
                 
@@ -144,70 +126,26 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
                 newRealmProduct.productBrand = self.currentProduct.productBrand
                 newRealmProduct.productImage = realmImage!
                 newRealmProduct.productPrice = Double(self.currentProduct.productPrice)
-                //let newProductPref = Preferences()
-//                let color = self.currentProduct.productColor
-//                let brand = self.currentProduct.productBrand
-//                let category = self.currentProduct.productCategory
-                let newProductPref = Preferences()
-                newProductPref.productColor = self.currentProduct.productColor
-                newProductPref.productBrand = self.currentProduct.productBrand
-                newProductPref.productCategory = self.currentProduct.productCategory
+                let newProductColor = Color()
+                newProductColor.productColor = self.currentProduct.productColor
+                let newProductBrand = Brand()
+                newProductBrand.productBrand = self.currentProduct.productBrand
+                let newProductCat = Category()
+                newProductCat.productCategory = self.currentProduct.productCategory
                 
-                newRealmProduct.preferences.append(newProductPref)
+                newRealmProduct.color.append(newProductColor)
+                newRealmProduct.brand.append(newProductBrand)
+                newRealmProduct.category.append(newProductCat)
                 realm.add(newRealmProduct)
                 self.allProductCodes = newRealmProduct
-                
-//                let newPreferences = Preferences()
-//                newPreferences.productCategory = self.currentProduct.productCategory
-//                newPreferences.productColor = self.currentProduct.productColor
-//                newPreferences.productBrand = self.currentProduct.productBrand
-//                realm.add(newPreferences)
-//                self.preferences = newPreferences
-
             }
             
-//            try! realm.write() {
-//                
-//                let newPreferences = Preferences()
-//                
-//                newPreferences.productCategory = self.currentProduct.productCategory
-//                newPreferences.productColor = self.currentProduct.productColor
-//                realm.add(newPreferences)
-//                self.preferences = newPreferences
-//            }
-            
-            for count in preferredProductList.preferredProductArray {
+            let colors = realm.objects(Color.self)
+            //print(colors)
+            print(colors.freqTuple())
 
-//                if count.preferredProductColor >= 5 {
-//                    print("Your favourite color is \(productColor)")
-//                }
-                print(count.preferredProductCategory)
-
-            }
-
-            
-            for count in preferredProductList.preferredProductArray {
-                print(count.preferredProductColor)
-            }
-            
+        
         }
-        
-//        func notifyUser() {
-//            
-//            let preferredArray = preferredProductList.preferredProductArray
-//            var counts: [String] = []
-//            
-//            for item in preferredArray {
-//                counts[item] = (counts[item] ?? 0) + 1
-//            }
-//            
-//            print(counts)
-//            
-//            for (key, value) in counts {
-//                print("\(key) occurs \(value) time(s)")
-//            }
-//        }
-        
         
         
         
@@ -327,6 +265,45 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
         }
     }
 }
+
+extension Sequence where Self.Iterator.Element: Equatable {
+    private typealias Element = Self.Iterator.Element
+    
+    func freqTuple() -> [(element: Element, count: Int)] {
+        
+        let empty: [(Element, Int)] = []
+        
+        return reduce(empty) { (accu: [(Element, Int)], element) in
+            var accu = accu
+            for (index, value) in accu.enumerated() {
+                if value.0 == element {
+                    accu[index].1 += 1
+                    return accu
+                }
+            }
+            
+            return accu + [(element, 1)]
+        }
+    }
+}
+
+extension Results {
+    func toArray () -> [Object] {
+        var array = [Object]()
+        for result in self {
+            array.append(result)
+        }
+        return array
+    }
+}
+
+extension Results {
+    func toArray<T>(ofType: T.Type) -> [T] {
+        return flatMap { $0 as? T }
+    }
+}
+
+
 
 //extension Int {
 //    var random: Int {

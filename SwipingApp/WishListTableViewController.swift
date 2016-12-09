@@ -14,9 +14,11 @@ class WishListTableViewController: UITableViewController, UITabBarControllerDele
     
     let realm = try! Realm()
     lazy var realmProductArray: Results<RealmProduct> = { self.realm.objects(RealmProduct.self) }()
-    lazy var realmPreferences: Results<Preferences> = { self.realm.objects(Preferences.self) }()
+    lazy var realmColor: Results<Color> = { self.realm.objects(Color.self) }()
+    lazy var realmBrand: Results<Brand> = { self.realm.objects(Brand.self) }()
+    lazy var realmCategory: Results<Category> = { self.realm.objects(Category.self) }()
     var allProductCodes: RealmProduct!
-    var preferences: Preferences!
+    var productColor: Color!
     
     var sharedWishList = WishList.sharedInstance
     var wishListProductArray = [WishListProduct]()
@@ -74,10 +76,18 @@ class WishListTableViewController: UITableViewController, UITabBarControllerDele
             //remove.backgroundColor = UIColor(patternImage: backImage.image)!
             
             try! realm.write {
-                let item = realmProductArray[indexPath.row]
-                realm.delete(item)
-                let pref = realmPreferences[indexPath.row]
-                realm.delete(pref)
+                let product = realmProductArray[indexPath.row]
+                realm.delete(product)
+                let color = realmColor[indexPath.row]
+                realm.delete(color)
+                let brand = realmBrand[indexPath.row]
+                realm.delete(brand)
+                let category = realmCategory[indexPath.row]
+                realm.delete(category)
+                
+                
+//                let pref = realmPreferences[indexPath.row]
+//                realm.delete(pref)
             }
             self.tableView.reloadData()
         }
