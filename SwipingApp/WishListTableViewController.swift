@@ -14,15 +14,18 @@ class WishListTableViewController: UITableViewController, UITabBarControllerDele
     
     let realm = try! Realm()
     lazy var realmProductArray: Results<RealmProduct> = { self.realm.objects(RealmProduct.self) }()
-    lazy var realmColor: Results<Color> = { self.realm.objects(Color.self) }()
-    lazy var realmBrand: Results<Brand> = { self.realm.objects(Brand.self) }()
-    lazy var realmCategory: Results<Category> = { self.realm.objects(Category.self) }()
+    lazy var realmPreferences: Results<Preferences> = { self.realm.objects(Preferences.self) }()
     var allProductCodes: RealmProduct!
-    var productColor: Color!
+    var preferences: Preferences!
+    lazy var realmProductArray: Results<RealmWishListProduct> = { self.realm.objects(RealmWishListProduct.self)}()
+    var allProductCodes: RealmWishListProduct!
+
+    lazy var realmProductArrayToBasket: Results<RealmBasketProduct> = { self.realm.objects(RealmBasketProduct.self)}()
+    var allProductCodesToBasket: RealmBasketProduct!
     
     var sharedWishList = WishList.sharedInstance
     var wishListProductArray = [WishListProduct]()
-
+    var currentProduct: Product!
     
     @IBAction func toggleEditingMode(_ sender: AnyObject) {
         
@@ -76,21 +79,14 @@ class WishListTableViewController: UITableViewController, UITabBarControllerDele
             //remove.backgroundColor = UIColor(patternImage: backImage.image)!
             
             try! realm.write {
-                let product = realmProductArray[indexPath.row]
-                realm.delete(product)
-                let color = realmColor[indexPath.row]
-                realm.delete(color)
-                let brand = realmBrand[indexPath.row]
-                realm.delete(brand)
-                let category = realmCategory[indexPath.row]
-                realm.delete(category)
-                
-                
-//                let pref = realmPreferences[indexPath.row]
-//                realm.delete(pref)
+                let item = realmProductArray[indexPath.row]
+                realm.delete(item)
+                let pref = realmPreferences[indexPath.row]
+                realm.delete(pref)
             }
             self.tableView.reloadData()
         }
+        
     }
     
     func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage? {
@@ -118,4 +114,14 @@ class WishListTableViewController: UITableViewController, UITabBarControllerDele
 
 }
 
-
+//try! realm.write() {
+//    
+//    let realmURL = URL(string: currentProduct.productImageString)
+//    let realmImage = NSData(contentsOf: realmURL!)
+//    
+//    let newRealmProductToBasket = RealmBasketProduct()
+//    
+//    newRealmProductToBasket.productCode = self.currentProduct.productCode
+//    
+//    self.allProductCodes = newRealmProductToBasket
+//}
