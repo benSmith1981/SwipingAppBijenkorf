@@ -22,7 +22,6 @@ class DataManager {
     var allProductCodes: RealmProduct!
     lazy var realmSeenProducts: Results<SeenProduct> = { self.realm.objects(SeenProduct.self) }()
     var seenProductCodes: SeenProduct!
-
     var productCodeArray: [String] = []
 
     
@@ -46,12 +45,16 @@ class DataManager {
     
     // MARK - Get data for ChooseProductViewController
     
-    func loadProductWith(dict: Dictionary<String,Any>, productCodeArray: [String] = [], completion:@escaping (_ product: [Product]) -> Void) {
+    func loadProductWith(dict: Dictionary<String,Any>, completion:@escaping (_ product: [Product]) -> Void) {
+        
+        ComparisonManager.sharedInstance.makeArrayOfStrings()
         
         var allProducts: [Product] = []
         var imageURLArray: [UIImage] = []
         var filterTypeArray: [String] = []
         let productCategory = dict["name"] as? String
+        var seenProducts = ComparisonManager.sharedInstance.seenProductArray
+        var productCodeToCheckArray: [String] = []
         
         if let productQuery = dict["query"] as? String {
             
@@ -67,6 +70,15 @@ class DataManager {
                         let pageQuery = jsonData["pagination"] as! Dictionary<String, Any>
                         let nextPage = pageQuery["nextPage"] as! Dictionary<String, Any>
                         let nextPageQuery = nextPage["query"] as! String
+                        //let base = nextPageQuery
+                        //let decoded = base.removingPercentEncoding
+                        //print(decoded)
+                        let encoded = nextPageQuery.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
+                        let URLToEncode = nextPageQuery.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlHostAllowed)
+                        //(NSCharacterSet.URLFragmentAllowedCharacterSet())!po
+                        print(encoded)
+                        //let encodedURL = String(format: nextPageQuery).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+                        //let escapeString - nextPageQuery.
                         let filters = jsonData["filters"] as! [[String: AnyObject]]
                         
                         for filterTypes in filters {
@@ -89,7 +101,21 @@ class DataManager {
                                     let productPrice = sellingPrice["value"] as! Double
                                     var productColor = " "
                                     let currentVariantProduct = item["currentVariantProduct"] as! Dictionary<String,Any>
-                                    let productCode = currentVariantProduct["code"] as? String
+                                    let productCodeToCheck = currentVariantProduct["code"] as? String
+                                    let productCodeString = currentVariantProduct["code"] as? String
+                                    //var productCode = ""
+                                    
+                                    if seenProducts.contains(productCodeToCheck!) {
+                                        print ("Already seen")
+                                    }
+                                    else {
+                                        print ("Not seen yet")
+                                        productCodeToCheckArray.append(productCodeToCheck!)
+                                    }
+ //                                   let productCode = productCodeToCheckArray.index(of: productCodeToCheck)
+                                    
+                                    //let productCode = currentVariantProduct["code"] as? String
+                                    
                                     if let color = currentVariantProduct["color"] as? String {
                                         productColor = color }
                                     else {
@@ -115,10 +141,10 @@ class DataManager {
                                         
                                         let productImageString = urlString
                                         
-                                        let newProduct = Product(productBrand: productBrand, productName: name, productPrice: Float(productPrice), productImage: productImage!, productCode: productCode!, productColor: productColor, productCategory: productCategory!, productImageString: productImageString!)
+                                        let newProduct = Product(productBrand: productBrand, productName: name, productPrice: Float(productPrice), productImage: productImage!, productCode: productCode, productColor: productColor, productCategory: productCategory!, productImageString: productImageString!)
                                         
                                         allProducts.append(newProduct)
-                                        self.productCodeArray.append(productCode!)
+                                        self.productCodeArray.append(productCode)
                                     }
                                 }
                             }
@@ -261,3 +287,24 @@ class DataManager {
     }
 }
 
+extension Array where Element: Equatable {
+    
+    public func uniq() -> [Element] {
+        var arrayCopy = self
+        arrayCopy.uniqInPlace()
+        return arrayCopy
+    }
+    
+    mutating public func uniqInPlace() {
+        var seen = [Element]()
+        var index = 0
+        for element in self {
+            if seen.contains(element) {
+                remove(at: index)
+            } else {
+                seen.append(element)
+                index += 1
+            }
+        }
+    }
+}

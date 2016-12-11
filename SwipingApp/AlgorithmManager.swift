@@ -20,10 +20,19 @@ class AlgorithmManager {
     lazy var realmColorArray: Results<Color> = { self.realm.objects(Color.self) }()
     lazy var realmBrandArray: Results<Brand> = { self.realm.objects(Brand.self) }()
     lazy var realmCategoryArray: Results<Category> = { self.realm.objects(Category.self) }()
+    var colorArray: [String] = []
     
-    func colorsFromRealm() {
-    let colors = realm.objects(Color.self)
-    print("Dit zijn kleuren \(colors.freq())")
+    func makeArrayOfColors() {
+        
+        for color in realmColorArray {
+            let productColor = color.productColor
+            colorArray.append(productColor)
+        }
+    }
+    
+    func calculateColors() {
+        
+        
     }
     
     

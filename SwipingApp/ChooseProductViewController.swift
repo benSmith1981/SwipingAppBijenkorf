@@ -30,9 +30,7 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
     var prefDict: Dictionary<String, Int>?
     var colorArray: [String] = []
     var productCodeArray: [String] = []
-    
-    
-    
+   
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.allProducts = defaultProduct()
@@ -49,9 +47,8 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(infoButton), name: note.name, object: nil)
         
         self.activityIndicatorView.startAnimating()
-        
-        //DataManager.sharedInstance.loadProductWith(dict: dict!) { (productList) in
-        DataManager.sharedInstance.loadProductWith(dict: dict!, productCodeArray: productCodeArray) { (productList) in
+
+        DataManager.sharedInstance.loadProductWith(dict: dict!) { (productList) in
         
             self.allProducts = productList
             self.setMyFrontCardView(self.popProductViewWithFrame(self.frontCardViewFrame())!)
@@ -61,8 +58,14 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
             self.constructNopeButton()
             self.constructLikedButton()
         }
+        self.activityIndicatorView.stopAnimating()
+        self.activityIndicatorView.hidesWhenStopped = true
         print("Realm config \(Realm.Configuration.defaultConfiguration)")
     }
+    
+//    func back(sender: UIBarButtonItem) {
+//        ComparisonManager.sharedInstance.unSeenProductArray.removeAll()
+//    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -101,6 +104,7 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
             }
             
         } else {
+            
             let newProductCode = currentProduct.productCode
 
             self.sharedWishList.addNewProductCode(productCode: newProductCode)
@@ -138,13 +142,6 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
                 seenProduct.productCode = seenProductCode
                 realm.add(seenProduct)
             }
-            
-            ComparisonManager.sharedInstance.makeArrayOfStrings()
-            ComparisonManager.sharedInstance.combineArrays()
-            ComparisonManager.sharedInstance.makeUniqueArray()
-            print("realmString \(ComparisonManager.sharedInstance.seenProductArray)")
-            print("apiString \(DataManager.sharedInstance.productCodeArray)")
-            
         }
         
         if(self.backCardView != nil) {
