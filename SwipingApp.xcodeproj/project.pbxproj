@@ -14,6 +14,10 @@
 		33C648941DEED1FB00CCCF04 /* DetailProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C648931DEED1FB00CCCF04 /* DetailProduct.swift */; };
 		33D027B61DEF2D13004AD1D5 /* BasketWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D027B51DEF2D13004AD1D5 /* BasketWebViewController.swift */; };
 		33FA9B861DF95F2900956448 /* RealmBasketProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FA9B851DF95F2900956448 /* RealmBasketProduct.swift */; };
+		33FEC92D1DFC7D10004EDC7A /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FEC92C1DFC7D10004EDC7A /* CustomTabBarController.swift */; };
+		33FEC92F1DFC7D46004EDC7A /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FEC92E1DFC7D46004EDC7A /* CustomTabBar.swift */; };
+		33FEC9311DFC7D84004EDC7A /* CustomTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FEC9301DFC7D84004EDC7A /* CustomTabBarItem.swift */; };
+		33FEC9331DFC7DB3004EDC7A /* CustomTabAnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FEC9321DFC7DB3004EDC7A /* CustomTabAnimatedTransitioning.swift */; };
 		7618E76E1DE6182600796762 /* ChooseProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7618E76D1DE6182600796762 /* ChooseProductViewController.swift */; };
 		7618E7701DE6188E00796762 /* ChooseProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7618E76F1DE6188E00796762 /* ChooseProductView.swift */; };
 		7618E7721DE618ED00796762 /* ImageLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7618E7711DE618ED00796762 /* ImageLabelView.swift */; };
@@ -53,6 +57,10 @@
 		33C648931DEED1FB00CCCF04 /* DetailProduct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailProduct.swift; sourceTree = "<group>"; };
 		33D027B51DEF2D13004AD1D5 /* BasketWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasketWebViewController.swift; sourceTree = "<group>"; };
 		33FA9B851DF95F2900956448 /* RealmBasketProduct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmBasketProduct.swift; sourceTree = "<group>"; };
+		33FEC92C1DFC7D10004EDC7A /* CustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
+		33FEC92E1DFC7D46004EDC7A /* CustomTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
+		33FEC9301DFC7D84004EDC7A /* CustomTabBarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarItem.swift; sourceTree = "<group>"; };
+		33FEC9321DFC7DB3004EDC7A /* CustomTabAnimatedTransitioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabAnimatedTransitioning.swift; sourceTree = "<group>"; };
 		7618E76D1DE6182600796762 /* ChooseProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseProductViewController.swift; sourceTree = "<group>"; };
 		7618E76F1DE6188E00796762 /* ChooseProductView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseProductView.swift; sourceTree = "<group>"; };
 		7618E7711DE618ED00796762 /* ImageLabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLabelView.swift; sourceTree = "<group>"; };
@@ -126,10 +134,22 @@
 				7681D2181DDED85F00958339 /* Controller */,
 				7681D2171DDED80600958339 /* Model */,
 				765DE6C01DF9B10100BD674D /* Objects */,
+				33FEC92B1DFC7CDE004EDC7A /* CustomTabBar */,
 				76DC9D891DE2E57800ABAC27 /* plist */,
 				76DB87C91DD1EA9700D9E912 /* Resources */,
 			);
 			path = SwipingApp;
+			sourceTree = "<group>";
+		};
+		33FEC92B1DFC7CDE004EDC7A /* CustomTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				33FEC92C1DFC7D10004EDC7A /* CustomTabBarController.swift */,
+				33FEC92E1DFC7D46004EDC7A /* CustomTabBar.swift */,
+				33FEC9301DFC7D84004EDC7A /* CustomTabBarItem.swift */,
+				33FEC9321DFC7DB3004EDC7A /* CustomTabAnimatedTransitioning.swift */,
+			);
+			name = CustomTabBar;
 			sourceTree = "<group>";
 		};
 		64D5A4037F9F754896E302AC /* Frameworks */ = {
@@ -360,13 +380,16 @@
 				76CDEF571DDE3EE400C83CF6 /* SecondSubCategoryTableView.swift in Sources */,
 				76CDEF611DDE3FBA00C83CF6 /* Product.swift in Sources */,
 				76CDEF5D1DDE3F4700C83CF6 /* DataManager.swift in Sources */,
+				33FEC9331DFC7DB3004EDC7A /* CustomTabAnimatedTransitioning.swift in Sources */,
 				764509AA1DEC7CE800683C8B /* TabBarController.swift in Sources */,
+				33FEC92F1DFC7D46004EDC7A /* CustomTabBar.swift in Sources */,
 				764509A41DEC33D100683C8B /* CustomWishListTableViewCell.swift in Sources */,
 				7618E7721DE618ED00796762 /* ImageLabelView.swift in Sources */,
 				33D027B61DEF2D13004AD1D5 /* BasketWebViewController.swift in Sources */,
 				76A0D4D21DEEA9870069CA8B /* DetailViewController.swift in Sources */,
 				763B8C0C1DF183E900974CAA /* PreferredProductList.swift in Sources */,
 				765981FD1DF1E3CD008269E1 /* ThirdSubCategoryTableViewController.swift in Sources */,
+				33FEC92D1DFC7D10004EDC7A /* CustomTabBarController.swift in Sources */,
 				7618E7701DE6188E00796762 /* ChooseProductView.swift in Sources */,
 				763B8C0A1DF17DE800974CAA /* PreferredProduct.swift in Sources */,
 				76ECE4701DEE0830002C66BC /* ProductCode.swift in Sources */,
@@ -379,6 +402,7 @@
 				7618E76E1DE6182600796762 /* ChooseProductViewController.swift in Sources */,
 				766378D61DFAC32F0008D9B6 /* ComparisonManager.swift in Sources */,
 				765DE6C21DF9B6F900BD674D /* AlgorithmManager.swift in Sources */,
+				33FEC9311DFC7D84004EDC7A /* CustomTabBarItem.swift in Sources */,
 				765E89771DF035080025E2A1 /* CustomCollectionViewCell.swift in Sources */,
 				33C648941DEED1FB00CCCF04 /* DetailProduct.swift in Sources */,
 				17135F3E1DD1E0BA00FF69D2 /* AppDelegate.swift in Sources */,
