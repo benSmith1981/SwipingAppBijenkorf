@@ -10,14 +10,12 @@ import UIKit
 
 class DetailViewController: UIViewController, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
-    
     @IBOutlet weak var detailProductNameLabel: UILabel!
     @IBOutlet weak var detailProductImageView: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var detailProductBrandLabel: UILabel!
     @IBOutlet weak var detailProductPriceLabel: UILabel!
     @IBOutlet weak var detailProductDescriptionView: UITextView!
-    
     @IBAction func buttonTapped(_ segue: UIStoryboardSegue) {
         self.performSegue(withIdentifier: "unwindToSwipe", sender: self)
     }
@@ -30,7 +28,7 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
         
         collectionView.delegate = self
         collectionView.dataSource = self
-        //safely unwrapping currentProductCode
+        // Safely unwrapping currentProductCode
         if let currentProductCode = self.currentProductCode {
             
             DataManager.sharedInstance.getDetailProductFromAPI(code:(currentProductCode)) { (detailProduct) in
@@ -74,13 +72,5 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
         
         let cell = detailProductImageView
         cell?.image = detailProductArray[indexPath.row]
-        
     }
-    
-    //    override func unwind(for unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
-    //        if segue.identifier == "swipeToDetail"{
-    //        let detailViewController = segue.destination as! ChooseProductViewController
-    //        }
-    //    }
-    
 }

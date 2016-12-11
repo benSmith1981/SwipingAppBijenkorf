@@ -29,6 +29,8 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
     var currentPreferredProduct = PreferredProduct.self
     var prefDict: Dictionary<String, Int>?
     var colorArray: [String] = []
+    var productCodeArray: [String] = []
+    
     
     
     required init?(coder aDecoder: NSCoder) {
@@ -48,8 +50,9 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
         
         self.activityIndicatorView.startAnimating()
         
-        DataManager.sharedInstance.loadProductWith(dict: dict!) { (productList) in
-            
+        //DataManager.sharedInstance.loadProductWith(dict: dict!) { (productList) in
+        DataManager.sharedInstance.loadProductWith(dict: dict!, productCodeArray: productCodeArray) { (productList) in
+        
             self.allProducts = productList
             self.setMyFrontCardView(self.popProductViewWithFrame(self.frontCardViewFrame())!)
             self.view.addSubview(self.frontCardView)
@@ -75,11 +78,9 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
         return UIInterfaceOrientationMask.portrait
     }
     
-    
     // This is called when a user didn't fully swipe left or right.
     func viewDidCancelSwipe(_ view: UIView) -> Void{
-        
-        print("You couldn't decide on \(self.currentProduct.productName)");
+
     }
     
     // This is called then a user swipes the view fully left or right.
@@ -88,11 +89,18 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
         // MDCSwipeToChooseView shows "NOPE" on swipes to the left,
         // and "LIKED" on swipes to the right.
         
-        if(wasChosenWith == MDCSwipeDirection.left){
-            print("You didn't like: \(self.currentProduct.productName)")
+        if(wasChosenWith == MDCSwipeDirection.left) {
             
-        }
-        else {
+            let seenProductCode = currentProduct.productCode
+            
+            try! realm.write() {
+                
+                let seenProduct = SeenProduct()
+                seenProduct.productCode = seenProductCode
+                realm.add(seenProduct)
+            }
+            
+        } else {
             let newProductCode = currentProduct.productCode
 
             self.sharedWishList.addNewProductCode(productCode: newProductCode)
@@ -122,9 +130,21 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
                 self.allProductCodes = newRealmProduct
             }
             
-            let colors = realm.objects(Color.self)
-            //print(colors)
-            print("Dit zijn kleuren \(colors.freq())")
+            let seenProductCode = currentProduct.productCode
+            
+            try! realm.write() {
+                
+                let seenProduct = SeenProduct()
+                seenProduct.productCode = seenProductCode
+                realm.add(seenProduct)
+            }
+            
+            ComparisonManager.sharedInstance.makeArrayOfStrings()
+            ComparisonManager.sharedInstance.combineArrays()
+            ComparisonManager.sharedInstance.makeUniqueArray()
+            print("realmString \(ComparisonManager.sharedInstance.seenProductArray)")
+            print("apiString \(DataManager.sharedInstance.productCodeArray)")
+            
         }
         
         if(self.backCardView != nil) {

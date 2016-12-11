@@ -29,6 +29,7 @@
 		765981FD1DF1E3CD008269E1 /* ThirdSubCategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765981FC1DF1E3CD008269E1 /* ThirdSubCategoryTableViewController.swift */; };
 		765DE6C21DF9B6F900BD674D /* AlgorithmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765DE6C11DF9B6F800BD674D /* AlgorithmManager.swift */; };
 		765E89771DF035080025E2A1 /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765E89761DF035080025E2A1 /* CustomCollectionViewCell.swift */; };
+		766378D61DFAC32F0008D9B6 /* ComparisonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766378D51DFAC32F0008D9B6 /* ComparisonManager.swift */; };
 		7687D9001DE2FA34005D6FA5 /* WishListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7687D8FF1DE2FA34005D6FA5 /* WishListTableViewController.swift */; };
 		76A0D4D21DEEA9870069CA8B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A0D4D11DEEA9870069CA8B /* DetailViewController.swift */; };
 		76B28BF21DE74434001340FA /* WishList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B28BF11DE74434001340FA /* WishList.swift */; };
@@ -71,6 +72,7 @@
 		765981FC1DF1E3CD008269E1 /* ThirdSubCategoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdSubCategoryTableViewController.swift; sourceTree = "<group>"; };
 		765DE6C11DF9B6F800BD674D /* AlgorithmManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlgorithmManager.swift; sourceTree = "<group>"; };
 		765E89761DF035080025E2A1 /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
+		766378D51DFAC32F0008D9B6 /* ComparisonManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComparisonManager.swift; sourceTree = "<group>"; };
 		7687D8FE1DE2F2FB005D6FA5 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		7687D8FF1DE2FA34005D6FA5 /* WishListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishListTableViewController.swift; sourceTree = "<group>"; };
 		76A0D4D11DEEA9870069CA8B /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				765DE6C11DF9B6F800BD674D /* AlgorithmManager.swift */,
 				76ECE46F1DEE0830002C66BC /* ProductCode.swift */,
 				76CDEF5C1DDE3F4700C83CF6 /* DataManager.swift */,
+				766378D51DFAC32F0008D9B6 /* ComparisonManager.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -397,6 +400,7 @@
 				7687D9001DE2FA34005D6FA5 /* WishListTableViewController.swift in Sources */,
 				76F32BC71DF6DEC10073038E /* RealmProduct.swift in Sources */,
 				7618E76E1DE6182600796762 /* ChooseProductViewController.swift in Sources */,
+				766378D61DFAC32F0008D9B6 /* ComparisonManager.swift in Sources */,
 				765DE6C21DF9B6F900BD674D /* AlgorithmManager.swift in Sources */,
 				33FEC9311DFC7D84004EDC7A /* CustomTabBarItem.swift in Sources */,
 				765E89771DF035080025E2A1 /* CustomCollectionViewCell.swift in Sources */,

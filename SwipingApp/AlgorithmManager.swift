@@ -12,25 +12,19 @@ import Alamofire
 import RealmSwift
 
 class AlgorithmManager {
-    
-    
+
     static let sharedInstance = AlgorithmManager()
     
-//    let realm = try! Realm()
-//    lazy var realmProductArray: Results<RealmProduct> = { self.realm.objects(RealmProduct.self) }()
-//    var allProductCodes: RealmProduct!
-//    
-//    func getColorDataFromRealm() {
-//        
-//        try! realm.write() {
-//    
-//    let colors = try! Realm().objects(RealmProduct.self)
-//        print(colors)
-//    let array = realmProductArray
-//            
-//        }
-//        
-//    }
+    let realm = try! Realm()
+    lazy var realmProductArray: Results<RealmProduct> = { self.realm.objects(RealmProduct.self) }()
+    lazy var realmColorArray: Results<Color> = { self.realm.objects(Color.self) }()
+    lazy var realmBrandArray: Results<Brand> = { self.realm.objects(Brand.self) }()
+    lazy var realmCategoryArray: Results<Category> = { self.realm.objects(Category.self) }()
+    
+    func colorsFromRealm() {
+    let colors = realm.objects(Color.self)
+    print("Dit zijn kleuren \(colors.freq())")
+    }
     
     
 }
