@@ -98,18 +98,14 @@ class DataManager {
                                     var productColor = " "
                                     let currentVariantProduct = item["currentVariantProduct"] as! Dictionary<String,Any>
                                     let productCodeToCheck = currentVariantProduct["code"] as? String
-                                    //let productCode = currentVariantProduct["code"] as? String
                                     var productCode: String?
                                     
                                     if seenProducts.contains(productCodeToCheck!) {
-                                        print ("Already seen")
+                                        print("Already Seen")
                                     }
                                     else {
-                                        print ("Not seen yet")
                                         productCode = String(describing: productCodeToCheck!)
                                         self.productCodeToCheckArray.append(productCodeToCheck!)
-                                    }
-
                                     
                                     if let color = currentVariantProduct["color"] as? String {
                                         productColor = color }
@@ -140,6 +136,7 @@ class DataManager {
                                         
                                         allProducts.append(newProduct)
                                         self.productCodeArray.append(productCode!)
+                                        }
                                     }
                                 }
                             }
