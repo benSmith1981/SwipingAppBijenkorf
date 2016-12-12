@@ -29,15 +29,12 @@ class DataManager {
     
     func getDataFromAPI () {
         
-        Alamofire.request("https://ceres-catalog.debijenkorf.nl/catalog/navigation/tree?locale=nl_NL&excludeFields=refinementCount,selected,id,url,complete").responseJSON { response in
+        Alamofire.request("\(baseURL)tree?locale=nl_NL&excludeFields=refinementCount,selected,id,url,complete").responseJSON { response in
             
             if let JSON = response.result.value {
                 let jsonDict = JSON as! Dictionary<String, Any>
-                let jsonData = jsonDict["data"] as! Dictionary<String, Any>
-                let jsonCat = jsonData["categories"] as! Dictionary<String, Any>
-                let pageQuery = jsonData["pagination"] as? Dictionary<String, Any>
-                let nextPage = pageQuery?["nextPage"] as? Dictionary<String, Any>
-                let nextPageQuery = nextPage?["query"] as? String
+                let jsonData = jsonDict[jsonKeys.data.rawValue] as! Dictionary<String, Any>
+                let jsonCat = jsonData[jsonKeys.categories.rawValue] as! Dictionary<String, Any>
                 
                 NotificationCenter.default.post(name: notificationName, object: jsonCat)
             }
@@ -53,24 +50,25 @@ class DataManager {
         var allProducts: [Product] = []
         var imageURLArray: [UIImage] = []
         var filterTypeArray: [String] = []
-        let productCategory = dict["name"] as? String
+        let productCategory = dict[jsonKeys.name.rawValue] as? String
         var seenProducts = ComparisonManager.sharedInstance.seenProductArray
         
         
         if let productQuery = dict["query"] as? String {
             
-            Alamofire.request("https://ceres-catalog.debijenkorf.nl/catalog/navigation/show?query=\(productQuery)").responseJSON { response in
+            Alamofire.request("\(baseURL)show?query=\(productQuery)").responseJSON { response in
                 
                 DispatchQueue.global(qos: .background).async {
                     
                     if let productJSON = response.result.value {
                         
                         let jsonDict = productJSON as! Dictionary<String, Any>
-                        let jsonData = jsonDict["data"] as! Dictionary<String, Any>
-                        let jsonQuery = jsonData["products"] as! [[String : AnyObject]]
-                        let pageQuery = jsonData["pagination"] as! Dictionary<String, Any>
-                        let nextPage = pageQuery["nextPage"] as! Dictionary<String, Any>
-                        let nextPageQuery = nextPage["query"] as! String
+                        let jsonData = jsonDict[jsonKeys.data.rawValue] as! Dictionary<String, Any>
+                        let jsonQuery = jsonData[jsonKeys.products.rawValue] as! [[String : AnyObject]]
+                        let pageQuery = jsonData[jsonKeys.pagination.rawValue] as! Dictionary<String, Any>
+                        let nextPage = pageQuery[jsonKeys.nextPage.rawValue] as! Dictionary<String, Any>
+                        let nextPageQuery = nextPage[jsonKeys.query.rawValue] as! String
+                        print("The next page is: \(nextPageQuery)")
                         let encoded = nextPageQuery.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
                         let URLToEncode = nextPageQuery.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlHostAllowed)
                         print(encoded)

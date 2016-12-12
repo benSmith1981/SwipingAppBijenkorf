@@ -10,11 +10,15 @@ import Foundation
 
 let baseURL = "https://ceres-catalog.debijenkorf.nl/catalog/navigation/"
 
-enum jsonKeys {
+enum jsonKeys: String {
     
     case data
+    case name
     case categories
+    case products
     case pagination
     case query
     case nextPage
 }
+
+
