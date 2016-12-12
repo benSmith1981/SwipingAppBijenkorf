@@ -23,6 +23,7 @@ class DataManager {
     lazy var realmSeenProducts: Results<SeenProduct> = { self.realm.objects(SeenProduct.self) }()
     var seenProductCodes: SeenProduct!
     var productCodeArray: [String] = []
+    var productCodeToCheckArray: [String] = []
 
     
     // MARK - Get data for menu categories
@@ -33,10 +34,11 @@ class DataManager {
             
             if let JSON = response.result.value {
                 let jsonDict = JSON as! Dictionary<String, Any>
-                
                 let jsonData = jsonDict["data"] as! Dictionary<String, Any>
-                
                 let jsonCat = jsonData["categories"] as! Dictionary<String, Any>
+                let pageQuery = jsonData["pagination"] as? Dictionary<String, Any>
+                let nextPage = pageQuery?["nextPage"] as? Dictionary<String, Any>
+                let nextPageQuery = nextPage?["query"] as? String
                 
                 NotificationCenter.default.post(name: notificationName, object: jsonCat)
             }
@@ -54,7 +56,7 @@ class DataManager {
         var filterTypeArray: [String] = []
         let productCategory = dict["name"] as? String
         var seenProducts = ComparisonManager.sharedInstance.seenProductArray
-        var productCodeToCheckArray: [String] = []
+        
         
         if let productQuery = dict["query"] as? String {
             
@@ -70,15 +72,10 @@ class DataManager {
                         let pageQuery = jsonData["pagination"] as! Dictionary<String, Any>
                         let nextPage = pageQuery["nextPage"] as! Dictionary<String, Any>
                         let nextPageQuery = nextPage["query"] as! String
-                        //let base = nextPageQuery
-                        //let decoded = base.removingPercentEncoding
-                        //print(decoded)
                         let encoded = nextPageQuery.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
                         let URLToEncode = nextPageQuery.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlHostAllowed)
-                        //(NSCharacterSet.URLFragmentAllowedCharacterSet())!po
                         print(encoded)
-                        //let encodedURL = String(format: nextPageQuery).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-                        //let escapeString - nextPageQuery.
+
                         let filters = jsonData["filters"] as! [[String: AnyObject]]
                         
                         for filterTypes in filters {
@@ -86,7 +83,6 @@ class DataManager {
                             let filterType = filterTypes["name"] as! String
                             if filterType == "Kleur" {
                                 filterTypeArray.append(filterType)
-                                //let refinementType = colorRef
                             }
                         }
                         
@@ -102,19 +98,18 @@ class DataManager {
                                     var productColor = " "
                                     let currentVariantProduct = item["currentVariantProduct"] as! Dictionary<String,Any>
                                     let productCodeToCheck = currentVariantProduct["code"] as? String
-                                    let productCodeString = currentVariantProduct["code"] as? String
-                                    //var productCode = ""
+                                    //let productCode = currentVariantProduct["code"] as? String
+                                    var productCode: String?
                                     
                                     if seenProducts.contains(productCodeToCheck!) {
                                         print ("Already seen")
                                     }
                                     else {
                                         print ("Not seen yet")
-                                        productCodeToCheckArray.append(productCodeToCheck!)
+                                        productCode = String(describing: productCodeToCheck!)
+                                        self.productCodeToCheckArray.append(productCodeToCheck!)
                                     }
- //                                   let productCode = productCodeToCheckArray.index(of: productCodeToCheck)
-                                    
-                                    //let productCode = currentVariantProduct["code"] as? String
+
                                     
                                     if let color = currentVariantProduct["color"] as? String {
                                         productColor = color }
@@ -141,10 +136,10 @@ class DataManager {
                                         
                                         let productImageString = urlString
                                         
-                                        let newProduct = Product(productBrand: productBrand, productName: name, productPrice: Float(productPrice), productImage: productImage!, productCode: productCode, productColor: productColor, productCategory: productCategory!, productImageString: productImageString!)
+                                        let newProduct = Product(productBrand: productBrand, productName: name, productPrice: Float(productPrice), productImage: productImage!, productCode: productCode!, productColor: productColor, productCategory: productCategory!, productImageString: productImageString!)
                                         
                                         allProducts.append(newProduct)
-                                        self.productCodeArray.append(productCode)
+                                        self.productCodeArray.append(productCode!)
                                     }
                                 }
                             }
@@ -284,6 +279,10 @@ class DataManager {
             }
             
         }
+    }
+    
+    func getQueryForNextPage() {
+        
     }
 }
 
