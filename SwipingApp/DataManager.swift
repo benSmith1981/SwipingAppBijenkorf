@@ -24,7 +24,6 @@ class DataManager {
     var seenProductCodes: SeenProduct!
     var productCodeArray: [String] = []
     var productCodeToCheckArray: [String] = []
-
     
     // MARK - Get data for menu categories
     
@@ -44,6 +43,7 @@ class DataManager {
             }
         }
     }
+
     
     // MARK - Get data for ChooseProductViewController
     
@@ -157,63 +157,6 @@ class DataManager {
     
     // MARK - Get data for detailviewcontroller
     
-    func getProductsFromProductCodeAPI () {
-        
-        var allWishListProducts: [AnyObject] = []
-        let productCodeQuery = WishList.sharedInstance.productCodeArray
-        let productCodeString = productCodeQuery.joined(separator: ",")
-        
-        Alamofire.request("https://ceres-catalog.debijenkorf.nl/catalog/product/list?productCodes=\(productCodeString)").responseJSON { response in
-            
-            if let JSON = response.result.value {
-                
-                let jsonArray = JSON as! Dictionary<String, Any>
-                let jsonData = jsonArray["data"] as! [[String : AnyObject]]
-                
-                for item in jsonData {
-                    
-                    let jsonProducts = item["product"] as! [String : AnyObject]
-                    
-                    let productName = jsonProducts["name"] as? String
-                    let brand = jsonProducts["brand"] as? Dictionary<String,Any>
-                    let productBrand = brand?["name"] as? String
-                    
-                    let currentVariantProduct = jsonProducts["currentVariantProduct"] as! Dictionary<String,Any>
-                    let price = currentVariantProduct["sellingPrice"] as! Dictionary<String,Any>
-                    let productPrice = price["value"] as! Float
-                    let productCode = jsonProducts["code"] as? String
-                    var productColor = ""
-                    if let color = currentVariantProduct["color"] as? String {
-                        productColor = color }
-                    else {
-                        productColor = "onbekend" }
-                    
-                    if let imageURL = currentVariantProduct["images"] as? [Dictionary<String,Any>] {
-                        let imageProductURL = imageURL[0]
-                        let frontImageURL = imageProductURL["url"] as! String
-                        let httpURL = "https:\(frontImageURL)"
-                        let webListerString = httpURL.replacingOccurrences(of: "default", with: "web_detail_2x")
-                        let url = URL(string: webListerString)
-                        let data = try? Data(contentsOf: url!)
-                        var productImage : UIImage?
-                        if data != nil {
-                            productImage = UIImage(data:(data)!)
-                        }
-                        
-                        let newWishListProduct = WishListProduct(productBrand: productBrand!, productName: productName!, productPrice: Float(productPrice), productImage: productImage!, productCode: productCode!, productColor: productColor)
-                        
-                        
-                        allWishListProducts.append(newWishListProduct)
-                    }
-                }
-                NotificationCenter.default.post(name: notificationQuery, object: allWishListProducts)
-            }
-            
-        }
-    }
-    
-    // MARK - DetailProduct
-    
     func getDetailProductFromAPI (code: String, completion:@escaping (_ detailProduct: DetailProduct) -> Void) {
         
         var newDetailProduct : DetailProduct?
@@ -278,9 +221,6 @@ class DataManager {
         }
     }
     
-    func getQueryForNextPage() {
-        
-    }
 }
 
 extension Array where Element: Equatable {
