@@ -38,6 +38,7 @@ class DataManager {
                 let pageQuery = jsonData["pagination"] as? Dictionary<String, Any>
                 let nextPage = pageQuery?["nextPage"] as? Dictionary<String, Any>
                 let nextPageQuery = nextPage?["query"] as? String
+                print("Nextpage \(nextPageQuery)")
                 
                 NotificationCenter.default.post(name: notificationName, object: jsonCat)
             }
