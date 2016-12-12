@@ -108,9 +108,7 @@ class DataManager {
                                         print ("Not seen yet")
                                         productCode = String(describing: productCodeToCheck!)
                                         self.productCodeToCheckArray.append(productCodeToCheck!)
-                                    }
 
-                                    
                                     if let color = currentVariantProduct["color"] as? String {
                                         productColor = color }
                                     else {
@@ -140,6 +138,7 @@ class DataManager {
                                         
                                         allProducts.append(newProduct)
                                         self.productCodeArray.append(productCode!)
+                                        }
                                     }
                                 }
                             }
