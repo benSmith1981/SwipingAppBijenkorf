@@ -43,15 +43,14 @@ class DataManager {
     
     // MARK - Get data for ChooseProductViewController
     
-    func loadProductWith(dict: Dictionary<String,Any>, completion:@escaping (_ product: [Product]) -> Void) {
+    func loadProductWith(dict: Dictionary<String,Any>, completion:@escaping productReturnValue) {
         
         ComparisonManager.sharedInstance.makeArrayOfStrings()
         
         var allProducts: [Product] = []
         var imageURLArray: [UIImage] = []
-        var filterTypeArray: [String] = []
         let productCategory = dict[jsonKeys.name.rawValue] as? String
-        var seenProducts = ComparisonManager.sharedInstance.seenProductArray
+        let seenProducts = ComparisonManager.sharedInstance.seenProductArray
         
         
         if let productQuery = dict["query"] as? String {
@@ -69,20 +68,7 @@ class DataManager {
                         let nextPage = pageQuery[jsonKeys.nextPage.rawValue] as! Dictionary<String, Any>
                         let nextPageQuery = nextPage[jsonKeys.query.rawValue] as! String
                         print("The next page is: \(nextPageQuery)")
-                        let encoded = nextPageQuery.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
-                        let URLToEncode = nextPageQuery.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlHostAllowed)
-                        print(encoded)
 
-                        let filters = jsonData["filters"] as! [[String: AnyObject]]
-                        
-                        for filterTypes in filters {
-                            
-                            let filterType = filterTypes["name"] as! String
-                            if filterType == "Kleur" {
-                                filterTypeArray.append(filterType)
-                            }
-                        }
-                        
                         for item in jsonQuery {
                             
                             if let name = item["name"] as? String {
@@ -139,12 +125,108 @@ class DataManager {
                             }
                             DispatchQueue.main.async {
                                 if allProducts.count == 2 {
-                                    completion(allProducts)
+                                    completion(allProducts, nextPageQuery)
                                 }
                             }
                         }
                         DispatchQueue.main.async {
-                            completion(allProducts)
+                            completion(allProducts, nextPageQuery)
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    func loadNextPage(dict: Dictionary<String,Any>, nextPageQuery: String, completion:@escaping productReturnValue) {
+    
+        ComparisonManager.sharedInstance.makeArrayOfStrings()
+        
+        var allProducts: [Product] = []
+        var imageURLArray: [UIImage] = []
+        let productCategory = dict[jsonKeys.name.rawValue] as? String
+        let seenProducts = ComparisonManager.sharedInstance.seenProductArray
+        
+        
+        if (dict["query"] as? String) != nil {
+            
+            print("\(baseURL)show?query=\(nextPageQuery)")
+            Alamofire.request("\(baseURL)show?query=\(nextPageQuery)").responseJSON { response in
+                
+                DispatchQueue.global(qos: .background).async {
+                    
+                    if let productJSON = response.result.value {
+                        
+                        let jsonDict = productJSON as! Dictionary<String, Any>
+                        let jsonData = jsonDict[jsonKeys.data.rawValue] as! Dictionary<String, Any>
+                        let jsonQuery = jsonData[jsonKeys.products.rawValue] as! [[String : AnyObject]]
+                        let pageQuery = jsonData[jsonKeys.pagination.rawValue] as! Dictionary<String, Any>
+                        let nextPage = pageQuery[jsonKeys.nextPage.rawValue] as! Dictionary<String, Any>
+                        let nextPageQuery = nextPage[jsonKeys.query.rawValue] as! String
+                        print("The next page is: \(nextPageQuery)")
+                        
+                        for item in jsonQuery {
+                            
+                            if let name = item["name"] as? String {
+                                let brand = item["brand"] as? Dictionary<String,Any>
+                                
+                                if let productBrand = brand?["name"] as? String {
+                                    
+                                    let sellingPrice = item["sellingPrice"] as! Dictionary<String,Any>
+                                    let productPrice = sellingPrice["value"] as! Double
+                                    var productColor = " "
+                                    let currentVariantProduct = item["currentVariantProduct"] as! Dictionary<String,Any>
+                                    let productCodeToCheck = currentVariantProduct["code"] as? String
+                                    var productCode: String?
+                                    
+                                    if seenProducts.contains(productCodeToCheck!) {
+                                        print("Already Seen")
+                                    }
+                                    else {
+                                        productCode = String(describing: productCodeToCheck!)
+                                        self.productCodeToCheckArray.append(productCodeToCheck!)
+                                        
+                                        if let color = currentVariantProduct["color"] as? String {
+                                            productColor = color }
+                                        else {
+                                            productColor = "onbekend" }
+                                        if let imageURL = currentVariantProduct["images"] as? [Dictionary<String,Any>] {
+                                            let imageProductURL = imageURL[0]
+                                            let frontImageURL = imageProductURL["url"] as! String
+                                            
+                                            let httpURL = "https:\(frontImageURL)"
+                                            let url = URL(string: httpURL)
+                                            var data = try? Data(contentsOf: url!)
+                                            
+                                            let webListerString = httpURL.replacingOccurrences(of: "default", with: "web_lister_2x")
+                                            let urlString = String(webListerString)
+                                            var productImage : UIImage?
+                                            data = try? Data(contentsOf: URL(string: urlString!)!)
+                                            if data != nil {
+                                                productImage = UIImage(data:(data)!)
+                                                
+                                                
+                                                imageURLArray.append(productImage!)
+                                            }
+                                            
+                                            let productImageString = urlString
+                                            
+                                            let newProduct = Product(productBrand: productBrand, productName: name, productPrice: Float(productPrice), productImage: productImage!, productCode: productCode!, productColor: productColor, productCategory: productCategory!, productImageString: productImageString!)
+                                            
+                                            allProducts.append(newProduct)
+                                            self.productCodeArray.append(productCode!)
+                                        }
+                                    }
+                                }
+                            }
+                            DispatchQueue.main.async {
+                                if allProducts.count == 2 {
+                                    completion(allProducts, nextPageQuery)
+                                }
+                            }
+                        }
+                        DispatchQueue.main.async {
+                            completion(allProducts, nextPageQuery)
                         }
                     }
                 }

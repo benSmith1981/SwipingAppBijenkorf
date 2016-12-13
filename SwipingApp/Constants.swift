@@ -10,6 +10,8 @@ import Foundation
 
 let baseURL = "https://ceres-catalog.debijenkorf.nl/catalog/navigation/"
 
+typealias productReturnValue = ([Product], String) -> Void
+
 enum jsonKeys: String {
     
     case data

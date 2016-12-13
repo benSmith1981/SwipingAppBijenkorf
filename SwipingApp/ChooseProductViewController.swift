@@ -23,11 +23,9 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
     var frontCardView: ChooseProductView!
     var backCardView: ChooseProductView!
     var dict: Dictionary<String,Any>?
+    var nextPage: String?
     var productImageURL = UIImageView()
     var allProducts: [Product] = []
-    var preferredProduct: [PreferredProduct] = []
-    var currentPreferredProduct = PreferredProduct.self
-    var prefDict: Dictionary<String, Int>?
     var colorArray: [String] = []
     var productCodeArray: [String] = []
    
@@ -48,24 +46,40 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
         
         self.activityIndicatorView.startAnimating()
 
-        DataManager.sharedInstance.loadProductWith(dict: dict!) { (productList) in
-        
-            self.allProducts = productList
-            self.setMyFrontCardView(self.popProductViewWithFrame(self.frontCardViewFrame())!)
-            self.view.addSubview(self.frontCardView)
-            self.backCardView = self.popProductViewWithFrame(self.backCardViewFrame())!
-            self.view.insertSubview(self.backCardView, belowSubview: self.frontCardView)
-            self.constructNopeButton()
-            self.constructLikedButton()
-        }
+        if let dict = dict {
+            DataManager.sharedInstance.loadProductWith(dict: dict) { (productList, nextPage) in
+                guard productList.count > 0 else {
+                    DataManager.sharedInstance.loadNextPage(dict: dict, nextPageQuery: nextPage, completion: { (productList) in
+                        
+                        let newProductList = productList.0
+                        self.allProducts = newProductList
+                        self.setMyFrontCardView(self.popProductViewWithFrame(self.frontCardViewFrame())!)
+                        self.view.addSubview(self.frontCardView)
+                        if let productView = self.popProductViewWithFrame(self.backCardViewFrame()) {
+                        self.backCardView = productView
+                        self.view.insertSubview(self.backCardView, belowSubview: self.frontCardView)
+                        self.constructNopeButton()
+                        self.constructLikedButton()
+                        }
+                        })
+                    return
+                    }
+                self.allProducts = productList
+                self.setMyFrontCardView(self.popProductViewWithFrame(self.frontCardViewFrame())!)
+                self.view.addSubview(self.frontCardView)
+                if let productView = self.popProductViewWithFrame(self.backCardViewFrame()) {
+                    self.backCardView = productView
+                    self.view.insertSubview(self.backCardView, belowSubview: self.frontCardView)
+                    self.constructNopeButton()
+                    self.constructLikedButton()
+                    }
+                    return
+                }
+            }
         self.activityIndicatorView.stopAnimating()
         self.activityIndicatorView.hidesWhenStopped = true
         print("Realm config \(Realm.Configuration.defaultConfiguration)")
     }
-    
-//    func back(sender: UIBarButtonItem) {
-//        ComparisonManager.sharedInstance.unSeenProductArray.removeAll()
-//    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
