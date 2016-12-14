@@ -35,14 +35,15 @@ class BasketWebViewController: UIViewController {
         var basketProductCodes: [String] = []
         
         for productCode in self.realmBasketArray {
-            let productCode = productCode.productCode
+            var productCode = productCode.productCode
+            productCode += "%7C1"
             basketProductCodes.append(productCode)
         }
         
         let productCodeQuery = basketProductCodes
         let productCodeString = productCodeQuery.joined(separator: ",")
         
-        let url = URL(string: "https://www.debijenkorf.nl/page/addtobasket?products=\(productCodeString)%7C1")
+        let url = URL(string: "https://www.debijenkorf.nl/page/addtobasket?products=\(productCodeString)")
         
         let request = URLRequest(url: url!, cachePolicy: URLRequest.CachePolicy.reloadRevalidatingCacheData, timeoutInterval: 5.0)
         basketWebView.loadRequest(request)

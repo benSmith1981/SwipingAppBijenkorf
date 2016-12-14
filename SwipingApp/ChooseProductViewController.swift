@@ -1,3 +1,4 @@
+
 import UIKit
 import MDCSwipeToChoose
 import Alamofire
@@ -44,39 +45,21 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(infoButton), name: note.name, object: nil)
         
         self.activityIndicatorView.startAnimating()
-
-        if let dict = dict {
-            DataManager.sharedInstance.loadProductWith(dict: dict) { (productList, nextPageURL) in
-                guard productList.count > 0 else {
-                    DataManager.sharedInstance.loadNextPage(dict: dict, nextPageURL: nextPageURL, completion: { (tuple) in
-                        
-                        let newProductList = tuple.0
-                        let newProductQuery = tuple.1
-                        
-                        self.allProducts = newProductList
-                        self.setMyFrontCardView(self.popProductViewWithFrame(self.frontCardViewFrame())!)
-                        self.view.addSubview(self.frontCardView)
-                        if let productView = self.popProductViewWithFrame(self.backCardViewFrame()) {
-                        self.backCardView = productView
-                        self.view.insertSubview(self.backCardView, belowSubview: self.frontCardView)
-                        self.constructNopeButton()
-                        self.constructLikedButton()
-                        }
-                        })
-                    return
-                    }
-                self.allProducts = productList
-                self.setMyFrontCardView(self.popProductViewWithFrame(self.frontCardViewFrame())!)
-                self.view.addSubview(self.frontCardView)
-                if let productView = self.popProductViewWithFrame(self.backCardViewFrame()) {
-                    self.backCardView = productView
-                    self.view.insertSubview(self.backCardView, belowSubview: self.frontCardView)
-                    self.constructNopeButton()
-                    self.constructLikedButton()
-                    }
-                    return
+        
+        let firstQuery = DataManager.sharedInstance.getFirstProductQuery(dict: dict!)
+        
+            DataManager.sharedInstance.loadProductWith(query: firstQuery) { (productList, nextPageURL) in
+            
+                for everyItem in productList {
+                    self.allProducts.append(everyItem)
                 }
+                self.createCardsFromProductList()
+                
+                let nextQuery = self.encodedNextQuery(query: nextPageURL)
+                self.nextPageURL = nextQuery
+                return
             }
+        
         self.activityIndicatorView.stopAnimating()
         self.activityIndicatorView.hidesWhenStopped = true
         print("Realm config \(Realm.Configuration.defaultConfiguration)")
@@ -87,7 +70,6 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
         self.setScreenName(name: navigationItem.title!)
     }
     
-
     func stopSpinning(sender: AnyObject) {
         activityIndicatorView.stopAnimating()
     }
@@ -139,14 +121,11 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
                 newProductColor.productColor = self.currentProduct.productColor
                 let newProductBrand = Brand()
                 newProductBrand.productBrand = self.currentProduct.productBrand
-                let newProductCat = Category()
-                newProductCat.productCategory = self.currentProduct.productCategory
                 let basketProductCode = BasketProduct()
                 basketProductCode.productCode = self.currentProduct.productCode
                 
                 newRealmProduct.color.append(newProductColor)
                 newRealmProduct.brand.append(newProductBrand)
-                newRealmProduct.category.append(newProductCat)
                 newRealmProduct.basketProducts.append(basketProductCode)
                 realm.add(newRealmProduct)
                 self.allProductCodes = newRealmProduct
@@ -246,6 +225,17 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
         self.frontCardView.mdc_swipe(MDCSwipeDirection.right)
     }
     
+    func createCardsFromProductList() {
+        self.setMyFrontCardView(self.popProductViewWithFrame(self.frontCardViewFrame())!)
+        self.view.addSubview(self.frontCardView)
+        if let productView = self.popProductViewWithFrame(self.backCardViewFrame()) {
+            self.backCardView = productView
+            self.view.insertSubview(self.backCardView, belowSubview: self.frontCardView)
+            self.constructNopeButton()
+            self.constructLikedButton()
+        }
+    }
+    
     
     // MARK - Misc
     
@@ -266,5 +256,12 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
     func infoButton() {
         print("You pressed the info button")
         performSegue(withIdentifier: "swipeToDetail", sender: self)
+    }
+    
+    func encodedNextQuery(query: String) -> String {
+        let encodedURL = query.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
+        let encodedURLMinusEqual = encodedURL?.replacingOccurrences(of: "=", with: "%3D")
+        let encodedURLMinusAnd = encodedURLMinusEqual?.replacingOccurrences(of: "&", with: "%26")
+        return encodedURLMinusAnd!
     }
 }

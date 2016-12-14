@@ -19,23 +19,11 @@ class WishListTableViewController: UITableViewController, UITabBarControllerDele
     lazy var realmCategoryArray: Results<Category> = { self.realm.objects(Category.self) }()
     lazy var realmBasketArray: Results<BasketProduct> = { self.realm.objects(BasketProduct.self) }()
     lazy var realmAddToBasketArray: Results<AddToBasketProduct> = { self.realm.objects(AddToBasketProduct.self) }()
-    
     var allProductCodes: RealmProduct!
     var currentProduct: Product!
     var sharedWishList = WishList.sharedInstance
     var wishListProductArray = [WishListProduct]()
     
-    @IBAction func toggleEditingMode(_ sender: AnyObject) {
-        
-        if isEditing {
-            sender.setTitle("Bewerk", for: .normal)
-            setEditing(false, animated: true)
-        } else {
-            sender.setTitle("Klaar", for: .normal)
-            setEditing(true, animated: true)
-        }
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -53,7 +41,6 @@ class WishListTableViewController: UITableViewController, UITabBarControllerDele
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "wishListCell", for: indexPath) as! CustomWishListTableViewCell
-        
         let product = self.realmProductArray[indexPath.row]
         let priceOfProduct = product.productPrice
         let realmImage = UIImage(data: product.productImage as Data)
@@ -87,7 +74,7 @@ class WishListTableViewController: UITableViewController, UITabBarControllerDele
         })
         delete.backgroundColor = UIColor.red
         
-        let addToBasket = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "Add" , handler: { (action: UITableViewRowAction!, indexPath: IndexPath!) -> Void in
+        let addToBasket = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "Toevoegen" , handler: { (action: UITableViewRowAction!, indexPath: IndexPath!) -> Void in
             
             let product = self.realmProductArray[indexPath.row]
             var basketProductCodes: [String] = []
@@ -137,27 +124,12 @@ class WishListTableViewController: UITableViewController, UITabBarControllerDele
         return newImage
     }
 
-
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = realmProductArray[indexPath.row]
-        
         let detailViewController = storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
         detailViewController.currentProductCode = item.productCode
         
         self.navigationController?.pushViewController(detailViewController, animated: true)
     }
-
-
 }
 
-//try! realm.write() {
-//    
-//    let realmURL = URL(string: currentProduct.productImageString)
-//    let realmImage = NSData(contentsOf: realmURL!)
-//    
-//    let newRealmProductToBasket = RealmBasketProduct()
-//    
-//    newRealmProductToBasket.productCode = self.currentProduct.productCode
-//    
-//    self.allProductCodes = newRealmProductToBasket
-//}

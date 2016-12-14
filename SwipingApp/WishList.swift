@@ -13,7 +13,6 @@ class WishList {
     
     var productCodeArray: [String] = []
     var allProducts = [WishListProduct]()
-    
     static let sharedInstance = WishList()
     
     func addNewProductCode(productCode: String) {

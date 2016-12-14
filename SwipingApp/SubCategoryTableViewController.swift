@@ -15,7 +15,6 @@ class SubCategoryTableViewController: UITableViewController {
     var dict = Dictionary<String, Any>()
     var subCatArray = [Dictionary<String, Any>]()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
