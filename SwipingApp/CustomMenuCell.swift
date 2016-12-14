@@ -12,7 +12,9 @@ import UIKit
 class CustomMenuCell: UITableViewCell {
     
     @IBOutlet var menuLabel: UILabel!
-    
+    @IBOutlet var subCatMenuLabel: UILabel!
+    @IBOutlet var secondSubCatMenuLabel: UILabel!
+    @IBOutlet var thirdSubCatMenuLabel: UILabel!
     
     
 }

@@ -38,9 +38,11 @@ class MainCategoryTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomMenuCell
         var dictObj = self.dictArray[indexPath.row]
-        cell.textLabel?.text = dictObj["name"] as! String?
+        let categoryString = dictObj["name"] as! String
+        cell.menuLabel?.text? = categoryString.lowercased()
+        self.tableView.separatorStyle = .none
         
         return cell
     }

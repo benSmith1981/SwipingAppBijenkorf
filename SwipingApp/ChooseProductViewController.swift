@@ -16,7 +16,6 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
     
     var allProductCodes: RealmProduct!
     var sharedWishList = WishList.sharedInstance
-    var preferredProductList = PreferredProductList.sharedInstance
     let ChooseProductButtonHorizontalPadding: CGFloat = 80.0
     let ChooseProductButtonVerticalPadding: CGFloat = 20.0
     var currentProduct: Product!
@@ -142,10 +141,13 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
                 newProductBrand.productBrand = self.currentProduct.productBrand
                 let newProductCat = Category()
                 newProductCat.productCategory = self.currentProduct.productCategory
+                let basketProductCode = BasketProduct()
+                basketProductCode.productCode = self.currentProduct.productCode
                 
                 newRealmProduct.color.append(newProductColor)
                 newRealmProduct.brand.append(newProductBrand)
                 newRealmProduct.category.append(newProductCat)
+                newRealmProduct.basketProducts.append(basketProductCode)
                 realm.add(newRealmProduct)
                 self.allProductCodes = newRealmProduct
             }

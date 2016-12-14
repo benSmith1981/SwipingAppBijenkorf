@@ -17,15 +17,13 @@ class WishListTableViewController: UITableViewController, UITabBarControllerDele
     lazy var realmColorArray: Results<Color> = { self.realm.objects(Color.self) }()
     lazy var realmBrandArray: Results<Brand> = { self.realm.objects(Brand.self) }()
     lazy var realmCategoryArray: Results<Category> = { self.realm.objects(Category.self) }()
-
-    var allProductCodes: RealmProduct!
-
-    lazy var realmProductArrayToBasket: Results<RealmBasketProduct> = { self.realm.objects(RealmBasketProduct.self)}()
-    var allProductCodesToBasket: RealmBasketProduct!
+    lazy var realmBasketArray: Results<BasketProduct> = { self.realm.objects(BasketProduct.self) }()
+    lazy var realmAddToBasketArray: Results<AddToBasketProduct> = { self.realm.objects(AddToBasketProduct.self) }()
     
+    var allProductCodes: RealmProduct!
+    var currentProduct: Product!
     var sharedWishList = WishList.sharedInstance
     var wishListProductArray = [WishListProduct]()
-    var currentProduct: Product!
     
     @IBAction func toggleEditingMode(_ sender: AnyObject) {
         
@@ -69,26 +67,62 @@ class WishListTableViewController: UITableViewController, UITabBarControllerDele
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]?  {
+        
+        let delete = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "Verwijderen" , handler: { (action:UITableViewRowAction!, indexPath: IndexPath!) -> Void in
             
-            let backImage = UIImageView(image: UIImage(named: "remove"))
-            backImage.contentMode = .scaleAspectFit
-            //remove.backgroundColor = UIColor(patternImage: backImage.image)!
-            
-            try! realm.write {
-                let item = realmProductArray[indexPath.row]
-                realm.delete(item)
-                let color = realmColorArray[indexPath.row]
-                realm.delete(color)
-                let brand = realmBrandArray[indexPath.row]
-                realm.delete(brand)
-                let category = realmCategoryArray[indexPath.row]
-                realm.delete(category)
+            try! self.realm.write() {
+                let item = self.realmProductArray[indexPath.row]
+                self.realm.delete(item)
+                let color = self.realmColorArray[indexPath.row]
+                self.realm.delete(color)
+                let brand = self.realmBrandArray[indexPath.row]
+                self.realm.delete(brand)
+                let category = self.realmCategoryArray[indexPath.row]
+                self.realm.delete(category)
+                let basketProduct = self.realmBasketArray[indexPath.row]
+                self.realm.delete(basketProduct)
             }
             self.tableView.reloadData()
-        }
+        })
+        delete.backgroundColor = UIColor.red
         
+        let addToBasket = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "Add" , handler: { (action: UITableViewRowAction!, indexPath: IndexPath!) -> Void in
+            
+            let product = self.realmProductArray[indexPath.row]
+            var basketProductCodes: [String] = []
+            
+            for productCode in self.realmBasketArray {
+                let productCode = product.productCode
+                basketProductCodes.append(productCode)
+            }
+            let basket = basketProductCodes[indexPath.row]
+            
+            try! self.realm.write() {
+                
+                let basketProduct = AddToBasketProduct()
+                basketProduct.productCode = basket
+                self.realm.add(basketProduct)
+            }
+            
+            try! self.realm.write() {
+                let item = self.realmProductArray[indexPath.row]
+                self.realm.delete(item)
+                let color = self.realmColorArray[indexPath.row]
+                self.realm.delete(color)
+                let brand = self.realmBrandArray[indexPath.row]
+                self.realm.delete(brand)
+                let category = self.realmCategoryArray[indexPath.row]
+                self.realm.delete(category)
+                let basketProduct = self.realmBasketArray[indexPath.row]
+                self.realm.delete(basketProduct)
+            }
+            
+            self.tableView.reloadData()
+        })
+        addToBasket.backgroundColor = UIColor.green
+        
+        return [delete, addToBasket]
     }
     
     func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage? {
