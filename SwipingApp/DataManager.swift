@@ -66,8 +66,8 @@ class DataManager {
                         let jsonQuery = jsonData[jsonKeys.products.rawValue] as! [[String : AnyObject]]
                         let pageQuery = jsonData[jsonKeys.pagination.rawValue] as! Dictionary<String, Any>
                         let nextPage = pageQuery[jsonKeys.nextPage.rawValue] as! Dictionary<String, Any>
-                        let nextPageQuery = nextPage[jsonKeys.query.rawValue] as! String
-                        print("The next page is: \(nextPageQuery)")
+                        let nextPageURL = nextPage[jsonKeys.query.rawValue] as! String
+                        print("The next page is: \(nextPageURL)")
 
                         for item in jsonQuery {
                             
@@ -125,12 +125,12 @@ class DataManager {
                             }
                             DispatchQueue.main.async {
                                 if allProducts.count == 2 {
-                                    completion(allProducts, nextPageQuery)
+                                    completion(allProducts, nextPageURL)
                                 }
                             }
                         }
                         DispatchQueue.main.async {
-                            completion(allProducts, nextPageQuery)
+                            completion(allProducts, nextPageURL)
                         }
                     }
                 }
@@ -138,7 +138,7 @@ class DataManager {
         }
     }
     
-    func loadNextPage(dict: Dictionary<String,Any>, nextPageQuery: String, completion:@escaping productReturnValue) {
+    func loadNextPage(dict: Dictionary<String,Any>, nextPageURL: String, completion:@escaping productReturnValue) {
     
         ComparisonManager.sharedInstance.makeArrayOfStrings()
         
@@ -147,11 +147,17 @@ class DataManager {
         let productCategory = dict[jsonKeys.name.rawValue] as? String
         let seenProducts = ComparisonManager.sharedInstance.seenProductArray
         
-        
         if (dict["query"] as? String) != nil {
             
-            print("\(baseURL)show?query=\(nextPageQuery)")
-            Alamofire.request("\(baseURL)show?query=\(nextPageQuery)").responseJSON { response in
+            let url = nextPageURL
+            
+            let encodedURL = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
+            let encodeMinusEqual = encodedURL?.replacingOccurrences(of: "=", with: "%3D")
+            let encodeMinusAnd = encodeMinusEqual?.replacingOccurrences(of: "&", with: "%26")
+        
+            
+            print("\(baseURL)show?query=\(encodeMinusAnd!)")
+            Alamofire.request("\(baseURL)show?query=\(encodeMinusAnd!)").responseJSON { response in
                 
                 DispatchQueue.global(qos: .background).async {
                     
@@ -162,8 +168,8 @@ class DataManager {
                         let jsonQuery = jsonData[jsonKeys.products.rawValue] as! [[String : AnyObject]]
                         let pageQuery = jsonData[jsonKeys.pagination.rawValue] as! Dictionary<String, Any>
                         let nextPage = pageQuery[jsonKeys.nextPage.rawValue] as! Dictionary<String, Any>
-                        let nextPageQuery = nextPage[jsonKeys.query.rawValue] as! String
-                        print("The next page is: \(nextPageQuery)")
+                        let nextPageURL = nextPage[jsonKeys.query.rawValue] as! String
+                        print("The next page is: \(nextPageURL)")
                         
                         for item in jsonQuery {
                             
@@ -215,18 +221,24 @@ class DataManager {
                                             
                                             allProducts.append(newProduct)
                                             self.productCodeArray.append(productCode!)
+                                            
+                                            
                                         }
                                     }
                                 }
                             }
                             DispatchQueue.main.async {
                                 if allProducts.count == 2 {
-                                    completion(allProducts, nextPageQuery)
+                                    completion(allProducts, nextPageURL)
                                 }
-                            }
+                                }
+                        
                         }
                         DispatchQueue.main.async {
-                            completion(allProducts, nextPageQuery)
+                            completion(allProducts, nextPageURL)
+                            if allProducts.count == 0 {
+                                
+                            }
                         }
                     }
                 }

@@ -23,7 +23,7 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
     var frontCardView: ChooseProductView!
     var backCardView: ChooseProductView!
     var dict: Dictionary<String,Any>?
-    var nextPage: String?
+    var nextPageURL: String?
     var productImageURL = UIImageView()
     var allProducts: [Product] = []
     var colorArray: [String] = []
@@ -47,11 +47,13 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
         self.activityIndicatorView.startAnimating()
 
         if let dict = dict {
-            DataManager.sharedInstance.loadProductWith(dict: dict) { (productList, nextPage) in
+            DataManager.sharedInstance.loadProductWith(dict: dict) { (productList, nextPageURL) in
                 guard productList.count > 0 else {
-                    DataManager.sharedInstance.loadNextPage(dict: dict, nextPageQuery: nextPage, completion: { (productList) in
+                    DataManager.sharedInstance.loadNextPage(dict: dict, nextPageURL: nextPageURL, completion: { (tuple) in
                         
-                        let newProductList = productList.0
+                        let newProductList = tuple.0
+                        let newProductQuery = tuple.1
+                        
                         self.allProducts = newProductList
                         self.setMyFrontCardView(self.popProductViewWithFrame(self.frontCardViewFrame())!)
                         self.view.addSubview(self.frontCardView)
