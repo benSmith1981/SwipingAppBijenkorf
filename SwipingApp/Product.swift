@@ -17,10 +17,9 @@ class Product: NSObject {
     var productImage: UIImage
     var productCode: String
     var productColor: String
-    var productCategory: String
     var productImageString: String
     
-    init(productBrand: String, productName: String, productPrice: Float, productImage: UIImage, productCode: String, productColor: String, productCategory: String, productImageString: String) {
+    init(productBrand: String, productName: String, productPrice: Float, productImage: UIImage, productCode: String, productColor: String,  productImageString: String) {
         
         self.productBrand = productBrand
         self.productName = productName
@@ -28,7 +27,6 @@ class Product: NSObject {
         self.productImage = productImage
         self.productCode = productCode
         self.productColor = productColor
-        self.productCategory = productCategory
         self.productImageString = productImageString
 
         
