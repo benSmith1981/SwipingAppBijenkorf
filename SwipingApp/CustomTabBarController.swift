@@ -29,6 +29,7 @@ class CustomTabBarViewController: UITabBarController, CustomTabBarDataSource, Cu
     // MARK: - CustomTabBarDataSource
     
     func tabBarItemsInCustomTabBar(_ tabBarView: CustomTabBar) -> [UITabBarItem] {
+        
         return tabBar.items!
     }
     

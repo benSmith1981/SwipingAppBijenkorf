@@ -22,8 +22,8 @@ class DataManager {
     var allProductCodes: RealmProduct!
     lazy var realmSeenProducts: Results<SeenProduct> = { self.realm.objects(SeenProduct.self) }()
     var seenProductCodes: SeenProduct!
-    var productCodeArray: [String] = []
-    var productCodeToCheckArray: [String] = []
+//    var productCodeArray: [String] = []
+//    var productCodeToCheckArray: [String] = []
     
     // MARK - Get data for menu categories
     
@@ -71,58 +71,20 @@ class DataManager {
                         print("The next page is: \(nextPageURL)")
 
                         for item in jsonQuery {
+                            // if we have not seen this product yet, 
+                            let currentVariantProduct = item["currentVariantProduct"] as! Dictionary<String,Any>
+                            let productCodeToCheck = currentVariantProduct["code"] as! String
+                            var productCode: String?
                             
-                            if let name = item["name"] as? String {
-                                let brand = item["brand"] as? Dictionary<String,Any>
+                            if seenProducts.contains(productCodeToCheck) {
+                                print("Already Seen")
+                            } else {
+                                // create the product
+                                let product = Product(dict: item)
                                 
-                                if let productBrand = brand?["name"] as? String {
-                                    
-                                    let sellingPrice = item["sellingPrice"] as! Dictionary<String,Any>
-                                    let productPrice = sellingPrice["value"] as! Double
-                                    var productColor = " "
-                                    let currentVariantProduct = item["currentVariantProduct"] as! Dictionary<String,Any>
-                                    let productCodeToCheck = currentVariantProduct["code"] as? String
-                                    var productCode: String?
-                                    
-                                    if seenProducts.contains(productCodeToCheck!) {
-                                        print("Already Seen")
-                                    }
-                                    else {
-                                        productCode = String(describing: productCodeToCheck!)
-                                        self.productCodeToCheckArray.append(productCodeToCheck!)
-                                    
-                                    if let color = currentVariantProduct["color"] as? String {
-                                        productColor = color }
-                                    else {
-                                        productColor = "onbekend" }
-                                    if let imageURL = currentVariantProduct["images"] as? [Dictionary<String,Any>] {
-                                        let imageProductURL = imageURL[0]
-                                        let frontImageURL = imageProductURL["url"] as! String
-                                        
-                                        let httpURL = "https:\(frontImageURL)"
-                                        let url = URL(string: httpURL)
-                                        var data = try? Data(contentsOf: url!)
-                                        
-                                        let webListerString = httpURL.replacingOccurrences(of: "default", with: "web_lister_2x")
-                                        let urlString = String(webListerString)
-                                        var productImage : UIImage?
-                                        data = try? Data(contentsOf: URL(string: urlString!)!)
-                                        if data != nil {
-                                            productImage = UIImage(data:(data)!)
-                                            
-                                            
-                                            imageURLArray.append(productImage!)
-                                        }
-                                        
-                                        let productImageString = urlString
-                                        
-                                        let newProduct = Product(productBrand: productBrand, productName: name, productPrice: Float(productPrice), productImage: productImage!, productCode: productCode!, productColor: productColor, productImageString: productImageString!)
-                                        
-                                        allProducts.append(newProduct)
-                                        self.productCodeArray.append(productCode!)
-                                        }
-                                    }
-                                }
+                                allProducts.append(product)
+//                                self.productCodeArray.append(productCode!)
+
                             }
 //                            DispatchQueue.main.async {
 //                                if allProducts.count == 2 {
@@ -155,6 +117,8 @@ class DataManager {
                 let jsonData = jsonArray["data"] as! [[String : AnyObject]]
                 
                 for item in jsonData {
+//                    let product = Product(dict: item)
+                    
                     var detailProductDescription = ""
                     let jsonProducts = item["product"] as! [String : AnyObject]
                     

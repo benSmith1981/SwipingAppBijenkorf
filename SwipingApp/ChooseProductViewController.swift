@@ -15,7 +15,7 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
     let realm = try! Realm()
     lazy var realmProductArray: Results<RealmProduct> = { self.realm.objects(RealmProduct.self) }()
     
-    var allProductCodes: RealmProduct!
+//    var allProductCodes: RealmProduct!
     var sharedWishList = WishList.sharedInstance
     let ChooseProductButtonHorizontalPadding: CGFloat = 80.0
     let ChooseProductButtonVerticalPadding: CGFloat = 20.0
@@ -48,17 +48,28 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
         
         let firstQuery = DataManager.sharedInstance.getFirstProductQuery(dict: dict!)
         
-            DataManager.sharedInstance.loadProductWith(query: firstQuery) { (productList, nextPageURL) in
+        DataManager.sharedInstance.loadProductWith(query: firstQuery) { (productList, nextPageURL) in
             
-                for everyItem in productList {
-                    self.allProducts.append(everyItem)
-                }
-                self.createCardsFromProductList()
-                
+            for everyItem in productList {
+                self.allProducts.append(everyItem)
+            }
+            // FIXME: what happens if we TWICE get no data from the datamanager???
+            if productList.count < 2 {
                 let nextQuery = self.encodedNextQuery(query: nextPageURL)
                 self.nextPageURL = nextQuery
-                return
+                DataManager.sharedInstance.loadProductWith(query: nextQuery) { (productList, nextPageURL) in
+                    for everyItem in productList {
+                        self.allProducts.append(everyItem)
+                    }
+                    self.createCardsFromProductList()
+
+                }
+            } else {
+                self.createCardsFromProductList()
             }
+            
+            return
+        }
         
         self.activityIndicatorView.stopAnimating()
         self.activityIndicatorView.hidesWhenStopped = true
@@ -107,7 +118,7 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
             self.sharedWishList.addNewProductCode(productCode: newProductCode)
             
             try! realm.write() {
-                
+//                 let newRealmProduct = RealmProduct(currentProduct)
                 let realmURL = URL(string: currentProduct.productImageString)
                 let realmImage = NSData(contentsOf: realmURL!)
                 
@@ -128,13 +139,12 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
                 newRealmProduct.brand.append(newProductBrand)
                 newRealmProduct.basketProducts.append(basketProductCode)
                 realm.add(newRealmProduct)
-                self.allProductCodes = newRealmProduct
+//                self.allProductCodes = newRealmProduct
             }
             
             let seenProductCode = currentProduct.productCode
             
             try! realm.write() {
-                
                 let seenProduct = SeenProduct()
                 seenProduct.productCode = seenProductCode
                 realm.add(seenProduct)
@@ -226,6 +236,7 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
     }
     
     func createCardsFromProductList() {
+        
         self.setMyFrontCardView(self.popProductViewWithFrame(self.frontCardViewFrame())!)
         self.view.addSubview(self.frontCardView)
         if let productView = self.popProductViewWithFrame(self.backCardViewFrame()) {

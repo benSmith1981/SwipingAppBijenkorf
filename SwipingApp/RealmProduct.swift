@@ -24,6 +24,10 @@ class RealmProduct: Object {
     let seenProducts = List<SeenProduct>()
     let basketProducts = List<BasketProduct>()
     let addToBasketProducts = List<AddToBasketProduct>()
+    
+//    init (product: Product) {
+//        color = product.productColor
+//    }
 }
 
 class Color: Object {
@@ -40,6 +44,11 @@ class Category: Object {
 
 class SeenProduct: Object {
     dynamic var productCode = ""
+    
+    convenience init (productCode:String) {
+        self.init()
+        self.productCode = productCode
+    }
 }
 
 class BasketProduct: Object {

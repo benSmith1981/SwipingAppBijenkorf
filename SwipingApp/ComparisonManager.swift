@@ -15,8 +15,8 @@ class ComparisonManager {
     let realm = try! Realm()
     lazy var realmSeenProductArray: Results<SeenProduct> = { self.realm.objects(SeenProduct.self) }()
     var seenProductArray:[String] = []
-    var stringArray = DataManager.sharedInstance.productCodeArray
-    var unSeenProductArray: [String] = []
+//    var stringArray = DataManager.sharedInstance.productCodeArray
+//    var unSeenProductArray: [String] = []
 
     func makeArrayOfStrings() {
         for product in realmSeenProductArray {
