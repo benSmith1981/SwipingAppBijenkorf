@@ -49,7 +49,7 @@ class WishListTableViewController: UITableViewController, UITabBarControllerDele
         cell.productBrand?.text = product.productBrand
         cell.productPrice?.text = String(format: "€ %.2f", priceOfProduct)
         cell.imageView?.image = resizeImage(image: realmImage!, newWidth: 100)
-        cell.backgroundColor = UIColor(red: 242/255, green: 242/255, blue: 242/255, alpha: 1)
+        cell.backgroundColor = UIColor.white/*(red: 242/255, green: 242/255, blue: 242/255, alpha: 1)*/
         
         return cell
     }
@@ -107,7 +107,7 @@ class WishListTableViewController: UITableViewController, UITabBarControllerDele
             
             self.tableView.reloadData()
         })
-        addToBasket.backgroundColor = UIColor.green
+        addToBasket.backgroundColor = UIColor(red:0.96, green:0.66, blue:0.00, alpha:1.0)
         
         return [delete, addToBasket]
     }
