@@ -27,9 +27,13 @@ class CustomTabBarItem: UIView {
     
     func setup(_ item: UITabBarItem) {
         
+        item.badgeValue = "2"
+
+        
         guard let image = item.image else {
             fatalError("add images to tabbar items")
         }
+        
         
         // create imageView centered within a container
         iconView = UIImageView(frame: CGRect(x: (self.frame.width-image.size.width)/2, y: (self.frame.height-image.size
