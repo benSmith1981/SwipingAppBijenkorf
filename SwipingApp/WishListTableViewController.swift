@@ -69,6 +69,11 @@ class WishListTableViewController: UITableViewController, UITabBarControllerDele
                 self.realm.delete(basketProduct)
             }
             self.tableView.reloadData()
+            
+            let alert = UIAlertController(title: "Info", message: "Product is verwijderd", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+
         })
         delete.backgroundColor = UIColor.red
         
@@ -102,9 +107,13 @@ class WishListTableViewController: UITableViewController, UITabBarControllerDele
             }
             
             self.tableView.reloadData()
+            
+            let alert = UIAlertController(title: "Info", message: "Toegevoegd aan winkelmandje", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+
         })
         addToBasket.backgroundColor = UIColor(red:0.96, green:0.66, blue:0.00, alpha:1.0)
-        
         return [delete, addToBasket]
     }
     
