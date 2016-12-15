@@ -54,7 +54,7 @@ class ChooseProductView: MDCSwipeToChooseView {
         self.topInformationView.clipsToBounds = true
         self.topInformationView.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleTopMargin]
         self.addSubview(self.topInformationView)
-        constructNameLabel()
+        /*constructNameLabel()*/
     }
     
     func constructInformationView() -> Void{
@@ -74,9 +74,10 @@ class ChooseProductView: MDCSwipeToChooseView {
         constructBrandLabel()
         constructPriceLabel()
         constructInfoButton()
+        constructNameLabel()
     }
     
-    func constructNameLabel() -> Void{
+    /*func constructNameLabel() -> Void{
         let leftPadding:CGFloat = 12.0
         let topPadding:CGFloat = 10.0
         let frame:CGRect = CGRect(x: leftPadding,
@@ -91,6 +92,22 @@ class ChooseProductView: MDCSwipeToChooseView {
         self.nameLabel.font = UIFont(name: "ProximaNova-Regular", size: 12)
         self.nameLabel.adjustsFontSizeToFitWidth = true
         self.topInformationView .addSubview(self.nameLabel)
+    } */
+    
+    func constructBrandLabel() -> Void{
+        let leftPadding:CGFloat = 12.0
+        let topPadding:CGFloat = -10.0
+        let frame:CGRect = CGRect(x: leftPadding,
+                                  y: topPadding,
+                                  width: floor(self.topInformationView.frame.width),
+                                  height: self.topInformationView.frame.height - topPadding)
+        self.brandLabel = UILabel(frame:frame)
+        self.brandLabel.baselineAdjustment = .alignCenters
+        self.brandLabel.text = "\(product.productBrand)"
+        self.brandLabel.textAlignment = .center
+        self.brandLabel.font = UIFont(name: "ProximaNova-Bold", size: 18)
+        self.brandLabel.adjustsFontSizeToFitWidth = true
+        self.topInformationView .addSubview(self.brandLabel)
     }
     
     func constructInfoButton() -> Void {
@@ -102,9 +119,9 @@ class ChooseProductView: MDCSwipeToChooseView {
         let informationHeigth = self.topInformationView.frame.size.height
         
 //        button.frame.size = CGSize(width: 20, height: 20)
-        button.frame = CGRect(x: informationWidth-50, y: informationHeigth-20, width: 20, height: 20)
+        button.frame = CGRect(x: informationWidth-50, y: informationHeigth-01, width: 20, height: 20)
         button.setImage(image, for: UIControlState())
-        button.tintColor = UIColor.blue
+        button.tintColor = UIColor.black
         button.addTarget(self, action: #selector(notification), for: UIControlEvents.touchUpInside)
         self.informationView.addSubview(button)
     }
@@ -112,7 +129,7 @@ class ChooseProductView: MDCSwipeToChooseView {
         NotificationCenter.default.post(note)
     }
     
-    func constructBrandLabel() -> Void{
+    /*func constructBrandLabel() -> Void{
         let leftPadding:CGFloat = 12.0
         let topPadding:CGFloat = -24.0
         let frame:CGRect = CGRect(x: leftPadding,
@@ -126,6 +143,23 @@ class ChooseProductView: MDCSwipeToChooseView {
         self.brandLabel.font = UIFont(name: "ProximaNova-Bold", size: 18)
         self.brandLabel.adjustsFontSizeToFitWidth = true
         self.informationView .addSubview(self.brandLabel)
+    } */
+    
+    func constructNameLabel() -> Void{
+        let leftPadding:CGFloat = 12.0
+        let topPadding:CGFloat = -24.0
+        let frame:CGRect = CGRect(x: leftPadding,
+                                  y: topPadding,
+                                  width: floor(self.informationView.frame.width),
+                                  height: self.informationView.frame.height - topPadding)
+        self.nameLabel = UILabel(frame: frame)
+        self.nameLabel.baselineAdjustment = .alignCenters
+        self.nameLabel.numberOfLines = 0
+        self.nameLabel.text = "\(product.productName)"
+        self.nameLabel.textAlignment = .center
+        self.nameLabel.font = UIFont(name: "ProximaNova-Regular", size: 12)
+        self.nameLabel.adjustsFontSizeToFitWidth = true
+        self.informationView .addSubview(self.nameLabel)
     }
     
     func constructPriceLabel() -> Void {
