@@ -55,6 +55,7 @@ class ChooseProductView: MDCSwipeToChooseView {
         self.topInformationView.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleTopMargin]
         self.addSubview(self.topInformationView)
         /*constructNameLabel()*/
+        constructBrandLabel()
     }
     
     func constructInformationView() -> Void{
@@ -77,27 +78,12 @@ class ChooseProductView: MDCSwipeToChooseView {
         constructNameLabel()
     }
     
-    /*func constructNameLabel() -> Void{
-        let leftPadding:CGFloat = 12.0
-        let topPadding:CGFloat = 10.0
-        let frame:CGRect = CGRect(x: leftPadding,
-                                  y: topPadding,
-                                  width: floor(self.topInformationView.frame.width),
-                                  height: self.topInformationView.frame.height - topPadding)
-        self.nameLabel = UILabel(frame: frame)
-        self.nameLabel.baselineAdjustment = .alignCenters
-        self.nameLabel.numberOfLines = 0
-        self.nameLabel.text = "\(product.productName)"
-        self.nameLabel.textAlignment = .center
-        self.nameLabel.font = UIFont(name: "ProximaNova-Regular", size: 12)
-        self.nameLabel.adjustsFontSizeToFitWidth = true
-        self.topInformationView .addSubview(self.nameLabel)
-    } */
+    
     
     func constructBrandLabel() -> Void{
         let leftPadding:CGFloat = 12.0
         let topPadding:CGFloat = -10.0
-        let frame:CGRect = CGRect(x: leftPadding,
+        let frame:CGRect = CGRect(x: 0,
                                   y: topPadding,
                                   width: floor(self.topInformationView.frame.width),
                                   height: self.topInformationView.frame.height - topPadding)
@@ -129,26 +115,12 @@ class ChooseProductView: MDCSwipeToChooseView {
         NotificationCenter.default.post(note)
     }
     
-    /*func constructBrandLabel() -> Void{
-        let leftPadding:CGFloat = 12.0
-        let topPadding:CGFloat = -24.0
-        let frame:CGRect = CGRect(x: leftPadding,
-                                  y: topPadding,
-                                  width: floor(self.informationView.frame.width),
-                                  height: self.informationView.frame.height - topPadding)
-        self.brandLabel = UILabel(frame:frame)
-        self.brandLabel.baselineAdjustment = .alignCenters
-        self.brandLabel.text = "\(product.productBrand)"
-        self.brandLabel.textAlignment = .center
-        self.brandLabel.font = UIFont(name: "ProximaNova-Bold", size: 18)
-        self.brandLabel.adjustsFontSizeToFitWidth = true
-        self.informationView .addSubview(self.brandLabel)
-    } */
+    
     
     func constructNameLabel() -> Void{
         let leftPadding:CGFloat = 12.0
         let topPadding:CGFloat = -24.0
-        let frame:CGRect = CGRect(x: leftPadding,
+        let frame:CGRect = CGRect(x: 0,
                                   y: topPadding,
                                   width: floor(self.informationView.frame.width),
                                   height: self.informationView.frame.height - topPadding)
@@ -165,7 +137,7 @@ class ChooseProductView: MDCSwipeToChooseView {
     func constructPriceLabel() -> Void {
         let rightPadding: CGFloat = 12.0
         let topPadding: CGFloat = 30.0
-        let frame: CGRect = CGRect(x: rightPadding, y: topPadding, width: floor(self.informationView.frame.width), height: self.informationView.frame.height - topPadding)
+        let frame: CGRect = CGRect(x: 0, y: topPadding, width: floor(self.informationView.frame.width), height: self.informationView.frame.height - topPadding)
         let priceOfProduct = product.productPrice
         self.priceLabel = UILabel(frame: frame)
         self.priceLabel.text = String(format: "€ %.2f", priceOfProduct)
