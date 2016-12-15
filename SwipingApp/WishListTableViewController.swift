@@ -77,7 +77,7 @@ class WishListTableViewController: UITableViewController, UITabBarControllerDele
             let product = self.realmProductArray[indexPath.row]
             var basketProductCodes: [String] = []
             
-            for productCode in self.realmBasketArray {
+            for _ in self.realmBasketArray {
                 let productCode = product.productCode
                 basketProductCodes.append(productCode)
             }

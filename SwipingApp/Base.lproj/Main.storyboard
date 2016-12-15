@@ -210,7 +210,7 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <segue destination="RSV-dJ-IjU" kind="show" id="NxJ-bL-ZNc"/>
+                        <segue destination="RSV-dJ-IjU" kind="show" identifier="toSwipe" id="NxJ-bL-ZNc"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XL0-jc-F9b" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -252,7 +252,7 @@
                 <navigationController title="Search" automaticallyAdjustsScrollViewInsets="NO" id="llY-Rp-Yre" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="Search" id="o0t-rM-z3v"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="1tb-eT-hOG">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="1tb-eT-hOG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -272,7 +272,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HyM-zo-OxG" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" tag="1" title="" image="Wishlist" badgeValue="0" id="3pb-0J-1x5"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="nXR-VH-YdW">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nXR-VH-YdW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -292,7 +292,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yKP-8N-jFr" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="Basket" id="c3G-3R-QU5"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="do1-op-xmu">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="do1-op-xmu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -374,7 +374,7 @@
                                                 </collectionViewFlowLayout>
                                                 <cells>
                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="imageCell" id="qvR-oS-Vlz" customClass="CustomCollectionViewCell" customModule="SwipingApp" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="40" width="100" height="100"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                             <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>

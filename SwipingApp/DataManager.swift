@@ -22,8 +22,6 @@ class DataManager {
     var allProductCodes: RealmProduct!
     lazy var realmSeenProducts: Results<SeenProduct> = { self.realm.objects(SeenProduct.self) }()
     var seenProductCodes: SeenProduct!
-//    var productCodeArray: [String] = []
-//    var productCodeToCheckArray: [String] = []
     
     // MARK - Get data for menu categories
     
@@ -53,58 +51,52 @@ class DataManager {
         ComparisonManager.sharedInstance.makeArrayOfStrings()
         
         var allProducts: [Product] = []
-        var imageURLArray: [UIImage] = []
         let seenProducts = ComparisonManager.sharedInstance.seenProductArray
+        
+        Alamofire.request("\(baseURL)show?query=\(query)").responseJSON { response in
             
-            Alamofire.request("\(baseURL)show?query=\(query)").responseJSON { response in
+            DispatchQueue.global(qos: .background).async {
                 
-                DispatchQueue.global(qos: .background).async {
+                let nextPage: Dictionary<String, Any>
+                let nextPageURL: String?
+                
+                if let productJSON = response.result.value {
                     
-                    let pageQuery: Dictionary<String, Any>
-                    let nextPage: Dictionary<String, Any>
-                    let nextPageURL: String?
+                    let jsonDict = productJSON as! Dictionary<String, Any>
+                    let jsonData = jsonDict[jsonKeys.data.rawValue] as! Dictionary<String, Any>
+                    let jsonQuery = jsonData[jsonKeys.products.rawValue] as! [[String : AnyObject]]
+                    let pageQuery = jsonData[jsonKeys.pagination.rawValue] as! Dictionary<String, Any>
+                    if  let _nextPage = pageQuery[jsonKeys.nextPage.rawValue] as? Dictionary<String, Any> {
+                        nextPage = _nextPage
+                        nextPageURL = nextPage[jsonKeys.query.rawValue] as? String
+                    } else {
+                        nextPageURL = ""
+                    }
                     
-                    if let productJSON = response.result.value {
+                    for item in jsonQuery {
+                        // if we have not seen this product yet,
+                        let currentVariantProduct = item["currentVariantProduct"] as! Dictionary<String,Any>
+                        let productCodeToCheck = currentVariantProduct["code"] as! String
                         
-                        let jsonDict = productJSON as! Dictionary<String, Any>
-                        let jsonData = jsonDict[jsonKeys.data.rawValue] as! Dictionary<String, Any>
-                        let jsonQuery = jsonData[jsonKeys.products.rawValue] as! [[String : AnyObject]]
-                        let pageQuery = jsonData[jsonKeys.pagination.rawValue] as! Dictionary<String, Any>
-                        if  let _nextPage = pageQuery[jsonKeys.nextPage.rawValue] as? Dictionary<String, Any> {
-                            nextPage = _nextPage
-                            nextPageURL = nextPage[jsonKeys.query.rawValue] as? String
+                        if seenProducts.contains(productCodeToCheck) {
+                            print("Already Seen")
                         } else {
-                            nextPageURL = ""
-                        }
-                        
-
-                        for item in jsonQuery {
-                            // if we have not seen this product yet, 
-                            let currentVariantProduct = item["currentVariantProduct"] as! Dictionary<String,Any>
-                            let productCodeToCheck = currentVariantProduct["code"] as! String
-                            var productCode: String?
+                            // create the product
+                            let product = Product(dict: item)
+                            allProducts.append(product)
                             
-                            if seenProducts.contains(productCodeToCheck) {
-                                print("Already Seen")
-                            } else {
-                                // create the product
-                                let product = Product(dict: item)
-                                
-                                allProducts.append(product)
-//                                self.productCodeArray.append(productCode!)
-
-                            }
-                            DispatchQueue.main.async {
-                                if allProducts.count == 2 {
-                                    completion(allProducts, nextPageURL!)
-                                }
-                            }
                         }
                         DispatchQueue.main.async {
-                            completion(allProducts, nextPageURL!)
+                            if allProducts.count == 2 {
+                                completion(allProducts, nextPageURL!)
+                            }
                         }
                     }
+                    DispatchQueue.main.async {
+                        completion(allProducts, nextPageURL!)
+                    }
                 }
+            }
         }
     }
 
@@ -123,11 +115,9 @@ class DataManager {
                 let jsonData = jsonArray["data"] as! [[String : AnyObject]]
                 
                 for item in jsonData {
-//                    let product = Product(dict: item)
                     
                     var detailProductDescription = ""
                     let jsonProducts = item["product"] as! [String : AnyObject]
-                    
                     let productName = jsonProducts["name"] as? String
                     if let description = jsonProducts["description"] as? String {
                         detailProductDescription = description }
