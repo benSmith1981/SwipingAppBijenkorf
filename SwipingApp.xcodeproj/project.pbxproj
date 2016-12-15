@@ -23,7 +23,6 @@
 		764509A41DEC33D100683C8B /* CustomWishListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764509A31DEC33D100683C8B /* CustomWishListTableViewCell.swift */; };
 		764509A61DEC34D100683C8B /* WishListProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764509A51DEC34D100683C8B /* WishListProduct.swift */; };
 		764509AA1DEC7CE800683C8B /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764509A91DEC7CE800683C8B /* TabBarController.swift */; };
-		765981FD1DF1E3CD008269E1 /* ThirdSubCategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765981FC1DF1E3CD008269E1 /* ThirdSubCategoryTableViewController.swift */; };
 		765DE6C21DF9B6F900BD674D /* AlgorithmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765DE6C11DF9B6F800BD674D /* AlgorithmManager.swift */; };
 		765E89771DF035080025E2A1 /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765E89761DF035080025E2A1 /* CustomCollectionViewCell.swift */; };
 		766378D61DFAC32F0008D9B6 /* ComparisonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766378D51DFAC32F0008D9B6 /* ComparisonManager.swift */; };
@@ -34,7 +33,6 @@
 		76A0D4D21DEEA9870069CA8B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A0D4D11DEEA9870069CA8B /* DetailViewController.swift */; };
 		76CDEF531DDE3EA500C83CF6 /* MainCategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CDEF521DDE3EA500C83CF6 /* MainCategoryTableViewController.swift */; };
 		76CDEF551DDE3EC500C83CF6 /* SubCategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CDEF541DDE3EC500C83CF6 /* SubCategoryTableViewController.swift */; };
-		76CDEF571DDE3EE400C83CF6 /* SecondSubCategoryTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CDEF561DDE3EE400C83CF6 /* SecondSubCategoryTableView.swift */; };
 		76CDEF5D1DDE3F4700C83CF6 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CDEF5C1DDE3F4700C83CF6 /* DataManager.swift */; };
 		76CDEF611DDE3FBA00C83CF6 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CDEF601DDE3FBA00C83CF6 /* Product.swift */; };
 		76DB87C61DD1EA8900D9E912 /* Proxima-Nova-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 76DB87C31DD1EA8900D9E912 /* Proxima-Nova-Bold.otf */; };
@@ -64,7 +62,6 @@
 		764509A31DEC33D100683C8B /* CustomWishListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomWishListTableViewCell.swift; sourceTree = "<group>"; };
 		764509A51DEC34D100683C8B /* WishListProduct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishListProduct.swift; sourceTree = "<group>"; };
 		764509A91DEC7CE800683C8B /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		765981FC1DF1E3CD008269E1 /* ThirdSubCategoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdSubCategoryTableViewController.swift; sourceTree = "<group>"; };
 		765DE6C11DF9B6F800BD674D /* AlgorithmManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlgorithmManager.swift; sourceTree = "<group>"; };
 		765E89761DF035080025E2A1 /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
 		766378D51DFAC32F0008D9B6 /* ComparisonManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComparisonManager.swift; sourceTree = "<group>"; };
@@ -76,7 +73,6 @@
 		76A0D4D11DEEA9870069CA8B /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		76CDEF521DDE3EA500C83CF6 /* MainCategoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCategoryTableViewController.swift; sourceTree = "<group>"; };
 		76CDEF541DDE3EC500C83CF6 /* SubCategoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubCategoryTableViewController.swift; sourceTree = "<group>"; };
-		76CDEF561DDE3EE400C83CF6 /* SecondSubCategoryTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondSubCategoryTableView.swift; sourceTree = "<group>"; };
 		76CDEF5C1DDE3F4700C83CF6 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		76CDEF601DDE3FBA00C83CF6 /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		76DB87C31DD1EA8900D9E912 /* Proxima-Nova-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Proxima-Nova-Bold.otf"; path = "../Proxima-Nova-Bold.otf"; sourceTree = "<group>"; };
@@ -186,8 +182,6 @@
 				7618E76D1DE6182600796762 /* ChooseProductViewController.swift */,
 				76CDEF521DDE3EA500C83CF6 /* MainCategoryTableViewController.swift */,
 				76CDEF541DDE3EC500C83CF6 /* SubCategoryTableViewController.swift */,
-				765981FC1DF1E3CD008269E1 /* ThirdSubCategoryTableViewController.swift */,
-				76CDEF561DDE3EE400C83CF6 /* SecondSubCategoryTableView.swift */,
 				7687D8FF1DE2FA34005D6FA5 /* WishListTableViewController.swift */,
 				33D027B51DEF2D13004AD1D5 /* BasketWebViewController.swift */,
 				76A0D4D11DEEA9870069CA8B /* DetailViewController.swift */,
@@ -371,7 +365,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				76CDEF571DDE3EE400C83CF6 /* SecondSubCategoryTableView.swift in Sources */,
 				76CDEF611DDE3FBA00C83CF6 /* Product.swift in Sources */,
 				76CDEF5D1DDE3F4700C83CF6 /* DataManager.swift in Sources */,
 				33FEC9331DFC7DB3004EDC7A /* CustomTabAnimatedTransitioning.swift in Sources */,
@@ -382,7 +375,6 @@
 				33D027B61DEF2D13004AD1D5 /* BasketWebViewController.swift in Sources */,
 				769C5F7D1DFEC0930006E807 /* Constants.swift in Sources */,
 				76A0D4D21DEEA9870069CA8B /* DetailViewController.swift in Sources */,
-				765981FD1DF1E3CD008269E1 /* ThirdSubCategoryTableViewController.swift in Sources */,
 				33FEC92D1DFC7D10004EDC7A /* CustomTabBarController.swift in Sources */,
 				7618E7701DE6188E00796762 /* ChooseProductView.swift in Sources */,
 				764509A61DEC34D100683C8B /* WishListProduct.swift in Sources */,
