@@ -82,7 +82,7 @@ class ChooseProductView: MDCSwipeToChooseView {
     
     func constructBrandLabel() -> Void{
         let leftPadding:CGFloat = 12.0
-        let topPadding:CGFloat = -10.0
+        let topPadding:CGFloat = 20.0
         let frame:CGRect = CGRect(x: 0,
                                   y: topPadding,
                                   width: floor(self.topInformationView.frame.width),
@@ -119,7 +119,7 @@ class ChooseProductView: MDCSwipeToChooseView {
     
     func constructNameLabel() -> Void{
         let leftPadding:CGFloat = 12.0
-        let topPadding:CGFloat = -24.0
+        let topPadding:CGFloat = -02.0
         let frame:CGRect = CGRect(x: 0,
                                   y: topPadding,
                                   width: floor(self.informationView.frame.width),
@@ -142,7 +142,7 @@ class ChooseProductView: MDCSwipeToChooseView {
         self.priceLabel = UILabel(frame: frame)
         self.priceLabel.text = String(format: "€ %.2f", priceOfProduct)
         self.priceLabel.textAlignment = .center
-        self.priceLabel.font = UIFont(name: "ProximaNova-Bold", size: 18)
+        self.priceLabel.font = UIFont(name: "ProximaNova-Bold", size: 12)
         self.priceLabel.adjustsFontSizeToFitWidth = true
         self.informationView .addSubview(self.priceLabel)
         
