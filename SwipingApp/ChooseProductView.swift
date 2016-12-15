@@ -50,7 +50,7 @@ class ChooseProductView: MDCSwipeToChooseView {
         let topHeight: CGFloat = 40.0
         let topFrame: CGRect = CGRect(x: 0, y: 0, width: (self.bounds).width, height: topHeight);
         self.topInformationView = UIView(frame: topFrame)
-        self.topInformationView.backgroundColor = UIColor.white
+        self.topInformationView.backgroundColor = UIColor.clear
         self.topInformationView.clipsToBounds = true
         self.topInformationView.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleTopMargin]
         self.addSubview(self.topInformationView)
@@ -66,7 +66,7 @@ class ChooseProductView: MDCSwipeToChooseView {
                                         height: bottomHeight);
         self.informationView = UIView(frame: bottomFrame)
         //        self.informationView.alignmentRectInsets.bottom = 4
-        self.informationView.backgroundColor = UIColor.white.withAlphaComponent(0.5)
+        self.informationView.backgroundColor = UIColor.clear
         // self.informationView.clipsToBounds = true
         self.informationView.layer.cornerRadius = 20.0
         //        self.informationView.center =
