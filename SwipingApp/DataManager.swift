@@ -67,8 +67,7 @@ class DataManager {
                         let jsonQuery = jsonData[jsonKeys.products.rawValue] as! [[String : AnyObject]]
                         let pageQuery = jsonData[jsonKeys.pagination.rawValue] as! Dictionary<String, Any>
                         let nextPage = pageQuery[jsonKeys.nextPage.rawValue] as! Dictionary<String, Any>
-                        let nextPageURL = nextPage[jsonKeys.query.rawValue] as! String
-                        print("The next page is: \(nextPageURL)")
+                            let nextPageURL = nextPage[jsonKeys.query.rawValue] as! String
 
                         for item in jsonQuery {
                             // if we have not seen this product yet, 
@@ -167,29 +166,6 @@ class DataManager {
                 completion(newDetailProduct!)
             }
             
-        }
-    }
-    
-}
-
-extension Array where Element: Equatable {
-    
-    public func uniq() -> [Element] {
-        var arrayCopy = self
-        arrayCopy.uniqInPlace()
-        return arrayCopy
-    }
-    
-    mutating public func uniqInPlace() {
-        var seen = [Element]()
-        var index = 0
-        for element in self {
-            if seen.contains(element) {
-                remove(at: index)
-            } else {
-                seen.append(element)
-                index += 1
-            }
         }
     }
 }

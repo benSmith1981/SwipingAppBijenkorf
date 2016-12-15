@@ -36,6 +36,7 @@ class SecondSubCategoryTableViewController: UITableViewController {
         var dictObj = self.secondSubCatArray[indexPath.row]
         let categoryString = dictObj["name"] as! String
         cell.secondSubCatMenuLabel?.text? = categoryString.lowercased()
+        cell.secondSubCatMenuLabel?.font = UIFont(name: "ProximaNova-Regular", size: 18)
         self.tableView.separatorStyle = .none
         return cell
     }
@@ -45,7 +46,7 @@ class SecondSubCategoryTableViewController: UITableViewController {
         var dictObj = secondSubCatArray[indexPath.row]
         // check if it is empty
         let categories = dictObj["categories"] as! Dictionary<String,Any>
-        if categories.count > 1 {
+        if categories.count > 0 {
             let thirdSubCatTableViewController = self.storyboard?.instantiateViewController(withIdentifier: "subCategoryVC") as! SecondSubCategoryTableViewController
             thirdSubCatTableViewController.dict = dictObj
             thirdSubCatTableViewController.navigationItem.title = dictObj["name"] as? String

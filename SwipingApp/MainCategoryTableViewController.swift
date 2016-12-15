@@ -42,6 +42,7 @@ class MainCategoryTableViewController: UITableViewController {
         var dictObj = self.dictArray[indexPath.row]
         let categoryString = dictObj["name"] as! String
         cell.menuLabel?.text? = categoryString.lowercased()
+        cell.menuLabel?.font = UIFont(name: "ProximaNova-Regular", size: 18)
         self.tableView.separatorStyle = .none
         
         return cell

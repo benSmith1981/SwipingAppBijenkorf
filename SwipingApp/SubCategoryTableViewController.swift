@@ -36,6 +36,7 @@ class SubCategoryTableViewController: UITableViewController {
         var dictObj = self.subCatArray[indexPath.row]
         let categoryString = dictObj["name"] as! String
         cell.subCatMenuLabel?.text? = categoryString.lowercased()
+        cell.subCatMenuLabel?.font = UIFont(name: "ProximaNova-Regular", size: 18)
         self.tableView.separatorStyle = .none
         return cell
     }
