@@ -70,7 +70,7 @@ class WishListTableViewController: UITableViewController, UITabBarControllerDele
             }
             self.tableView.reloadData()
             
-            let alert = UIAlertController(title: "Info", message: "Product is verwijderd", preferredStyle: UIAlertControllerStyle.alert)
+            let alert = UIAlertController(title: "Info", message: "Het product is succesvol verwijderd", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
 
@@ -108,7 +108,7 @@ class WishListTableViewController: UITableViewController, UITabBarControllerDele
             
             self.tableView.reloadData()
             
-            let alert = UIAlertController(title: "Info", message: "Toegevoegd aan winkelmandje", preferredStyle: UIAlertControllerStyle.alert)
+            let alert = UIAlertController(title: "Info", message: "Het product is toegevoegd aan uw winkelmandje", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
 

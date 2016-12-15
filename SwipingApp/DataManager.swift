@@ -144,7 +144,7 @@ class DataManager {
                             let url = i["url"] as! String
                             let httpsURL = "https:\(url)"
                             
-                            let webListerString = httpsURL.replacingOccurrences(of: "default", with: "web_lister_2x")
+                            let webListerString = httpsURL.replacingOccurrences(of: "default", with: "web_lister")
                             
                             let urlString = URL(string: webListerString)
                             let data = try? Data(contentsOf: urlString!)

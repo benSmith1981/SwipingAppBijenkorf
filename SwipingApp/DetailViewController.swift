@@ -28,7 +28,7 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
         
         collectionView.delegate = self
         collectionView.dataSource = self
-        // Safely unwrapping currentProductCode
+        
         if let currentProductCode = self.currentProductCode {
             
             DataManager.sharedInstance.getDetailProductFromAPI(code:(currentProductCode)) { (detailProduct) in
