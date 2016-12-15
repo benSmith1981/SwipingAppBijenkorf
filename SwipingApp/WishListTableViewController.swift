@@ -65,8 +65,6 @@ class WishListTableViewController: UITableViewController, UITabBarControllerDele
                 self.realm.delete(color)
                 let brand = self.realmBrandArray[indexPath.row]
                 self.realm.delete(brand)
-                let category = self.realmCategoryArray[indexPath.row]
-                self.realm.delete(category)
                 let basketProduct = self.realmBasketArray[indexPath.row]
                 self.realm.delete(basketProduct)
             }
@@ -99,8 +97,6 @@ class WishListTableViewController: UITableViewController, UITabBarControllerDele
                 self.realm.delete(color)
                 let brand = self.realmBrandArray[indexPath.row]
                 self.realm.delete(brand)
-                let category = self.realmCategoryArray[indexPath.row]
-                self.realm.delete(category)
                 let basketProduct = self.realmBasketArray[indexPath.row]
                 self.realm.delete(basketProduct)
             }

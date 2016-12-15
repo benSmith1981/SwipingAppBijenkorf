@@ -60,14 +60,23 @@ class DataManager {
                 
                 DispatchQueue.global(qos: .background).async {
                     
+                    let pageQuery: Dictionary<String, Any>
+                    let nextPage: Dictionary<String, Any>
+                    let nextPageURL: String?
+                    
                     if let productJSON = response.result.value {
                         
                         let jsonDict = productJSON as! Dictionary<String, Any>
                         let jsonData = jsonDict[jsonKeys.data.rawValue] as! Dictionary<String, Any>
                         let jsonQuery = jsonData[jsonKeys.products.rawValue] as! [[String : AnyObject]]
                         let pageQuery = jsonData[jsonKeys.pagination.rawValue] as! Dictionary<String, Any>
-                        let nextPage = pageQuery[jsonKeys.nextPage.rawValue] as! Dictionary<String, Any>
-                            let nextPageURL = nextPage[jsonKeys.query.rawValue] as! String
+                        if  let _nextPage = pageQuery[jsonKeys.nextPage.rawValue] as? Dictionary<String, Any> {
+                            nextPage = _nextPage
+                            nextPageURL = nextPage[jsonKeys.query.rawValue] as? String
+                        } else {
+                            nextPageURL = ""
+                        }
+                        
 
                         for item in jsonQuery {
                             // if we have not seen this product yet, 
@@ -85,22 +94,20 @@ class DataManager {
 //                                self.productCodeArray.append(productCode!)
 
                             }
-//                            DispatchQueue.main.async {
-//                                if allProducts.count == 2 {
-//                                    completion(allProducts, nextPageURL)
-//                                }
-//                            }
+                            DispatchQueue.main.async {
+                                if allProducts.count == 2 {
+                                    completion(allProducts, nextPageURL!)
+                                }
+                            }
                         }
                         DispatchQueue.main.async {
-                            completion(allProducts, nextPageURL)
+                            completion(allProducts, nextPageURL!)
                         }
                     }
                 }
         }
     }
-    
 
-    
     // MARK - Get data for detailviewcontroller
     
     func getDetailProductFromAPI (code: String, completion:@escaping (_ detailProduct: DetailProduct) -> Void) {

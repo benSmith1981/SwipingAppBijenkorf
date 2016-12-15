@@ -41,7 +41,7 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+       // noMoreProducts.isHidden = true
         NotificationCenter.default.addObserver(self, selector: #selector(infoButton), name: note.name, object: nil)
         
         self.activityIndicatorView.startAnimating()
@@ -53,20 +53,14 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
             for everyItem in productList {
                 self.allProducts.append(everyItem)
             }
+            
             // FIXME: what happens if we TWICE get no data from the datamanager???
-            if productList.count < 2 {
-                let nextQuery = self.encodedNextQuery(query: nextPageURL)
-                self.nextPageURL = nextQuery
-                DataManager.sharedInstance.loadProductWith(query: nextQuery) { (productList, nextPageURL) in
-                    for everyItem in productList {
-                        self.allProducts.append(everyItem)
-                    }
-                    self.createCardsFromProductList()
-
-                }
-            } else {
-                self.createCardsFromProductList()
-            }
+            
+            //If there is no query what do we do
+            
+            let nextQuery = self.encodedNextQuery(query: nextPageURL)
+            self.nextPageURL = nextQuery
+            self.createCardsFromProductList()
             
             return
         }

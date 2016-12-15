@@ -17,18 +17,19 @@ class BasketWebViewController: UIViewController {
     
     @IBOutlet weak var basketWebView: UIWebView!
     
-    override func viewDidLoad() {
-        getBasketProducts()
-    }
-    
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+////        getBasketProducts()
+//    }
+//    
     override func viewWillAppear(_ animated: Bool) {
-        
+        super.viewWillAppear(animated)
         getBasketProducts()
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        getBasketProducts()
-    }
+//    
+//    override func viewDidAppear(_ animated: Bool) {
+//        getBasketProducts()
+//    }
     
     func getBasketProducts() {
         
@@ -43,11 +44,11 @@ class BasketWebViewController: UIViewController {
         let productCodeQuery = basketProductCodes
         let productCodeString = productCodeQuery.joined(separator: ",")
         
-        let url = URL(string: "https://www.debijenkorf.nl/page/addtobasket?products=\(productCodeString)")
+        let url = URL(string: "https://www.debijenkorf.nl/page/basket?products=\(productCodeString)")
         
-        let request = URLRequest(url: url!, cachePolicy: URLRequest.CachePolicy.reloadRevalidatingCacheData, timeoutInterval: 5.0)
+        let request = URLRequest(url: url!, cachePolicy: URLRequest.CachePolicy.useProtocolCachePolicy, timeoutInterval: 5.0)
         basketWebView.loadRequest(request)
-        basketWebView.reload()
+//        basketWebView.reload()
         basketWebView.tintColor = UIColor.red
     }
     
