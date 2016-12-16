@@ -82,13 +82,13 @@ class MainCategoryTableViewController: UITableViewController {
 extension UIViewController {
     
     func setScreenName(name: String) {
-        self.title = name.uppercased()
-        self.sendScreenView()
+        self.navigationItem.title = name.uppercased()
+        self.sendScreenView(name: name)
     }
     
-    func sendScreenView() {
+    func sendScreenView(name: String) {
         let tracker = GAI.sharedInstance().defaultTracker
-        tracker?.set(kGAIScreenName, value: self.title)
+        tracker?.set(kGAIScreenName, value: name)
         
         let builder = GAIDictionaryBuilder.createScreenView()
         let dictionary = (builder?.build())! as NSMutableDictionary

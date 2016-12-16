@@ -66,9 +66,9 @@ class SubCategoryTableViewController: UITableViewController {
     }
  */
     override func viewWillAppear(_ animated: Bool) {
-        navigationItem.title = dict["name"] as? String ?? ""
-        self.setScreenName(name: navigationItem.title!)
-        super.viewWillAppear(false)
+        let myTitle = dict["name"] as? String ?? ""
+        self.setScreenName(name: myTitle)
+        super.viewWillAppear(animated)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
