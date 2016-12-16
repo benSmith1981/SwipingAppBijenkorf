@@ -172,6 +172,7 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
         options.delegate = self
         options.threshold = 160.0
         options.likedText = "Top"
+        options.nopeText = "Flop"
         options.likedColor = UIColor.green
         options.onPan = { state -> Void in
             if(self.backCardView != nil){
