@@ -42,11 +42,11 @@
             <objects>
                 <tableViewController title="Wishlist" id="exX-3s-RFt" customClass="WishListTableViewController" customModule="SwipingApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="120" sectionHeaderHeight="28" sectionFooterHeight="28" id="bt9-VE-F8l">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <label key="tableFooterView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yeo-Dw-TwE">
-                            <rect key="frame" x="0.0" y="212" width="375" height="44"/>
+                            <rect key="frame" x="0.0" y="148" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
@@ -113,7 +113,7 @@
                             <outlet property="delegate" destination="exX-3s-RFt" id="nJB-6i-JVg"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Verlanglijstje" id="zLG-Eg-X0x"/>
+                    <navigationItem key="navigationItem" title="VERLANGLIJST" id="zLG-Eg-X0x"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="mcD-IY-iFV">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -276,7 +276,7 @@
                 <navigationController title="Search" automaticallyAdjustsScrollViewInsets="NO" id="llY-Rp-Yre" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="Search" id="o0t-rM-z3v"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="1tb-eT-hOG">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="1tb-eT-hOG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -296,7 +296,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HyM-zo-OxG" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" tag="1" title="" image="Wishlist" badgeValue="0" id="3pb-0J-1x5"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="nXR-VH-YdW">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="nXR-VH-YdW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -316,7 +316,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yKP-8N-jFr" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="Basket" id="c3G-3R-QU5"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="do1-op-xmu">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="do1-op-xmu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -522,7 +522,7 @@
             </objects>
             <point key="canvasLocation" x="3908" y="214.09295352323841"/>
         </scene>
-        <!--Basket Web View Controller-->
+        <!--WINKELMAND-->
         <scene sceneID="ugP-Hk-6z1">
             <objects>
                 <viewController id="cgm-R2-S3b" customClass="BasketWebViewController" customModule="SwipingApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -531,11 +531,11 @@
                         <viewControllerLayoutGuide type="bottom" id="XbU-RI-VOF"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="x3K-9e-K5l">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q2G-LQ-wSf">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </webView>
                         </subviews>
@@ -547,7 +547,7 @@
                             <constraint firstAttribute="bottom" secondItem="q2G-LQ-wSf" secondAttribute="bottom" id="udm-dv-V2Q"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="aGd-gJ-CwP"/>
+                    <navigationItem key="navigationItem" title="WINKELMAND" id="aGd-gJ-CwP"/>
                     <connections>
                         <outlet property="basketWebView" destination="q2G-LQ-wSf" id="DTo-1X-yML"/>
                     </connections>
