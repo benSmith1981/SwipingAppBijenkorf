@@ -69,20 +69,21 @@ class MainCategoryTableViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        navigationItem.title = "Bijenkorf"
+        let navigationString = "Bijenkorf"
+        navigationItem.title = navigationString.uppercased()
         navigationController?.navigationBar.barTintColor = UIColor(red: 238, green: 238, blue: 238, alpha: 1)
     }
     
     override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
-            self.setScreenName(name: "Bijenkorf")
-    }
+            self.setScreenName(name: "")
+            self.navigationItem.backBarButtonItem?.title = ""    }
 }
 
 extension UIViewController {
     
     func setScreenName(name: String) {
-        self.title = name
+        self.title = name.uppercased()
         self.sendScreenView()
     }
     

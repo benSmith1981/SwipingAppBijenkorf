@@ -122,8 +122,8 @@ class WishListTableViewController: UITableViewController, UITabBarControllerDele
     func showEmptyLabel() {
         
         if realmProductArray.count == 0 {
-            emptyLabel.text = "geen producten op uw verlanglijstje"
-            emptyLabel.font = UIFont(name: "ProximaNova-Regular", size: 18)
+            emptyLabel.text = "U heeft op dit moment nog geen artikelen op uw verlanglijst staan. Druk op het hartje onder een product om deze op uw verlanglijst te plaatsen. U kunt het product ook naar rechts swipen"
+            emptyLabel.font = UIFont(name: "ProximaNova-Regular", size: 12)
         } else {
             emptyLabel.text = ""
         }
