@@ -86,8 +86,8 @@
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MJK-4n-dlh">
                                             <rect key="frame" x="22" y="22" width="75" height="76"/>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wNB-bQ-DEG">
-                                            <rect key="frame" x="105" y="22" width="209" height="20.5"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="wNB-bQ-DEG">
+                                            <rect key="frame" x="105" y="22" width="209" height="30"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -101,6 +101,7 @@
                                         <constraint firstAttribute="trailingMargin" secondItem="MJK-4n-dlh" secondAttribute="trailing" constant="270" id="Moi-7F-YAo"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="wNB-bQ-DEG" secondAttribute="trailing" constant="53" id="TbE-kP-JHp"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="KPU-5d-fSj" secondAttribute="trailing" constant="24" id="Tot-qK-3IN"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="wNB-bQ-DEG" secondAttribute="bottom" constant="60" id="V47-2I-PW2"/>
                                         <constraint firstItem="IEe-gv-PrP" firstAttribute="leading" secondItem="bCN-Vd-38l" secondAttribute="leadingMargin" constant="137" id="Vsn-0s-wbV"/>
                                         <constraint firstItem="wNB-bQ-DEG" firstAttribute="leading" secondItem="bCN-Vd-38l" secondAttribute="leadingMargin" constant="97" id="YSb-G0-h2D"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="MJK-4n-dlh" secondAttribute="bottom" constant="14" id="bR2-E4-vkm"/>
