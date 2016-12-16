@@ -102,11 +102,11 @@ class ChooseProductView: MDCSwipeToChooseView {
         let informationWidth = self.topInformationView.frame.size.width
         let informationHeigth = self.topInformationView.frame.size.height
         
-        button.frame = CGRect(x: informationWidth-50, y: informationHeigth-01, width: 20, height: 20)
+        button.frame = CGRect(x: informationWidth-50, y: informationHeigth-20, width: 20, height: 20)
         button.setImage(image, for: UIControlState())
         button.tintColor = UIColor.black
         button.addTarget(self, action: #selector(notification), for: UIControlEvents.touchUpInside)
-        self.informationView.addSubview(button)
+        self.topInformationView.addSubview(button)
     }
     func notification() {
         NotificationCenter.default.post(note)
