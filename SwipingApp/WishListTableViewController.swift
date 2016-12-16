@@ -19,6 +19,7 @@ class WishListTableViewController: UITableViewController, UITabBarControllerDele
     lazy var realmCategoryArray: Results<Category> = { self.realm.objects(Category.self) }()
     lazy var realmBasketArray: Results<BasketProduct> = { self.realm.objects(BasketProduct.self) }()
     lazy var realmAddToBasketArray: Results<AddToBasketProduct> = { self.realm.objects(AddToBasketProduct.self) }()
+    @IBOutlet weak var emptyLabel: UILabel!
     var allProductCodes: RealmProduct!
     var currentProduct: Product!
     var sharedWishList = WishList.sharedInstance
@@ -30,7 +31,7 @@ class WishListTableViewController: UITableViewController, UITabBarControllerDele
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        showEmptyLabel()
         self.tableView.reloadData()
         self.setScreenName(name: navigationItem.title!)
     }
@@ -68,6 +69,7 @@ class WishListTableViewController: UITableViewController, UITabBarControllerDele
                 let basketProduct = self.realmBasketArray[indexPath.row]
                 self.realm.delete(basketProduct)
             }
+            self.showEmptyLabel()
             self.tableView.reloadData()
             
             let alert = UIAlertController(title: "Verwijderd", message: "Het product is succesvol verwijderd", preferredStyle: UIAlertControllerStyle.alert)
@@ -105,7 +107,7 @@ class WishListTableViewController: UITableViewController, UITabBarControllerDele
                 let basketProduct = self.realmBasketArray[indexPath.row]
                 self.realm.delete(basketProduct)
             }
-            
+            self.showEmptyLabel()
             self.tableView.reloadData()
             
             let alert = UIAlertController(title: "Toegevoegd", message: "Het product is toegevoegd aan uw winkelmandje", preferredStyle: UIAlertControllerStyle.alert)
@@ -115,6 +117,16 @@ class WishListTableViewController: UITableViewController, UITabBarControllerDele
         })
         addToBasket.backgroundColor = UIColor(red:0.96, green:0.66, blue:0.00, alpha:1.0)
         return [delete, addToBasket]
+    }
+    
+    func showEmptyLabel() {
+        
+        if realmProductArray.count == 0 {
+            emptyLabel.text = "geen producten op uw verlanglijstje"
+            emptyLabel.font = UIFont(name: "ProximaNova-Regular", size: 18)
+        } else {
+            emptyLabel.text = ""
+        }
     }
     
     func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage? {
