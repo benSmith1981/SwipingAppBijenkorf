@@ -46,12 +46,6 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        //self.setScreenName(name: navigationItem.title!)
-        
-    }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if self.detailProductArray.count == 0 {
             return 0 }

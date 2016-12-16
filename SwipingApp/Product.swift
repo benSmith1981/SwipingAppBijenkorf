@@ -29,9 +29,7 @@ class Product: NSObject {
         self.productColor = productColor
         self.productImageString = productImageString
 
-        
         super.init()
-        
     }
     
     init(dict item:[String : AnyObject]) {
@@ -47,8 +45,6 @@ class Product: NSObject {
         let productCodeToCheck = currentVariantProduct["code"] as? String
         
         self.productCode = String(describing: productCodeToCheck!)
-//                self.productCodeToCheckArray.append(productCodeToCheck!)
-        
         self.productColor = currentVariantProduct["color"] as? String ?? "onbekend"
         
         if let imageURL = currentVariantProduct["images"] as? [Dictionary<String,Any>] {
@@ -60,24 +56,13 @@ class Product: NSObject {
             var data = try? Data(contentsOf: url!)
             
             self.productImageString = httpURL.replacingOccurrences(of: "default", with: "web_lister_2x")
-            // products are created in the background, so this image is also created in the background
-//            DispatchQueue.global(qos: .background).async {
                 data = try? Data(contentsOf: URL(string: self.productImageString)!)
                 if let data = data {
                     self.productImage = UIImage(data:data)
-//                }
+
             }
          }
     }
     
 }
 
-//init(dictionary: JSONDICT) {
-//
-//    self.productBrand = dictionary["brand"]
-//    self.productName = dictionary["name"]
-//    self.productPrice = productPrice
-//    self.productImage = productImage
-//    self.productCode = productCode
-//
-//    super.init()

@@ -60,23 +60,6 @@ class SubCategoryTableViewController: UITableViewController {
         
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        
-//        let index = tableView.indexPathForSelectedRow?.row
-//        let currentDict = subCatArray[index!]
-//        
-//        if segue.identifier == "subToSub" {
-//            
-//            if let row = tableView.indexPathForSelectedRow?.row {
-//                
-//                var dictObj = subCatArray[row]
-//                let secondSubCatTableViewController = segue.destination as! SecondSubCategoryTableViewController
-//                secondSubCatTableViewController.dict = currentDict
-//                secondSubCatTableViewController.navigationItem.title = dictObj["name"] as? String
-//            }
-//        }
-//    }
-//    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.setScreenName(name: navigationItem.title!)

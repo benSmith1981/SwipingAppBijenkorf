@@ -19,9 +19,6 @@ class WishListProduct: NSObject {
     var productImage: UIImage
     var productCode: String
     var productColor: String
-
-    
-    //    init(productBrand: String, productName: String, productPrice: Double, productImage: String) {
     
     init(productBrand: String, productName: String, productPrice: Float, productImage: UIImage, productCode: String, productColor: String) {
         
@@ -32,7 +29,6 @@ class WishListProduct: NSObject {
         self.productCode = productCode
         self.productColor = productColor
 
-        
         super.init()
         
     }
@@ -44,5 +40,4 @@ class WishListProduct: NSObject {
             
         }
     }
-    
 }

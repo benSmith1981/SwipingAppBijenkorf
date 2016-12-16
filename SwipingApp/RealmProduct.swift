@@ -24,10 +24,6 @@ class RealmProduct: Object {
     let seenProducts = List<SeenProduct>()
     let basketProducts = List<BasketProduct>()
     let addToBasketProducts = List<AddToBasketProduct>()
-    
-//    init (product: Product) {
-//        color = product.productColor
-//    }
 }
 
 class Color: Object {

@@ -12,7 +12,4 @@ import UIKit
 class CustomCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet var detailProductImage: UIImageView!
-    
-    
-    
 }

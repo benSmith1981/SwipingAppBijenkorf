@@ -65,11 +65,11 @@ class ChooseProductView: MDCSwipeToChooseView {
                                         width: (self.bounds).width,
                                         height: bottomHeight);
         self.informationView = UIView(frame: bottomFrame)
-        //        self.informationView.alignmentRectInsets.bottom = 4
+
         self.informationView.backgroundColor = UIColor.clear
-        // self.informationView.clipsToBounds = true
+
         self.informationView.layer.cornerRadius = 20.0
-        //        self.informationView.center =
+
         self.informationView.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleTopMargin]
         self.addSubview(self.informationView)
         constructBrandLabel()
@@ -81,7 +81,6 @@ class ChooseProductView: MDCSwipeToChooseView {
     
     
     func constructBrandLabel() -> Void{
-        let leftPadding:CGFloat = 12.0
         let topPadding:CGFloat = 20.0
         let frame:CGRect = CGRect(x: 0,
                                   y: topPadding,
@@ -100,11 +99,9 @@ class ChooseProductView: MDCSwipeToChooseView {
         
         let button : UIButton = UIButton(type: UIButtonType.system)
         let image: UIImage = UIImage(named: "info")!
-        
         let informationWidth = self.topInformationView.frame.size.width
         let informationHeigth = self.topInformationView.frame.size.height
         
-//        button.frame.size = CGSize(width: 20, height: 20)
         button.frame = CGRect(x: informationWidth-50, y: informationHeigth-01, width: 20, height: 20)
         button.setImage(image, for: UIControlState())
         button.tintColor = UIColor.black
@@ -118,7 +115,6 @@ class ChooseProductView: MDCSwipeToChooseView {
     
     
     func constructNameLabel() -> Void{
-        let leftPadding:CGFloat = 12.0
         let topPadding:CGFloat = -02.0
         let frame:CGRect = CGRect(x: 0,
                                   y: topPadding,
@@ -135,7 +131,6 @@ class ChooseProductView: MDCSwipeToChooseView {
     }
     
     func constructPriceLabel() -> Void {
-        let rightPadding: CGFloat = 12.0
         let topPadding: CGFloat = 30.0
         let frame: CGRect = CGRect(x: 0, y: topPadding, width: floor(self.informationView.frame.width), height: self.informationView.frame.height - topPadding)
         let priceOfProduct = product.productPrice

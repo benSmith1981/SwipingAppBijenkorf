@@ -14,8 +14,6 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
     
     let realm = try! Realm()
     lazy var realmProductArray: Results<RealmProduct> = { self.realm.objects(RealmProduct.self) }()
-    
-//    var allProductCodes: RealmProduct!
     var sharedWishList = WishList.sharedInstance
     let ChooseProductButtonHorizontalPadding: CGFloat = 80.0
     let ChooseProductButtonVerticalPadding: CGFloat = 20.0
@@ -112,7 +110,6 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
             self.sharedWishList.addNewProductCode(productCode: newProductCode)
             
             try! realm.write() {
-//                 let newRealmProduct = RealmProduct(currentProduct)
                 let realmURL = URL(string: currentProduct.productImageString)
                 let realmImage = NSData(contentsOf: realmURL!)
                 
@@ -133,7 +130,6 @@ class ChooseProductViewController: UIViewController, MDCSwipeToChooseDelegate {
                 newRealmProduct.brand.append(newProductBrand)
                 newRealmProduct.basketProducts.append(basketProductCode)
                 realm.add(newRealmProduct)
-//                self.allProductCodes = newRealmProduct
             }
             
             let seenProductCode = currentProduct.productCode
